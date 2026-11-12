@@ -394,11 +394,13 @@ export const LightboxModal: React.FC<{
   );
 };
 
-export const ContactSuccessModal: React.FC<{ isOpen: boolean; onClose: () => void; name?: string }> = ({
-  isOpen,
-  onClose,
-  name,
-}) => (
+export const ContactSuccessModal: React.FC<{
+  isOpen: boolean;
+  onClose: () => void;
+  name?: string;
+  whatsappUrl?: string;
+  mailtoUrl?: string;
+}> = ({ isOpen, onClose, name, whatsappUrl, mailtoUrl }) => (
   <AnimatePresence>
     {isOpen && (
       <motion.div
@@ -418,17 +420,36 @@ export const ContactSuccessModal: React.FC<{ isOpen: boolean; onClose: () => voi
           <div className="w-14 h-14 mx-auto rounded-full bg-[#EDF8EF] flex items-center justify-center text-[#078B3B] mb-4">
             <CheckCircle2 className="w-8 h-8" />
           </div>
-          <h3 className="text-xl font-bold text-[#082F70]">Message Received!</h3>
+          <h3 className="text-xl font-bold text-[#082F70]">Message Ready to Send!</h3>
           <p className="mt-2 text-sm text-[#63738B]">
-            Thank you{name ? `, ${name}` : ''}. Your inquiry for Prajwala Community Development Society has been recorded. You can also reach us directly at{' '}
-            <span className="font-semibold text-[#082F70]">{ORG_INFO.phone}</span>.
+            Thank you{name ? `, ${name}` : ''}. Click below to deliver your message directly to PCDS Guntur on WhatsApp (<span className="font-semibold text-[#082F70]">{ORG_INFO.phone}</span>) or Email.
           </p>
-          <button
-            onClick={onClose}
-            className="mt-5 px-6 py-2.5 rounded-lg bg-[#082F70] text-white text-sm font-semibold hover:bg-[#0753A6] cursor-pointer"
-          >
-            Close
-          </button>
+          <div className="mt-5 flex flex-col gap-2.5">
+            {whatsappUrl && (
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="w-full py-2.5 px-4 rounded-xl bg-[#078B3B] hover:bg-[#066d2e] text-white text-sm font-semibold shadow transition-colors"
+              >
+                Send Directly via WhatsApp (+91 95020 46096)
+              </a>
+            )}
+            {mailtoUrl && (
+              <a
+                href={mailtoUrl}
+                className="w-full py-2.5 px-4 rounded-xl bg-[#0753A6] hover:bg-[#082F70] text-white text-sm font-semibold shadow transition-colors"
+              >
+                Send via Email ({ORG_INFO.email})
+              </a>
+            )}
+            <button
+              onClick={onClose}
+              className="w-full py-2 rounded-xl text-sm font-semibold text-[#63738B] hover:bg-slate-100 cursor-pointer"
+            >
+              Close
+            </button>
+          </div>
         </motion.div>
       </motion.div>
     )}

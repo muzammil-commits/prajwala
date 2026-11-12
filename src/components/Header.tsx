@@ -62,40 +62,41 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
               <Phone className="w-3.5 h-3.5 text-[#36A852]" />
               <span>{ORG_INFO.phone}</span>
             </a>
-            <span className="hidden md:inline text-white/30">|</span>
-            <span className="hidden md:inline-flex items-center gap-1.5 text-white/90 whitespace-nowrap">
-              <MapPin className="w-3.5 h-3.5 text-[#36A852]" />
-              <span>Guntur, Andhra Pradesh, India</span>
-            </span>
           </div>
 
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-2.5 shrink-0">
+            <span className="hidden md:inline text-[11px] font-semibold uppercase tracking-wider text-white/75">
+              Follow Us:
+            </span>
             <a
               href={ORG_INFO.social.facebookUrl}
               target="_blank"
               rel="noreferrer"
               aria-label="PCDS Facebook"
-              className="w-6 h-6 rounded-full bg-white/15 hover:bg-[#078B3B] flex items-center justify-center transition-colors"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/15 hover:bg-[#078B3B] transition-colors"
             >
               <Facebook className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline text-[11px] font-medium">Facebook</span>
             </a>
             <a
               href={ORG_INFO.social.youtubeUrl}
               target="_blank"
               rel="noreferrer"
               aria-label="PCDS YouTube"
-              className="w-6 h-6 rounded-full bg-white/15 hover:bg-[#D71920] flex items-center justify-center transition-colors"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/15 hover:bg-[#D71920] transition-colors"
             >
               <Youtube className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline text-[11px] font-medium">YouTube</span>
             </a>
             <a
               href={ORG_INFO.social.instagramUrl}
               target="_blank"
               rel="noreferrer"
               aria-label="PCDS Instagram"
-              className="w-6 h-6 rounded-full bg-white/15 hover:bg-[#078B3B] flex items-center justify-center transition-colors"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/15 hover:bg-[#078B3B] transition-colors"
             >
               <Instagram className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline text-[11px] font-medium">Instagram</span>
             </a>
           </div>
         </div>

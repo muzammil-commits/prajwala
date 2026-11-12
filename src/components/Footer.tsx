@@ -1,10 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Facebook, Youtube, Instagram, Heart } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook, Youtube, Instagram, Heart, ArrowRight } from 'lucide-react';
 import { ORG_INFO } from '../data/pcdsData';
 
 export const Footer: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate }) => (
-  <footer className="relative bg-[#082F70] text-white border-t-4 border-[#078B3B]">
+  <footer className="relative bg-gradient-to-b from-[#082F70] to-[#051F4E] text-white overflow-hidden">
+    {/* Curved Green & Blue Top Wave matching image copy 32.png */}
+    <div className="w-full h-3 bg-gradient-to-r from-[#078B3B] via-[#36A852] to-[#0753A6]" />
+
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
       {/* Brand */}
       <div className="space-y-4">
@@ -28,10 +31,11 @@ export const Footer: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
         </p>
         <button
           onClick={onOpenDonate}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#D71920] hover:bg-[#b5141a] text-white text-sm font-semibold shadow-md transition-colors cursor-pointer"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-transparent border-2 border-[#36A852] hover:bg-[#078B3B] text-white text-sm font-semibold shadow-md transition-all cursor-pointer"
         >
-          <Heart className="w-4 h-4 fill-white" />
+          <Heart className="w-4 h-4 text-[#FFE082] fill-[#FFE082]" />
           <span>Support Our Mission</span>
+          <ArrowRight className="w-4 h-4" />
         </button>
       </div>
 

@@ -141,7 +141,7 @@ export const ACTIVITIES: ActivityItem[] = [
       'PCDS is currently operating an Old Age Home that provides safe shelter, nutritious food, clothing, healthcare support, emotional care, and a dignified living environment for 25 senior citizens. The organization is committed to ensuring that every resident receives compassionate care, respect, and a sense of belonging.',
       'Since its establishment, the Old Age Home has provided shelter, food, clothing, healthcare, and emotional support to 46 senior citizens. Currently, 25 senior citizens are residing in the Home, receiving continuous care and support.',
     ],
-    image: '/assets/activities/old-age-home.svg',
+    image: '/assets/activities/old-age-home.png',
     highlights: [
       'Safe and dignified residential shelter in Sangadi Gunta Area, Guntur',
       'Daily nutritious meals, clothing, and regular health check-ups',
@@ -163,7 +163,7 @@ export const ACTIVITIES: ActivityItem[] = [
       'PCDS works actively to promote inclusion, equal opportunities, assistive support, awareness, and access to welfare schemes for persons with disabilities.',
       'Through our PCDS Old Age & Persons with Disabilities Home and community outreach, we strive to ensure dignified living, social acceptance, and practical support.',
     ],
-    image: '/assets/activities/disability-support.svg',
+    image: '/assets/activities/disability-support.png',
     highlights: [
       'Inclusive support and community awareness',
       'Access to welfare schemes and assistive care',
@@ -181,7 +181,7 @@ export const ACTIVITIES: ActivityItem[] = [
       "PCDS organizes skill development programs, awareness campaigns, leadership training, health education, and initiatives that promote women's rights and economic independence.",
       'Our women empowerment programmes equip women across urban and rural Guntur with confidence, legal awareness, health knowledge, and livelihood skills.',
     ],
-    image: '/assets/activities/women-empowerment.svg',
+    image: '/assets/activities/women-empowerment.png',
     highlights: [
       'Skill development & vocational workshops',
       'Leadership training & gender equality awareness',
@@ -199,7 +199,7 @@ export const ACTIVITIES: ActivityItem[] = [
       "PCDS is dedicated to supporting children's education, health, nutrition, protection, and overall development through community-based initiatives.",
       'Through our Child Protection & Legal Awareness campaigns, PCDS has created awareness among over 3,000 students on Emergency Response Support System (112), Childline (1098), the POCSO Act, child rights, child safety, and other child protection laws through awareness programs conducted in educational institutions and communities.',
     ],
-    image: '/assets/activities/child-welfare.svg',
+    image: '/assets/activities/child-welfare.png',
     highlights: [
       'Awareness on Emergency Response Support System (112) & Childline (1098)',
       'POCSO Act, child rights, and child safety education',
@@ -218,7 +218,7 @@ export const ACTIVITIES: ActivityItem[] = [
       'Founded by a Legal Professional (Advocate), PCDS conducts legal literacy programs, rights awareness campaigns, counselling, and facilitates access to free legal assistance for disadvantaged communities.',
       'Special focus is placed on empowering victims of domestic violence, abuse, or social injustice, as well as educating citizens on constitutional rights and child protection laws.',
     ],
-    image: '/assets/activities/legal-aid.svg',
+    image: '/assets/activities/legal-aid.png',
     highlights: [
       'Legal literacy & constitutional rights campaigns',
       'Counselling for victims of domestic violence and social injustice',
@@ -236,7 +236,7 @@ export const ACTIVITIES: ActivityItem[] = [
       'PCDS has conducted 5 Free Medical Camps, providing health check-ups, medical consultations, basic treatment, and health awareness services to underprivileged communities.',
       'In addition, PCDS has organized 7 Blood Donation Camps in partnership with the Indian Red Cross Society and local medical volunteers to support emergency blood needs in Guntur.',
     ],
-    image: '/assets/activities/medical-camps.jpg',
+    image: '/assets/activities/medical-camps.png',
     highlights: [
       'Free health check-ups, consultations, and basic treatment',
       'Voluntary Blood Donation Camps with Indian Red Cross Society',
@@ -258,7 +258,7 @@ export const ACTIVITIES: ActivityItem[] = [
       'PCDS conducts tree plantation drives, park cleaning & gardening drives, Swachh Bharat cleanliness campaigns, and environmental awareness programs across Guntur.',
       'Planted more than 6,515 saplings since 2018 across rural and urban areas of Guntur with the support of Government officials, contributing to environmental sustainability and community participation.',
     ],
-    image: '/assets/activities/environment.jpg',
+    image: '/assets/activities/environment.png',
     highlights: [
       '6,515+ saplings planted since 2018 across rural & urban Guntur',
       'Park cleaning, gardening & Swachh Bharat drives (3x Swachh Bharat Award winner)',
@@ -277,7 +277,7 @@ export const ACTIVITIES: ActivityItem[] = [
       'PCDS supports vocational training, entrepreneurship, and income-generation opportunities to improve self-reliance among economically weaker sections.',
       'Key programmes include Tailoring Training for Homemakers (2017–2020) and Block-Level Youth & Sports Development initiatives to build practical skills, confidence, and economic independence.',
     ],
-    image: '/assets/activities/livelihood.svg',
+    image: '/assets/activities/livelihood.png',
     highlights: [
       'Tailoring Training for Homemakers (2017–2020)',
       'Vocational training & entrepreneurship support',
@@ -295,7 +295,7 @@ export const ACTIVITIES: ActivityItem[] = [
       'PCDS extends emergency relief, essential supplies, and rehabilitation support to communities affected by natural disasters and public health emergencies.',
       'During the COVID-19 pandemic (2020–2021), PCDS served 12,574 free meals to highway travellers and migrant workers for 43 days, supported 4,708+ dry ration beneficiaries (3,458 in 2020 + 1,250 in 2021), distributed 45,000 face masks and 279 litres of sanitizers, provided oxygen concentrators on free loan, and distributed medicine & discharge kits at GGH.',
     ],
-    image: '/assets/activities/disaster-relief.svg',
+    image: '/assets/activities/disaster-relief.png',
     highlights: [
       '4,708+ Dry Ration Beneficiaries & 12,574 Free Meals during COVID-19',
       '45,000 face masks & 279 litres of sanitizer distributed',
@@ -319,7 +319,7 @@ export const ACTIVITIES: ActivityItem[] = [
       'PCDS organizes professional self-defence training workshops to equip girls and women with practical self-protection skills, enhance their confidence, promote personal safety, and empower them to respond effectively in challenging situations.',
       "Trained 320 girls and women in self-defence and personal safety. The training programs were conducted at B.H.H. Women's Degree College, Guntur, Government Women's Degree College, Guntur, and in rural communities of Pattipadu Mandal.",
     ],
-    image: '/assets/activities/self-defence.svg',
+    image: '/assets/activities/self-defence.png',
     highlights: [
       "Conducted at B.H.H. Women's Degree College & Govt. Women's Degree College, Guntur",
       'Rural outreach in Pattipadu Mandal & selected government/orphanage schools',
@@ -616,7 +616,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     id: 'g1',
     title: 'Old Age Home Meal & Care',
     category: 'Old Age Home',
-    image: '/assets/activities/old-age-home.svg',
+    image: '/assets/activities/old-age-home.png',
     caption: 'Providing nutritious food, safe shelter, and compassionate daily care for 25 senior citizens.',
   },
   {
@@ -630,7 +630,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     id: 'g3',
     title: 'Free Community Medical Camp',
     category: 'Medical Camps',
-    image: '/assets/activities/medical-camps.jpg',
+    image: '/assets/activities/medical-camps.png',
     caption: '5 Free Medical Camps delivering check-ups, consultations, and preventive care.',
   },
   {
@@ -644,14 +644,14 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     id: 'g5',
     title: 'Women Empowerment Workshop',
     category: 'Women Empowerment',
-    image: '/assets/activities/women-empowerment.svg',
+    image: '/assets/activities/women-empowerment.png',
     caption: 'Leadership, rights awareness, and economic independence sessions for women.',
   },
   {
     id: 'g6',
     title: 'Tailoring & Skill Development',
     category: 'Skill Development',
-    image: '/assets/activities/livelihood.svg',
+    image: '/assets/activities/livelihood.png',
     caption: 'Vocational tailoring training empowering homemakers toward financial self-reliance.',
   },
   {
@@ -665,35 +665,35 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     id: 'g8',
     title: 'Tree Plantation & Green Drive',
     category: 'Environmental Activities',
-    image: '/assets/activities/environment.jpg',
+    image: '/assets/activities/environment.png',
     caption: '6,515+ saplings planted since 2018 across rural and urban Guntur.',
   },
   {
     id: 'g9',
     title: 'Child Protection & POCSO Awareness',
     category: 'Child Protection',
-    image: '/assets/activities/child-welfare.svg',
+    image: '/assets/activities/child-welfare.png',
     caption: '3,000+ students reached on 112, Childline 1098, and child safety laws.',
   },
   {
     id: 'g10',
     title: 'COVID-19 Dry Ration & Meal Relief',
     category: 'COVID-19 Relief',
-    image: '/assets/activities/disaster-relief.svg',
+    image: '/assets/activities/disaster-relief.png',
     caption: '12,574 free meals and 4,708+ dry ration beneficiaries supported during lockdown.',
   },
   {
     id: 'g11',
     title: 'Self-Defence Training for Girls',
     category: 'Women Empowerment',
-    image: '/assets/activities/self-defence.svg',
+    image: '/assets/activities/self-defence.png',
     caption: '320 girls and women trained in practical self-defence across Guntur colleges and villages.',
   },
   {
     id: 'g12',
     title: 'Support for Persons with Disabilities',
     category: 'Old Age Home',
-    image: '/assets/activities/disability-support.svg',
+    image: '/assets/activities/disability-support.png',
     caption: 'Promoting inclusion, assistive support, and dignified living.',
   },
 ];

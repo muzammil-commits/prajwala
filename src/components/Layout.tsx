@@ -17,15 +17,15 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 
   return (
     <div className="relative min-h-screen flex flex-col overflow-x-hidden">
-      {/* Whole-Website Animated Background (image copy 4.png) for both Desktop & Mobile */}
+      {/* Whole-Website Animated Background (image copy 4.png) clearly visible on both Desktop & Mobile */}
       <div className="fixed inset-0 -z-20 overflow-hidden pointer-events-none">
         <img
           src="/assets/backgrounds/site-bg.png"
           alt=""
           aria-hidden="true"
-          className="w-full h-full object-cover animate-bg-float opacity-55"
+          className="w-full h-full object-cover animate-bg-float opacity-90"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/80 to-[#F3F8FC]/85 backdrop-blur-[1px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/35 via-white/45 to-[#F3F8FC]/55" />
       </div>
 
       <Header onOpenDonate={() => setDonateOpen(true)} />

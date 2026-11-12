@@ -38,9 +38,9 @@ export const OngoingProjectsPage: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-100">
           <ScrollReveal direction="left" className="lg:col-span-5">
             <img
-              src="/assets/activities/old-age-home.svg"
+              src="/assets/sections/ongoing-project.png"
               alt="PCDS Old Age Home Guntur"
-              className="w-full h-72 sm:h-80 object-cover rounded-2xl shadow-md"
+              className="w-full h-72 sm:h-80 object-cover object-left rounded-2xl shadow-md"
             />
           </ScrollReveal>
 
@@ -296,9 +296,19 @@ export const DonatePage: React.FC = () => {
 };
 
 export const ContactPage: React.FC = () => {
-  const [form, setForm] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: 'Volunteering / CSR / Donation / General',
+    message: '',
+  });
   const [error, setError] = useState('');
-  const [submittedName, setSubmittedName] = useState<string | null>(null);
+  const [submission, setSubmission] = useState<{
+    name: string;
+    whatsappUrl: string;
+    mailtoUrl: string;
+  } | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -307,63 +317,122 @@ export const ContactPage: React.FC = () => {
       return;
     }
     setError('');
-    setSubmittedName(form.name.trim());
-    setForm({ name: '', email: '', phone: '', subject: '', message: '' });
+    const text = `Hello PCDS Guntur,%0A*Name:* ${encodeURIComponent(form.name.trim())}%0A*Email:* ${encodeURIComponent(form.email.trim())}%0A*Phone:* ${encodeURIComponent(form.phone.trim() || 'Not provided')}%0A*Subject:* ${encodeURIComponent(form.subject)}%0A*Message:* ${encodeURIComponent(form.message.trim())}`;
+    const whatsappUrl = `https://wa.me/919502046096?text=${text}`;
+    const mailtoUrl = `mailto:${ORG_INFO.email}?subject=${encodeURIComponent(
+      `[PCDS Website] ${form.subject} - ${form.name.trim()}`
+    )}&body=${encodeURIComponent(
+      `Name: ${form.name.trim()}\nEmail: ${form.email.trim()}\nPhone: ${form.phone.trim() || 'Not provided'}\nSubject: ${form.subject}\n\nMessage:\n${form.message.trim()}`
+    )}`;
+
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    setSubmission({ name: form.name.trim(), whatsappUrl, mailtoUrl });
+    setForm({
+      name: '',
+      email: '',
+      phone: '',
+      subject: 'Volunteering / CSR / Donation / General',
+      message: '',
+    });
   };
 
   return (
     <div>
-      <PageBanner
-        title="Contact Us"
-        subtitle="Reach out to Prajwala Community Development Society (PCDS), Guntur for volunteering, CSR partnerships, donations, or community support."
-        badge="Get In Touch"
-        breadcrumb={[{ label: 'Contact Us' }]}
-      />
-      <section className="py-14 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
-        <ScrollReveal direction="left" className="lg:col-span-5 space-y-5">
-          <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-slate-100 space-y-5">
-            <h2 className="text-xl font-bold text-[#082F70]">Registered Office &amp; Contact Details</h2>
-            <div className="space-y-4 text-sm text-[#14294A]">
-              <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-[#078B3B] shrink-0 mt-0.5" />
-                <div>
-                  <div className="font-bold text-[#082F70]">Address</div>
-                  <div>{ORG_INFO.address}</div>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <Phone className="w-5 h-5 text-[#078B3B] shrink-0 mt-0.5" />
-                <div>
-                  <div className="font-bold text-[#082F70]">Phone Number</div>
-                  <a href="tel:+919502046096" className="hover:text-[#078B3B] font-semibold">
-                    {ORG_INFO.phone}
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <Mail className="w-5 h-5 text-[#078B3B] shrink-0 mt-0.5" />
-                <div>
-                  <div className="font-bold text-[#082F70]">Email</div>
-                  <a href={`mailto:${ORG_INFO.email}`} className="hover:text-[#078B3B] font-semibold">
-                    {ORG_INFO.email}
-                  </a>
-                </div>
-              </div>
-            </div>
+      {/* Grand Banner matching image copy 34.png */}
+      <section className="relative overflow-hidden bg-gradient-to-r from-[#082F70] via-[#0753A6] to-[#078B3B] text-white py-14 md:py-20 shadow-lg">
+        <div className="absolute inset-0 opacity-30 pointer-events-none">
+          <img
+            src="/assets/sections/contact-banner.png"
+            alt=""
+            aria-hidden="true"
+            className="w-full h-full object-cover object-top"
+          />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#078B3B] border border-white/25 text-xs font-bold uppercase tracking-wider mb-3">
+            <Mail className="w-3.5 h-3.5" />
+            <span>GET IN TOUCH</span>
+          </span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">
+            Contact <span className="text-[#36A852]">Us</span>
+          </h1>
+          <p className="mt-3 text-base sm:text-lg text-white/90 max-w-2xl leading-relaxed">
+            Reach out to Prajwala Community Development Society (PCDS), Guntur for volunteering, CSR partnerships, donations, or community support.
+          </p>
+        </div>
+      </section>
 
-            <div className="pt-4 border-t border-slate-100 space-y-2 text-xs text-[#63738B]">
-              <div className="font-bold text-[#082F70] text-sm">Follow Us</div>
-              <div className="flex items-center gap-2">
-                <Facebook className="w-4 h-4 text-[#0753A6]" />
-                <span>{ORG_INFO.social.facebook}</span>
+      <section className="py-14 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <ScrollReveal direction="left" className="lg:col-span-5">
+          <div className="bg-white/95 rounded-3xl shadow-xl border border-slate-100 overflow-hidden h-full">
+            <div className="bg-gradient-to-r from-[#082F70] to-[#078B3B] text-white px-6 py-4 font-bold text-lg flex items-center gap-2">
+              <MapPin className="w-5 h-5 text-[#FFE082]" />
+              <span>Registered Office &amp; Contact Details</span>
+            </div>
+            <div className="p-6 sm:p-7 space-y-5">
+              <div className="space-y-4 text-sm text-[#14294A]">
+                <div className="flex items-start gap-3">
+                  <span className="w-9 h-9 rounded-full bg-[#EDF8EF] text-[#078B3B] flex items-center justify-center shrink-0">
+                    <MapPin className="w-4 h-4" />
+                  </span>
+                  <div>
+                    <div className="font-bold text-[#082F70]">Address</div>
+                    <div>{ORG_INFO.address}</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="w-9 h-9 rounded-full bg-[#F3F8FC] text-[#0753A6] flex items-center justify-center shrink-0">
+                    <Phone className="w-4 h-4" />
+                  </span>
+                  <div>
+                    <div className="font-bold text-[#082F70]">Phone / WhatsApp Number</div>
+                    <a href="tel:+919502046096" className="hover:text-[#078B3B] font-bold text-[#082F70]">
+                      {ORG_INFO.phone}
+                    </a>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="w-9 h-9 rounded-full bg-[#EDF8EF] text-[#078B3B] flex items-center justify-center shrink-0">
+                    <Mail className="w-4 h-4" />
+                  </span>
+                  <div>
+                    <div className="font-bold text-[#082F70]">Email</div>
+                    <a href={`mailto:${ORG_INFO.email}`} className="hover:text-[#078B3B] font-bold">
+                      {ORG_INFO.email}
+                    </a>
+                  </div>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <Youtube className="w-4 h-4 text-[#D71920]" />
-                <span>{ORG_INFO.social.youtube}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Instagram className="w-4 h-4 text-[#078B3B]" />
-                <span>{ORG_INFO.social.instagram}</span>
+
+              <div className="pt-4 border-t border-slate-100 space-y-2.5 text-xs text-[#63738B]">
+                <div className="font-bold text-[#082F70] text-sm">Follow Us</div>
+                <a
+                  href={ORG_INFO.social.facebookUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 hover:text-[#082F70]"
+                >
+                  <Facebook className="w-4 h-4 text-[#0753A6]" />
+                  <span>{ORG_INFO.social.facebook}</span>
+                </a>
+                <a
+                  href={ORG_INFO.social.youtubeUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 hover:text-[#082F70]"
+                >
+                  <Youtube className="w-4 h-4 text-[#D71920]" />
+                  <span>{ORG_INFO.social.youtube}</span>
+                </a>
+                <a
+                  href={ORG_INFO.social.instagramUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 hover:text-[#082F70]"
+                >
+                  <Instagram className="w-4 h-4 text-[#078B3B]" />
+                  <span>{ORG_INFO.social.instagram}</span>
+                </a>
               </div>
             </div>
           </div>
@@ -372,88 +441,99 @@ export const ContactPage: React.FC = () => {
         <ScrollReveal direction="right" className="lg:col-span-7">
           <form
             onSubmit={handleSubmit}
-            className="bg-white rounded-3xl p-6 sm:p-8 shadow-lg border border-slate-100 space-y-4"
+            className="bg-white/95 rounded-3xl shadow-xl border border-slate-100 overflow-hidden h-full"
             noValidate
           >
-            <h2 className="text-xl font-bold text-[#082F70]">Send Us a Message</h2>
-            {error && (
-              <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-xs font-semibold text-[#D71920]">
-                {error}
+            <div className="bg-gradient-to-r from-[#082F70] to-[#078B3B] text-white px-6 py-4 font-bold text-lg flex items-center gap-2">
+              <Send className="w-5 h-5 text-[#FFE082]" />
+              <span>Send Us a Message</span>
+            </div>
+            <div className="p-6 sm:p-8 space-y-4">
+              {error && (
+                <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-xs font-semibold text-[#D71920]">
+                  {error}
+                </div>
+              )}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-bold text-[#082F70] mb-1">Full Name *</label>
+                  <input
+                    type="text"
+                    required
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-[#078B3B] focus:outline-none text-sm bg-white"
+                    placeholder="Your name"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-[#082F70] mb-1">Email Address *</label>
+                  <input
+                    type="email"
+                    required
+                    value={form.email}
+                    onChange={(e) => setForm({ ...form, email: e.target.value })}
+                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-[#078B3B] focus:outline-none text-sm bg-white"
+                    placeholder="you@example.com"
+                  />
+                </div>
               </div>
-            )}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-bold text-[#082F70] mb-1">Phone Number</label>
+                  <input
+                    type="tel"
+                    value={form.phone}
+                    onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-[#078B3B] focus:outline-none text-sm bg-white"
+                    placeholder="+91 ..."
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-[#082F70] mb-1">Subject</label>
+                  <select
+                    value={form.subject}
+                    onChange={(e) => setForm({ ...form, subject: e.target.value })}
+                    className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-[#078B3B] focus:outline-none text-sm bg-white"
+                  >
+                    <option>Volunteering / CSR / Donation / General</option>
+                    <option>Old Age Home Support</option>
+                    <option>Hair Donation / Medical Camp</option>
+                    <option>Women Empowerment &amp; Self-Defence</option>
+                    <option>CSR Partnership</option>
+                  </select>
+                </div>
+              </div>
               <div>
-                <label className="block text-xs font-semibold text-[#082F70] mb-1">Full Name *</label>
-                <input
-                  type="text"
+                <label className="block text-xs font-bold text-[#082F70] mb-1">Message *</label>
+                <textarea
+                  rows={4}
                   required
-                  value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-[#078B3B] focus:outline-none text-sm"
-                  placeholder="Your name"
+                  value={form.message}
+                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-[#078B3B] focus:outline-none text-sm bg-white"
+                  placeholder="How would you like to connect with PCDS?"
                 />
               </div>
-              <div>
-                <label className="block text-xs font-semibold text-[#082F70] mb-1">Email Address *</label>
-                <input
-                  type="email"
-                  required
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-[#078B3B] focus:outline-none text-sm"
-                  placeholder="you@example.com"
-                />
-              </div>
+              <button
+                type="submit"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#078B3B] to-[#36A852] hover:from-[#082F70] hover:to-[#0753A6] text-white text-sm font-bold shadow-lg transition-all cursor-pointer"
+              >
+                <Send className="w-4 h-4" />
+                <span>Send Message →</span>
+              </button>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-semibold text-[#082F70] mb-1">Phone Number</label>
-                <input
-                  type="tel"
-                  value={form.phone}
-                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-[#078B3B] focus:outline-none text-sm"
-                  placeholder="+91 ..."
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-semibold text-[#082F70] mb-1">Subject</label>
-                <input
-                  type="text"
-                  value={form.subject}
-                  onChange={(e) => setForm({ ...form, subject: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-[#078B3B] focus:outline-none text-sm"
-                  placeholder="Volunteering / CSR / Donation / General"
-                />
-              </div>
-            </div>
-            <div>
-              <label className="block text-xs font-semibold text-[#082F70] mb-1">Message *</label>
-              <textarea
-                rows={4}
-                required
-                value={form.message}
-                onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-[#078B3B] focus:outline-none text-sm"
-                placeholder="How would you like to connect with PCDS?"
-              />
-            </div>
-            <button
-              type="submit"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#082F70] hover:bg-[#078B3B] text-white text-sm font-semibold shadow-md transition-colors cursor-pointer"
-            >
-              <Send className="w-4 h-4" />
-              <span>Submit Message</span>
-            </button>
           </form>
         </ScrollReveal>
       </section>
 
       <PageRichSections />
       <ContactSuccessModal
-        isOpen={submittedName !== null}
-        name={submittedName || undefined}
-        onClose={() => setSubmittedName(null)}
+        isOpen={submission !== null}
+        name={submission?.name}
+        whatsappUrl={submission?.whatsappUrl}
+        mailtoUrl={submission?.mailtoUrl}
+        onClose={() => setSubmission(null)}
       />
     </div>
   );
