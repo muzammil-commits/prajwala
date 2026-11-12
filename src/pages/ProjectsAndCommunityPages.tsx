@@ -21,6 +21,7 @@ import {
 } from '../data/pcdsData';
 import { PageBanner, ScrollReveal, StaggerGrid, StaggerItem } from '../components/MotionPrimitives';
 import { ContactSuccessModal, DonateModal, LightboxModal } from '../components/Modals';
+import { PageRichSections } from '../components/PageRichSections';
 
 export const OngoingProjectsPage: React.FC = () => {
   const [donateOpen, setDonateOpen] = useState(false);
@@ -86,6 +87,7 @@ export const OngoingProjectsPage: React.FC = () => {
           </ScrollReveal>
         </div>
       </section>
+      <PageRichSections />
       <DonateModal isOpen={donateOpen} onClose={() => setDonateOpen(false)} />
     </div>
   );
@@ -116,6 +118,7 @@ export const FuturePlansPage: React.FC = () => (
         ))}
       </StaggerGrid>
     </section>
+    <PageRichSections />
   </div>
 );
 
@@ -181,6 +184,7 @@ export const GalleryPage: React.FC = () => {
         </StaggerGrid>
       </section>
 
+      <PageRichSections />
       <LightboxModal
         items={filtered}
         currentIndex={lightboxIndex}
@@ -286,6 +290,7 @@ export const DonatePage: React.FC = () => {
           </ScrollReveal>
         </div>
       </section>
+      <PageRichSections />
     </div>
   );
 };
@@ -444,6 +449,7 @@ export const ContactPage: React.FC = () => {
         </ScrollReveal>
       </section>
 
+      <PageRichSections />
       <ContactSuccessModal
         isOpen={submittedName !== null}
         name={submittedName || undefined}
@@ -452,3 +458,4 @@ export const ContactPage: React.FC = () => {
     </div>
   );
 };
+

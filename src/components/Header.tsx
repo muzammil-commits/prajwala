@@ -101,29 +101,29 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
       <div className="bg-white/95 backdrop-blur-md border-b border-slate-200/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-[72px] flex items-center justify-between gap-3">
           {/* Logo & Org Name */}
-          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 shrink-0 group">
+          <Link to="/" className="flex items-center gap-2 sm:gap-2.5 shrink-0 group">
             <img
               src="/assets/logo/pcds-logo.png"
               alt="Prajwala Community Development Society Official Logo"
-              className="w-11 h-11 sm:w-12 sm:h-12 rounded-full object-contain bg-white shadow-sm ring-1 ring-[#082F70]/15 group-hover:scale-105 transition-transform"
+              className="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-contain bg-white shadow-sm ring-1 ring-[#082F70]/15 group-hover:scale-105 transition-transform"
             />
-            <div className="leading-tight">
-              <div className="text-xs sm:text-sm md:text-[15px] font-extrabold text-[#082F70] tracking-tight uppercase max-w-[190px] sm:max-w-none">
+            <div className="leading-tight max-w-[215px]">
+              <div className="text-[11px] sm:text-xs font-extrabold text-[#082F70] tracking-tight uppercase">
                 PRAJWALA COMMUNITY DEVELOPMENT SOCIETY
               </div>
-              <div className="text-[11px] sm:text-xs font-bold text-[#078B3B] tracking-widest uppercase">
+              <div className="text-[10px] font-bold text-[#078B3B] tracking-widest uppercase">
                 GUNTUR • ESTD. 2019
               </div>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-1.5" aria-label="Main Navigation">
+          <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1 shrink-0" aria-label="Main Navigation">
             <NavLink
               to="/"
               end
               className={({ isActive }) =>
-                `px-3 py-2 rounded-full text-sm font-semibold transition-all ${
+                `px-2.5 xl:px-3 py-1.5 rounded-full text-[13px] xl:text-sm font-semibold whitespace-nowrap transition-all ${
                   isActive
                     ? 'bg-[#078B3B] text-white shadow-sm'
                     : 'text-[#14294A] hover:text-[#082F70] hover:bg-[#F3F8FC]'
@@ -143,14 +143,14 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
                 type="button"
                 onClick={() => setOrgOpen((v) => !v)}
                 aria-expanded={orgOpen}
-                className={`inline-flex items-center gap-1 px-3 py-2 rounded-full text-sm font-semibold transition-all cursor-pointer ${
+                className={`inline-flex items-center gap-1 px-2.5 xl:px-3 py-1.5 rounded-full text-[13px] xl:text-sm font-semibold whitespace-nowrap transition-all cursor-pointer ${
                   isOrgActive
                     ? 'bg-[#078B3B] text-white shadow-sm'
                     : 'text-[#14294A] hover:text-[#082F70] hover:bg-[#F3F8FC]'
                 }`}
               >
                 <span>Organization</span>
-                <ChevronDown className={`w-4 h-4 transition-transform ${orgOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${orgOpen ? 'rotate-180' : ''}`} />
               </button>
 
               <AnimatePresence>
@@ -188,7 +188,7 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
             <NavLink
               to="/major-activities"
               className={({ isActive }) =>
-                `px-3 py-2 rounded-full text-sm font-semibold transition-all ${
+                `px-2.5 xl:px-3 py-1.5 rounded-full text-[13px] xl:text-sm font-semibold whitespace-nowrap transition-all ${
                   isActive || location.pathname.startsWith('/activities')
                     ? 'bg-[#078B3B] text-white shadow-sm'
                     : 'text-[#14294A] hover:text-[#082F70] hover:bg-[#F3F8FC]'
@@ -201,7 +201,7 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
             <NavLink
               to="/ongoing-projects"
               className={({ isActive }) =>
-                `px-3 py-2 rounded-full text-sm font-semibold transition-all ${
+                `px-2.5 xl:px-3 py-1.5 rounded-full text-[13px] xl:text-sm font-semibold whitespace-nowrap transition-all ${
                   isActive
                     ? 'bg-[#078B3B] text-white shadow-sm'
                     : 'text-[#14294A] hover:text-[#082F70] hover:bg-[#F3F8FC]'
@@ -214,7 +214,7 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
             <NavLink
               to="/future-plans"
               className={({ isActive }) =>
-                `px-3 py-2 rounded-full text-sm font-semibold transition-all ${
+                `px-2.5 xl:px-3 py-1.5 rounded-full text-[13px] xl:text-sm font-semibold whitespace-nowrap transition-all ${
                   isActive
                     ? 'bg-[#078B3B] text-white shadow-sm'
                     : 'text-[#14294A] hover:text-[#082F70] hover:bg-[#F3F8FC]'
@@ -227,7 +227,7 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
             <NavLink
               to="/gallery"
               className={({ isActive }) =>
-                `px-3 py-2 rounded-full text-sm font-semibold transition-all ${
+                `px-2.5 xl:px-3 py-1.5 rounded-full text-[13px] xl:text-sm font-semibold whitespace-nowrap transition-all ${
                   isActive
                     ? 'bg-[#078B3B] text-white shadow-sm'
                     : 'text-[#14294A] hover:text-[#082F70] hover:bg-[#F3F8FC]'
@@ -240,7 +240,7 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
             <NavLink
               to="/contact"
               className={({ isActive }) =>
-                `px-3 py-2 rounded-full text-sm font-semibold transition-all ${
+                `px-2.5 xl:px-3 py-1.5 rounded-full text-[13px] xl:text-sm font-semibold whitespace-nowrap transition-all ${
                   isActive
                     ? 'bg-[#078B3B] text-white shadow-sm'
                     : 'text-[#14294A] hover:text-[#082F70] hover:bg-[#F3F8FC]'
@@ -252,10 +252,10 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
           </nav>
 
           {/* Right CTA & Mobile Menu Toggle */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={onOpenDonate}
-              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-[#D71920] hover:bg-[#b5141a] text-white text-sm font-semibold shadow-md hover:shadow-lg transition-all cursor-pointer"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 xl:px-4 py-2 rounded-full bg-[#D71920] hover:bg-[#b5141a] text-white text-[13px] xl:text-sm font-semibold whitespace-nowrap shadow-md hover:shadow-lg transition-all cursor-pointer"
             >
               <Heart className="w-4 h-4 fill-white" />
               <span>Donate Now</span>
@@ -408,3 +408,4 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
     </header>
   );
 };
+

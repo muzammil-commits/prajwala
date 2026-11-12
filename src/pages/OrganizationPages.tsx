@@ -36,6 +36,7 @@ import {
   WHY_SUPPORT_US,
 } from '../data/pcdsData';
 import { CountUpNumber, PageBanner, ScrollReveal, StaggerGrid, StaggerItem } from '../components/MotionPrimitives';
+import { PageRichSections } from '../components/PageRichSections';
 
 const OBJECTIVE_ICONS: Record<string, React.ReactNode> = {
   GraduationCap: <GraduationCap className="w-7 h-7" />,
@@ -93,6 +94,7 @@ export const AboutPage: React.FC = () => (
         </ScrollReveal>
       </div>
     </section>
+    <PageRichSections />
   </div>
 );
 
@@ -149,6 +151,7 @@ export const VisionMissionPage: React.FC = () => (
         </div>
       </ScrollReveal>
     </section>
+    <PageRichSections />
   </div>
 );
 
@@ -176,6 +179,7 @@ export const ObjectivesPage: React.FC = () => (
         ))}
       </StaggerGrid>
     </section>
+    <PageRichSections />
   </div>
 );
 
@@ -203,6 +207,7 @@ export const TargetBeneficiariesPage: React.FC = () => (
         ))}
       </StaggerGrid>
     </section>
+    <PageRichSections />
   </div>
 );
 
@@ -248,6 +253,7 @@ export const ImpactAchievementsPage: React.FC = () => (
         </div>
       </ScrollReveal>
     </section>
+    <PageRichSections />
   </div>
 );
 
@@ -282,6 +288,7 @@ export const AwardsPage: React.FC = () => (
         ))}
       </StaggerGrid>
     </section>
+    <PageRichSections />
   </div>
 );
 
@@ -316,6 +323,7 @@ export const LegalInfoPage: React.FC = () => (
         </div>
       </ScrollReveal>
     </section>
+    <PageRichSections />
   </div>
 );
 
@@ -375,6 +383,7 @@ export const OrgStructurePage: React.FC = () => (
         </div>
       </ScrollReveal>
     </section>
+    <PageRichSections />
   </div>
 );
 
@@ -409,6 +418,7 @@ export const ImplementationTeamPage: React.FC = () => (
         </div>
       </ScrollReveal>
     </section>
+    <PageRichSections />
   </div>
 );
 
@@ -436,6 +446,7 @@ export const AdvisoryTeamPage: React.FC = () => (
         ))}
       </StaggerGrid>
     </section>
+    <PageRichSections />
   </div>
 );
 
@@ -492,5 +503,7 @@ export const WhySupportUsPage: React.FC = () => (
         </div>
       </ScrollReveal>
     </section>
+    <PageRichSections />
   </div>
 );
+

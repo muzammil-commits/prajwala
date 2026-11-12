@@ -130,3 +130,4 @@ export const Footer: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
     </div>
   </footer>
 );
+

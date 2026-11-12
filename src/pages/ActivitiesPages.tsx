@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight, CheckCircle2, Heart, Maximize2 } from 'lucide-re
 import { ACTIVITIES } from '../data/pcdsData';
 import { PageBanner, ScrollReveal, StaggerGrid, StaggerItem } from '../components/MotionPrimitives';
 import { DonateModal, PreviewModalData, SectionPreviewModal } from '../components/Modals';
+import { PageRichSections } from '../components/PageRichSections';
 
 export const MajorActivitiesPage: React.FC = () => {
   const [previewData, setPreviewData] = useState<PreviewModalData | null>(null);
@@ -87,6 +88,7 @@ export const MajorActivitiesPage: React.FC = () => {
         </StaggerGrid>
       </section>
 
+      <PageRichSections />
       <SectionPreviewModal data={previewData} onClose={() => setPreviewData(null)} />
     </div>
   );
@@ -204,7 +206,9 @@ export const ActivityDetailPage: React.FC = () => {
         </div>
       </section>
 
+      <PageRichSections excludeSlug={activity.slug} />
       <DonateModal isOpen={donateOpen} onClose={() => setDonateOpen(false)} />
     </div>
   );
 };
+
