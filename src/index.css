@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  --font-heading: "Poppins", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --color-navy: #082F70;
+  --color-blue: #0753A6;
+  --color-green: #078B3B;
+  --color-green-light: #36A852;
+  --color-red: #D71920;
+  --color-bg-light: #F3F8FC;
+  --color-bg-green: #EDF8EF;
+  --color-ink: #14294A;
+  --color-muted: #63738B;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-body);
+    color: var(--color-ink);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+@keyframes subtlePan {
+  0% {
+    transform: scale(1.03) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.07) translate3d(-1.2%, -0.8%, 0);
+  }
+  100% {
+    transform: scale(1.03) translate3d(0, 0, 0);
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-hero-pan {
+  animation: subtlePan 20s ease-in-out infinite;
+}
+
+.animate-bg-float {
+  animation: subtlePan 28s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-pan,
+  .animate-bg-float,
+  .animate-float-slow {
+    animation: none !important;
+  }
+}
