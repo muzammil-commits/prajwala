@@ -13,7 +13,7 @@ import {
   Youtube,
   Instagram,
 } from 'lucide-react';
-import { ORG_INFO } from '../data/pcdsData';
+import { ORG_INFO, ACTIVITIES } from '../data/pcdsData';
 
 const ORGANIZATION_LINKS = [
   { label: 'About Us', to: '/organization/about-us' },
@@ -31,11 +31,15 @@ const ORGANIZATION_LINKS = [
 
 export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate }) => {
   const [orgOpen, setOrgOpen] = useState(false);
+  const [activitiesOpen, setActivitiesOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileOrgOpen, setMobileOrgOpen] = useState(false);
+  const [mobileActivitiesOpen, setMobileActivitiesOpen] = useState(false);
   const location = useLocation();
 
   const isOrgActive = location.pathname.startsWith('/organization');
+  const isActivitiesActive =
+    location.pathname === '/major-activities' || location.pathname.startsWith('/activities');
 
   return (
     <header className="sticky top-0 z-40 w-full shadow-sm">
@@ -185,18 +189,70 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
               </AnimatePresence>
             </div>
 
-            <NavLink
-              to="/major-activities"
-              className={({ isActive }) =>
-                `px-2.5 xl:px-3 py-1.5 rounded-full text-[13px] xl:text-sm font-semibold whitespace-nowrap transition-all ${
-                  isActive || location.pathname.startsWith('/activities')
+            {/* Major Activities Dropdown */}
+            <div
+              className="relative shrink-0"
+              onMouseEnter={() => setActivitiesOpen(true)}
+              onMouseLeave={() => setActivitiesOpen(false)}
+            >
+              <button
+                type="button"
+                onClick={() => setActivitiesOpen((v) => !v)}
+                aria-expanded={activitiesOpen}
+                className={`inline-flex items-center gap-1 px-2.5 xl:px-3 py-1.5 rounded-full text-[13px] xl:text-sm font-semibold whitespace-nowrap shrink-0 transition-all cursor-pointer ${
+                  isActivitiesActive
                     ? 'bg-[#078B3B] text-white shadow-sm'
                     : 'text-[#14294A] hover:text-[#082F70] hover:bg-[#F3F8FC]'
-                }`
-              }
-            >
-              Major Activities
-            </NavLink>
+                }`}
+              >
+                <span className="whitespace-nowrap">Major Activities</span>
+                <ChevronDown className={`w-3.5 h-3.5 shrink-0 transition-transform ${activitiesOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              <AnimatePresence>
+                {activitiesOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
+                    transition={{ duration: 0.18 }}
+                    className="absolute left-0 top-full pt-2 w-72 z-50"
+                  >
+                    <div className="bg-white rounded-2xl shadow-xl border border-slate-200/90 py-2 overflow-hidden max-h-[75vh] overflow-y-auto">
+                      <NavLink
+                        to="/major-activities"
+                        onClick={() => setActivitiesOpen(false)}
+                        className={({ isActive }) =>
+                          `block px-4 py-2 text-sm font-bold border-b border-slate-100 transition-colors ${
+                            isActive
+                              ? 'bg-[#EDF8EF] text-[#078B3B]'
+                              : 'text-[#082F70] hover:bg-[#F3F8FC]'
+                          }`
+                        }
+                      >
+                        All 11 Major Activities
+                      </NavLink>
+                      {ACTIVITIES.map((act) => (
+                        <NavLink
+                          key={act.slug}
+                          to={`/activities/${act.slug}`}
+                          onClick={() => setActivitiesOpen(false)}
+                          className={({ isActive }) =>
+                            `block px-4 py-2 text-sm font-medium transition-colors ${
+                              isActive
+                                ? 'bg-[#EDF8EF] text-[#078B3B] font-semibold'
+                                : 'text-[#14294A] hover:bg-[#F3F8FC] hover:text-[#082F70]'
+                            }`
+                          }
+                        >
+                          {act.shortTitle}
+                        </NavLink>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
 
             <NavLink
               to="/ongoing-projects"
@@ -352,13 +408,46 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
                   </AnimatePresence>
                 </div>
 
-                <Link
-                  to="/major-activities"
-                  onClick={() => setMobileOpen(false)}
-                  className="block px-4 py-2.5 rounded-xl font-semibold text-[#14294A] hover:bg-[#F3F8FC]"
-                >
-                  Major Activities
-                </Link>
+                <div>
+                  <button
+                    type="button"
+                    onClick={() => setMobileActivitiesOpen((v) => !v)}
+                    className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl font-semibold text-[#14294A] hover:bg-[#F3F8FC] cursor-pointer"
+                  >
+                    <span>Major Activities</span>
+                    <ChevronDown
+                      className={`w-4 h-4 transition-transform ${mobileActivitiesOpen ? 'rotate-180' : ''}`}
+                    />
+                  </button>
+                  <AnimatePresence>
+                    {mobileActivitiesOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="overflow-hidden pl-4 space-y-1 mt-1"
+                      >
+                        <Link
+                          to="/major-activities"
+                          onClick={() => setMobileOpen(false)}
+                          className="block px-3 py-2 rounded-lg text-sm font-bold text-[#082F70] hover:bg-[#EDF8EF]"
+                        >
+                          All 11 Major Activities
+                        </Link>
+                        {ACTIVITIES.map((act) => (
+                          <Link
+                            key={act.slug}
+                            to={`/activities/${act.slug}`}
+                            onClick={() => setMobileOpen(false)}
+                            className="block px-3 py-2 rounded-lg text-sm text-[#14294A] hover:bg-[#EDF8EF] hover:text-[#078B3B]"
+                          >
+                            {act.shortTitle}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
                 <Link
                   to="/ongoing-projects"
                   onClick={() => setMobileOpen(false)}
