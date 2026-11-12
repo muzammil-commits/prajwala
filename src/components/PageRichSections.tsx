@@ -14,7 +14,7 @@ export const PageRichSections: React.FC<{ excludeSlug?: string }> = ({ excludeSl
   return (
     <>
       {/* Band 3: Featured Programmes Cross-Navigation */}
-      <section className="py-16 md:py-20 bg-[#EDF8EF]/65 border-t border-slate-200/70">
+      <section className="py-16 md:py-20 bg-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
             <ScrollReveal>
@@ -125,7 +125,7 @@ export const PageRichSections: React.FC<{ excludeSlug?: string }> = ({ excludeSl
       </section>
 
       {/* Band 5: Why Support Us + Donation CTA */}
-      <section className="py-16 md:py-20 bg-white/95">
+      <section className="py-16 md:py-20 bg-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <ScrollReveal direction="left" className="lg:col-span-6 space-y-4">
             <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#078B3B]">

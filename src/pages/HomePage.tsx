@@ -272,7 +272,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* SECTION 02 — ABOUT US (Clean Flat 3-Column Layout matching image copy 6.png, zero overlap) */}
-      <section className="py-16 md:py-20 bg-white/85 backdrop-blur-sm border-y border-slate-200/70">
+      <section className="py-16 md:py-20 bg-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <ScrollReveal direction="left" className="lg:col-span-4">
@@ -379,7 +379,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* SECTION 03 — VISION, MISSION & CORE VALUES (Grand Look + Popups - image copy 8.png) */}
-      <section className="py-16 md:py-20 bg-[#F3F8FC]/65 backdrop-blur-sm">
+      <section className="py-16 md:py-20 bg-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal className="text-center max-w-2xl mx-auto mb-12">
             <span className="inline-block px-3.5 py-1 rounded-full bg-[#EDF8EF] text-[#078B3B] text-xs font-bold uppercase tracking-wider">
@@ -520,7 +520,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* SECTION 04 — OBJECTIVES */}
-      <section className="py-16 md:py-20 bg-white/75 backdrop-blur-sm">
+      <section className="py-16 md:py-20 bg-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
             <ScrollReveal>
@@ -570,7 +570,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* SECTION 05 — MAJOR ACTIVITIES (11 Grand Cards with Custom HD Images) */}
-      <section className="py-16 md:py-20 bg-[#EDF8EF]/60 backdrop-blur-sm">
+      <section className="py-16 md:py-20 bg-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
             <ScrollReveal>
@@ -669,7 +669,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* SECTION 06 — TARGET BENEFICIARIES (Grand Look - image copy 21.png) */}
-      <section className="py-16 md:py-20 bg-white/80 backdrop-blur-sm">
+      <section className="py-16 md:py-20 bg-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
             <ScrollReveal>
@@ -718,7 +718,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* SECTION 07 — ONGOING PROJECTS (Single clean white card matching image copy 36.png, zero overlap) */}
-      <section className="py-16 md:py-20 bg-[#F3F8FC]/85 backdrop-blur-sm">
+      <section className="py-16 md:py-20 bg-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-100 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <ScrollReveal direction="left" className="lg:col-span-6">
@@ -876,7 +876,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* SECTION 09 — AWARDS & RECOGNITIONS (Rich Popups - image copy 26.png) */}
-      <section className="py-16 md:py-20 bg-white/80 backdrop-blur-sm">
+      <section className="py-16 md:py-20 bg-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
             <ScrollReveal>
@@ -941,7 +941,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* SECTION 10 — FUTURE PLANS (Exact 2-column Blue/Green layout matching image copy 28.png) */}
-      <section className="py-16 md:py-20 bg-[#F3F8FC]/85 backdrop-blur-sm">
+      <section className="py-16 md:py-20 bg-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-10">
             <ScrollReveal className="flex flex-col sm:flex-row sm:items-center gap-4">
@@ -1040,7 +1040,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* SECTION 11 — GALLERY PREVIEW */}
-      <section className="py-16 md:py-20 bg-white/80 backdrop-blur-sm">
+      <section className="py-16 md:py-20 bg-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
             <ScrollReveal>
@@ -1088,7 +1088,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* SECTION 12 — WHY SUPPORT US (Grand Layout matching image copy 30.png) */}
-      <section className="relative py-16 md:py-20 bg-[#EDF8EF]/75 backdrop-blur-sm overflow-hidden">
+      <section className="relative py-16 md:py-20 bg-transparent overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           <ScrollReveal direction="left" className="lg:col-span-5 space-y-5">
             <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#078B3B] text-white text-xs font-bold uppercase tracking-wider shadow-sm">
@@ -1153,7 +1153,7 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* SECTION 13 — DONATION CTA BANNER (Clean 2-Column Layout with Family Photo matching image copy 32.png) */}
-      <section className="relative py-14 md:py-16 overflow-hidden bg-gradient-to-r from-[#F3F8FC] via-white to-[#EDF8EF]">
+      <section className="relative py-14 md:py-16 overflow-hidden bg-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <ScrollReveal direction="left" className="lg:col-span-7 space-y-5">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-[#082F70] leading-tight">
