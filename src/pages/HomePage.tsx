@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowRight,
@@ -31,6 +31,11 @@ import {
   Shield,
   Droplets,
   BookOpen,
+  Loader2,
+  Zap,
+  Accessibility,
+  Laptop,
+  Presentation,
 } from 'lucide-react';
 import {
   ABOUT_TEXT,
@@ -119,8 +124,38 @@ export const HomePage: React.FC = () => {
   const [donateOpen, setDonateOpen] = useState(false);
   const [previewData, setPreviewData] = useState<PreviewModalData | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [loadingAction, setLoadingAction] = useState<'know-more' | 'quick-preview' | null>(null);
+  const navigate = useNavigate();
 
   const currentSlide = HERO_SLIDES[slideIndex];
+
+  const handleAboutKnowMore = () => {
+    setLoadingAction('know-more');
+    setTimeout(() => {
+      setLoadingAction(null);
+      navigate('/organization/about-us');
+    }, 320);
+  };
+
+  const handleAboutQuickPreview = () => {
+    setLoadingAction('quick-preview');
+    setTimeout(() => {
+      setLoadingAction(null);
+      setPreviewData({
+        title: 'About Prajwala Community Development Society',
+        category: 'Established 03 August 2019 • Guntur',
+        image: '/assets/sections/about-card-clean.png',
+        description: `${ABOUT_TEXT.intro} ${ABOUT_TEXT.missionParagraph}`,
+        bullets: [
+          'Registered Non-Profit Society (Regd. No: 240/2019)',
+          '12A & 80G Tax-Exempted & CSR-1 Registered (CSR00108210)',
+          'Operating PCDS Old Age Home in Sangadi Gunta Area, Guntur',
+        ],
+        route: '/organization/about-us',
+        routeLabel: 'Open About Us Page',
+      });
+    }, 300);
+  };
 
   return (
     <div className="space-y-0">
@@ -236,73 +271,67 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 02 — ABOUT US (Grand Design matching image copy 6.png) */}
-      <section className="relative py-16 md:py-20 overflow-hidden bg-white/75 backdrop-blur-sm border-y border-slate-200/60">
-        <div className="absolute inset-0 -z-10 pointer-events-none opacity-25 overflow-hidden">
-          <img
-            src="/assets/sections/about-banner.png"
-            alt=""
-            aria-hidden="true"
-            className="w-full h-full object-cover animate-bg-float"
-          />
-        </div>
-
+      {/* SECTION 02 — ABOUT US (Clean Flat 3-Column Layout matching image copy 6.png, zero overlap) */}
+      <section className="py-16 md:py-20 bg-white/85 backdrop-blur-sm border-y border-slate-200/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <ScrollReveal direction="left" className="lg:col-span-4">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[4/3] group">
+              <div className="rounded-3xl overflow-hidden shadow-xl border-4 border-white aspect-[4/4.3] bg-[#078B3B]/10">
                 <img
-                  src="/assets/sections/about-banner.png"
+                  src="/assets/sections/about-card-clean.png"
                   alt="Growing Together Since 2019 - PCDS Guntur"
-                  className="w-full h-full object-cover object-left group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover"
                 />
               </div>
             </ScrollReveal>
 
             <ScrollReveal direction="up" delay={0.08} className="lg:col-span-4 space-y-4">
-              <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-[#EDF8EF] border border-[#078B3B]/25 text-xs font-bold uppercase tracking-wider text-[#078B3B]">
+              <div className="inline-flex items-center px-4 py-1 rounded-full bg-[#EDF8EF] border border-[#078B3B]/25 text-xs font-bold uppercase tracking-wider text-[#078B3B]">
                 <span>ABOUT US</span>
               </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#082F70] leading-tight">
-                Prajwala Community Development <span className="text-[#078B3B]">Society</span>
+              <h2 className="text-2xl sm:text-3xl font-extrabold leading-tight">
+                <span className="text-[#082F70]">Prajwala Community </span>
+                <span className="text-[#078B3B]">Development Society</span>
               </h2>
               <p className="text-sm sm:text-base text-[#14294A] leading-relaxed">
                 {ABOUT_TEXT.intro}
               </p>
               <div className="flex flex-wrap gap-3 pt-1">
-                <Link
-                  to="/organization/about-us"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#078B3B] hover:bg-[#082F70] text-white text-sm font-semibold shadow-md transition-all"
-                >
-                  <span>Know More</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
                 <button
-                  onClick={() =>
-                    setPreviewData({
-                      title: 'About Prajwala Community Development Society',
-                      category: 'Established 03 August 2019 • Guntur',
-                      image: '/assets/sections/about-banner.png',
-                      description: `${ABOUT_TEXT.intro} ${ABOUT_TEXT.missionParagraph}`,
-                      bullets: [
-                        'Registered Non-Profit Society (Regd. No: 240/2019)',
-                        '12A & 80G Tax-Exempted & CSR-1 Registered (CSR00108210)',
-                        'Operating PCDS Old Age Home in Sangadi Gunta Area, Guntur',
-                      ],
-                      route: '/organization/about-us',
-                      routeLabel: 'Open About Us Page',
-                    })
-                  }
-                  className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-white text-[#078B3B] border border-[#078B3B]/40 hover:bg-[#EDF8EF] text-sm font-semibold shadow-sm transition-colors cursor-pointer"
+                  type="button"
+                  onClick={handleAboutKnowMore}
+                  disabled={loadingAction !== null}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#078B3B] hover:bg-[#082F70] text-white text-sm font-semibold shadow-md transition-all cursor-pointer disabled:opacity-75"
                 >
-                  <Maximize2 className="w-3.5 h-3.5" />
-                  <span>Quick Preview</span>
+                  {loadingAction === 'know-more' ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <>
+                      <span>Know More</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </>
+                  )}
+                </button>
+                <button
+                  type="button"
+                  onClick={handleAboutQuickPreview}
+                  disabled={loadingAction !== null}
+                  className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-white text-[#078B3B] border border-[#078B3B]/45 hover:bg-[#EDF8EF] text-sm font-semibold shadow-sm transition-colors cursor-pointer disabled:opacity-75"
+                >
+                  {loadingAction === 'quick-preview' ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <>
+                      <Zap className="w-3.5 h-3.5" />
+                      <span>Quick Preview</span>
+                    </>
+                  )}
                 </button>
               </div>
             </ScrollReveal>
 
             <ScrollReveal direction="right" delay={0.14} className="lg:col-span-4 space-y-4">
-              <div className="bg-white/95 rounded-2xl p-5 border border-[#078B3B]/20 shadow-lg flex items-start gap-3.5 hover:shadow-xl transition-shadow">
+              <div className="bg-white rounded-2xl p-5 border border-slate-100 shadow-md flex items-start gap-3.5">
                 <div className="w-11 h-11 rounded-full bg-[#078B3B] text-white flex items-center justify-center shrink-0 shadow-sm">
                   <Eye className="w-5 h-5" />
                 </div>
@@ -314,7 +343,7 @@ export const HomePage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="bg-white/95 rounded-2xl p-5 border border-[#082F70]/20 shadow-lg flex items-start gap-3.5 hover:shadow-xl transition-shadow">
+              <div className="bg-white rounded-2xl p-5 border border-slate-100 shadow-md flex items-start gap-3.5">
                 <div className="w-11 h-11 rounded-full bg-[#078B3B] text-white flex items-center justify-center shrink-0 shadow-sm">
                   <Target className="w-5 h-5" />
                 </div>
@@ -328,18 +357,18 @@ export const HomePage: React.FC = () => {
             </ScrollReveal>
           </div>
 
-          {/* 4 Bottom Pillars matching image copy 6.png */}
+          {/* 4 Clean Bottom Feature Cards */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-[#078B3B]/15">
             {[
-              { label: 'Education for All', icon: <BookOpen className="w-6 h-6" />, to: '/activities/child-welfare' },
-              { label: 'Better Healthcare', icon: <HeartPulse className="w-6 h-6" />, to: '/activities/healthcare' },
-              { label: 'Empowered Communities', icon: <Users className="w-6 h-6" />, to: '/activities/women-empowerment' },
-              { label: 'Greener Tomorrow', icon: <Trees className="w-6 h-6" />, to: '/activities/environment' },
+              { label: 'Education for All', icon: <BookOpen className="w-5 h-5" />, to: '/activities/child-welfare' },
+              { label: 'Better Healthcare', icon: <HeartPulse className="w-5 h-5" />, to: '/activities/healthcare' },
+              { label: 'Empowered Communities', icon: <Users className="w-5 h-5" />, to: '/activities/women-empowerment' },
+              { label: 'Greener Tomorrow', icon: <Trees className="w-5 h-5" />, to: '/activities/environment' },
             ].map((p) => (
               <Link
                 key={p.label}
                 to={p.to}
-                className="flex items-center justify-center gap-3 bg-white/90 hover:bg-[#EDF8EF] px-4 py-3.5 rounded-2xl shadow-sm border border-[#078B3B]/15 transition-all group"
+                className="flex items-center justify-center gap-2.5 bg-white hover:bg-[#EDF8EF] px-4 py-3.5 rounded-2xl shadow-sm border border-slate-200/80 transition-all group"
               >
                 <span className="text-[#078B3B] group-hover:scale-110 transition-transform">{p.icon}</span>
                 <span className="text-xs sm:text-sm font-bold text-[#082F70]">{p.label}</span>
@@ -688,17 +717,17 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 07 — ONGOING PROJECTS (Grand Look matching image copy 23.png) */}
-      <section className="py-16 md:py-20 bg-gradient-to-br from-[#F3F8FC]/90 to-[#EDF8EF]/90 backdrop-blur-sm">
+      {/* SECTION 07 — ONGOING PROJECTS (Single clean white card matching image copy 36.png, zero overlap) */}
+      <section className="py-16 md:py-20 bg-[#F3F8FC]/85 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white/95 rounded-3xl p-6 sm:p-10 shadow-2xl border border-[#078B3B]/15 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-100 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <ScrollReveal direction="left" className="lg:col-span-6">
-              <div className="rounded-3xl overflow-hidden shadow-xl border-4 border-white aspect-[16/10] group">
+              <div className="rounded-2xl overflow-hidden shadow-md border border-slate-100 aspect-[16/10] group">
                 <img
-                  src="/assets/sections/ongoing-project.png"
+                  src="/assets/sections/old-age-clean.png"
                   alt="PCDS Old Age Home Ongoing Project"
                   loading="lazy"
-                  className="w-full h-full object-cover object-left group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
             </ScrollReveal>
@@ -771,20 +800,12 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 08 — IMPACT & ACHIEVEMENTS (Grand White Cards matching image copy 25.png) */}
+      {/* SECTION 08 — IMPACT & ACHIEVEMENTS (Clean single-layer gradient matching image copy 37.png, zero ghosting) */}
       <section className="relative py-16 md:py-20 bg-gradient-to-r from-[#082F70] via-[#0753A6] to-[#078B3B] text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-20 pointer-events-none">
-          <img
-            src="/assets/sections/impact-banner.png"
-            alt=""
-            aria-hidden="true"
-            className="w-full h-full object-cover"
-          />
-        </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
             <ScrollReveal>
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white text-[#082F70] text-xs font-extrabold uppercase tracking-wider">
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white text-[#082F70] text-xs font-extrabold uppercase tracking-wider shadow-sm">
                 <ShieldCheck className="w-4 h-4 text-[#078B3B]" />
                 <span>Verified Impact At A Glance</span>
               </span>
@@ -818,16 +839,16 @@ export const HomePage: React.FC = () => {
                       routeLabel: 'Open Full Achievements Page',
                     })
                   }
-                  className="w-full h-full bg-white/95 hover:bg-white rounded-2xl p-4 shadow-lg hover:shadow-2xl hover:-translate-y-0.5 transition-all flex items-center gap-3.5 text-left cursor-pointer"
+                  className="w-full h-full bg-white hover:bg-[#F3F8FC] rounded-2xl p-4 shadow-md hover:shadow-xl hover:-translate-y-0.5 transition-all flex items-center gap-3.5 text-left cursor-pointer"
                 >
                   <div
-                    className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 ${
+                    className={`w-11 h-11 rounded-xl flex items-center justify-center shrink-0 ${
                       idx % 2 === 0
                         ? 'bg-[#E3F2FD] text-[#0753A6]'
                         : 'bg-[#EDF8EF] text-[#078B3B]'
                     }`}
                   >
-                    {IMPACT_ICONS[m.iconName] || <Sparkles className="w-6 h-6" />}
+                    {IMPACT_ICONS[m.iconName] || <Sparkles className="w-5 h-5" />}
                   </div>
                   <div>
                     <div
@@ -846,6 +867,11 @@ export const HomePage: React.FC = () => {
               </StaggerItem>
             ))}
           </StaggerGrid>
+
+          <div className="mt-8 flex items-center justify-end gap-2.5 text-[#A5D6A7] italic font-semibold text-sm sm:text-base">
+            <HandHeart className="w-5 h-5 text-[#FFE082]" />
+            <span>Together for a Healthier, Kinder &amp; Stronger Community</span>
+          </div>
         </div>
       </section>
 
@@ -914,22 +940,32 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 10 — FUTURE PLANS (Grand Pill Cards matching image copy 28.png) */}
-      <section className="py-16 md:py-20 bg-[#F3F8FC]/75 backdrop-blur-sm">
+      {/* SECTION 10 — FUTURE PLANS (Exact 2-column Blue/Green layout matching image copy 28.png) */}
+      <section className="py-16 md:py-20 bg-[#F3F8FC]/85 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
-            <ScrollReveal>
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#078B3B] text-white text-xs font-bold uppercase tracking-wider">
-                <Eye className="w-3.5 h-3.5" />
-                <span>Vision Ahead (Future Initiatives)</span>
-              </span>
-              <h2 className="mt-2 text-3xl sm:text-4xl font-extrabold text-[#082F70]">
-                Our 10 <span className="text-[#078B3B]">Future Plans</span>
-              </h2>
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-10">
+            <ScrollReveal className="flex flex-col sm:flex-row sm:items-center gap-4">
+              <div>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#078B3B] text-white text-xs font-bold uppercase tracking-wider">
+                  <Eye className="w-3.5 h-3.5" />
+                  <span>Vision Ahead (Future Initiatives)</span>
+                </span>
+                <h2 className="mt-2 text-3xl sm:text-4xl font-extrabold text-[#082F70]">
+                  Our 10{' '}
+                  <span className="text-[#078B3B] underline decoration-[#FFE082] decoration-4 underline-offset-4">
+                    Future Plans
+                  </span>
+                </h2>
+              </div>
+              <div className="hidden sm:block w-px h-12 bg-slate-300 mx-2" />
+              <p className="text-sm italic font-medium text-[#14294A] max-w-xs">
+                Building a Healthier, More Inclusive and Empowered Society
+              </p>
             </ScrollReveal>
+
             <Link
               to="/future-plans"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#078B3B] hover:bg-[#082F70] text-white text-sm font-semibold shadow-md self-start md:self-auto transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#078B3B] hover:bg-[#082F70] text-white text-sm font-semibold shadow-md self-start lg:self-auto transition-all"
             >
               <span>View Future Plans</span>
               <ArrowRight className="w-4 h-4" />
@@ -937,47 +973,68 @@ export const HomePage: React.FC = () => {
           </div>
 
           <StaggerGrid className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {FUTURE_PLANS.map((plan, idx) => (
-              <StaggerItem key={plan.number}>
-                <button
-                  onClick={() =>
-                    setPreviewData({
-                      title: `Future Plan ${plan.number}: ${plan.title}`,
-                      category: 'PCDS Future Initiatives',
-                      description: plan.description,
-                      bullets: [
-                        'Planned expansion under PCDS Guntur',
-                        'Open for CSR, Government & Philanthropic Partnerships',
-                      ],
-                      route: '/future-plans',
-                      routeLabel: 'Open All 10 Future Plans',
-                    })
-                  }
-                  className="w-full text-left flex items-center justify-between gap-4 bg-white/95 hover:bg-white rounded-full sm:rounded-3xl p-3.5 sm:p-4 border border-slate-200/80 hover:border-[#078B3B]/50 shadow-sm hover:shadow-lg transition-all h-full cursor-pointer group"
-                >
-                  <div className="flex items-center gap-3.5">
-                    <span
-                      className={`w-11 h-11 rounded-full text-white font-extrabold text-sm flex items-center justify-center shrink-0 shadow-sm ${
-                        idx % 2 === 0
-                          ? 'bg-gradient-to-br from-[#082F70] to-[#0753A6]'
-                          : 'bg-gradient-to-br from-[#078B3B] to-[#36A852]'
-                      }`}
-                    >
-                      {plan.number}
-                    </span>
-                    <div>
-                      <h3 className="text-sm sm:text-base font-bold text-[#082F70]">{plan.title}</h3>
-                      <p className="mt-0.5 text-xs text-[#63738B] leading-relaxed line-clamp-2">
-                        {plan.description}
-                      </p>
+            {FUTURE_PLANS.map((plan, idx) => {
+              const isOdd = idx % 2 === 0; // 01, 03, 05, 07, 09 -> Blue; 02, 04, 06, 08, 10 -> Green
+              const planIcons = [
+                <HeartPulse className="w-5 h-5" />,
+                <Scale className="w-5 h-5" />,
+                <Presentation className="w-5 h-5" />,
+                <Sparkles className="w-5 h-5" />,
+                <Stethoscope className="w-5 h-5" />,
+                <Accessibility className="w-5 h-5" />,
+                <BookOpen className="w-5 h-5" />,
+                <Trees className="w-5 h-5" />,
+                <Users className="w-5 h-5" />,
+                <Laptop className="w-5 h-5" />,
+              ];
+
+              return (
+                <StaggerItem key={plan.number}>
+                  <button
+                    onClick={() =>
+                      setPreviewData({
+                        title: `Future Plan ${plan.number}: ${plan.title}`,
+                        category: 'PCDS Future Initiatives',
+                        description: plan.description,
+                        bullets: [
+                          'Planned expansion under Prajwala Community Development Society, Guntur',
+                          'Open for CSR, Government & Philanthropic Partnerships',
+                        ],
+                        route: '/future-plans',
+                        routeLabel: 'Open All 10 Future Plans',
+                      })
+                    }
+                    className="w-full text-left flex items-center justify-between gap-3 bg-white hover:bg-[#F8FBFF] rounded-2xl sm:rounded-full p-3.5 sm:px-5 sm:py-4 border border-slate-200/90 hover:border-[#078B3B]/50 shadow-sm hover:shadow-lg transition-all h-full cursor-pointer group"
+                  >
+                    <div className="flex items-center gap-3.5">
+                      <span
+                        className={`w-11 h-11 rounded-full text-white font-extrabold text-sm flex items-center justify-center shrink-0 shadow-sm ${
+                          isOdd ? 'bg-[#082F70]' : 'bg-[#078B3B]'
+                        }`}
+                      >
+                        {plan.number}
+                      </span>
+                      <span
+                        className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${
+                          isOdd ? 'bg-[#E3F2FD] text-[#0753A6]' : 'bg-[#EDF8EF] text-[#078B3B]'
+                        }`}
+                      >
+                        {planIcons[idx]}
+                      </span>
+                      <div>
+                        <h3 className="text-sm sm:text-base font-bold text-[#082F70]">{plan.title}</h3>
+                        <p className="mt-0.5 text-xs text-[#63738B] leading-relaxed line-clamp-2">
+                          {plan.description}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <span className="w-9 h-9 rounded-full bg-[#F3F8FC] group-hover:bg-[#078B3B] text-[#082F70] group-hover:text-white flex items-center justify-center shrink-0 transition-colors">
-                    <ArrowRight className="w-4 h-4" />
-                  </span>
-                </button>
-              </StaggerItem>
-            ))}
+                    <span className="w-8 h-8 rounded-full bg-[#F3F8FC] group-hover:bg-[#078B3B] text-[#082F70] group-hover:text-white flex items-center justify-center shrink-0 transition-colors">
+                      <ArrowRight className="w-4 h-4" />
+                    </span>
+                  </button>
+                </StaggerItem>
+              );
+            })}
           </StaggerGrid>
         </div>
       </section>
@@ -1095,21 +1152,21 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* SECTION 13 — DONATION CTA BANNER (Airy Grand Banner matching image copy 32.png) */}
-      <section className="relative py-16 md:py-20 overflow-hidden bg-gradient-to-r from-[#F3F8FC] via-white to-[#EDF8EF]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-5">
-          <ScrollReveal>
-            <h2 className="text-3xl sm:text-4xl md:text-[42px] font-extrabold text-[#082F70] leading-tight">
+      {/* SECTION 13 — DONATION CTA BANNER (Clean 2-Column Layout with Family Photo matching image copy 32.png) */}
+      <section className="relative py-14 md:py-16 overflow-hidden bg-gradient-to-r from-[#F3F8FC] via-white to-[#EDF8EF]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <ScrollReveal direction="left" className="lg:col-span-7 space-y-5">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#082F70] leading-tight">
               “Your Support Can Transform Lives
               <span className="block text-[#078B3B]">and Build a Better Tomorrow.”</span>
             </h2>
-            <p className="mt-3 text-sm sm:text-base text-[#14294A] max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base text-[#14294A] max-w-xl leading-relaxed">
               Every contribution—financial, material, technical, or voluntary—directly supports senior citizens, women, children, and vulnerable families in Guntur.
             </p>
-            <div className="mt-7 flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap gap-4 pt-1">
               <button
                 onClick={() => setDonateOpen(true)}
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#078B3B] to-[#36A852] hover:from-[#082F70] hover:to-[#0753A6] text-white font-bold shadow-xl transition-all cursor-pointer"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#078B3B] to-[#36A852] hover:from-[#082F70] hover:to-[#0753A6] text-white font-bold shadow-lg transition-all cursor-pointer"
               >
                 <Heart className="w-5 h-5 fill-white" />
                 <span>Donate Now</span>
@@ -1117,12 +1174,23 @@ export const HomePage: React.FC = () => {
               </button>
               <Link
                 to="/donate"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white text-[#082F70] border-2 border-[#082F70]/25 hover:border-[#078B3B] font-bold shadow-md transition-all"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-[#082F70] border-2 border-[#082F70]/25 hover:border-[#078B3B] font-bold shadow-sm transition-all"
               >
                 <Building2 className="w-5 h-5 text-[#078B3B]" />
                 <span>Bank &amp; UPI Details</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal direction="right" className="lg:col-span-5">
+            <div className="rounded-3xl overflow-hidden shadow-xl border-4 border-white">
+              <img
+                src="/assets/sections/cta-family.png"
+                alt="Support Senior Citizens and Children at PCDS"
+                loading="lazy"
+                className="w-full h-auto object-cover"
+              />
             </div>
           </ScrollReveal>
         </div>

@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Check,
   CheckCircle2,
   Copy,
   Facebook,
   Heart,
+  Home,
+  ChevronRight,
   Instagram,
+  Loader2,
   Mail,
   MapPin,
+  MessageCircle,
   Phone,
   Send,
   Youtube,
@@ -38,9 +43,9 @@ export const OngoingProjectsPage: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-100">
           <ScrollReveal direction="left" className="lg:col-span-5">
             <img
-              src="/assets/sections/ongoing-project.png"
+              src="/assets/sections/old-age-clean.png"
               alt="PCDS Old Age Home Guntur"
-              className="w-full h-72 sm:h-80 object-cover object-left rounded-2xl shadow-md"
+              className="w-full h-72 sm:h-80 object-cover rounded-2xl shadow-md"
             />
           </ScrollReveal>
 
@@ -304,6 +309,7 @@ export const ContactPage: React.FC = () => {
     message: '',
   });
   const [error, setError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
   const [submission, setSubmission] = useState<{
     name: string;
     whatsappUrl: string;
@@ -317,6 +323,8 @@ export const ContactPage: React.FC = () => {
       return;
     }
     setError('');
+    setSubmitting(true);
+
     const text = `Hello PCDS Guntur,%0A*Name:* ${encodeURIComponent(form.name.trim())}%0A*Email:* ${encodeURIComponent(form.email.trim())}%0A*Phone:* ${encodeURIComponent(form.phone.trim() || 'Not provided')}%0A*Subject:* ${encodeURIComponent(form.subject)}%0A*Message:* ${encodeURIComponent(form.message.trim())}`;
     const whatsappUrl = `https://wa.me/919502046096?text=${text}`;
     const mailtoUrl = `mailto:${ORG_INFO.email}?subject=${encodeURIComponent(
@@ -325,59 +333,85 @@ export const ContactPage: React.FC = () => {
       `Name: ${form.name.trim()}\nEmail: ${form.email.trim()}\nPhone: ${form.phone.trim() || 'Not provided'}\nSubject: ${form.subject}\n\nMessage:\n${form.message.trim()}`
     )}`;
 
-    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
-    setSubmission({ name: form.name.trim(), whatsappUrl, mailtoUrl });
-    setForm({
-      name: '',
-      email: '',
-      phone: '',
-      subject: 'Volunteering / CSR / Donation / General',
-      message: '',
-    });
+    setTimeout(() => {
+      setSubmitting(false);
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+      setSubmission({ name: form.name.trim(), whatsappUrl, mailtoUrl });
+      setForm({
+        name: '',
+        email: '',
+        phone: '',
+        subject: 'Volunteering / CSR / Donation / General',
+        message: '',
+      });
+    }, 400);
   };
 
   return (
     <div>
-      {/* Grand Banner matching image copy 34.png */}
+      {/* Clean Single-Layer Contact Header matching image copy 34.png (zero double text) */}
       <section className="relative overflow-hidden bg-gradient-to-r from-[#082F70] via-[#0753A6] to-[#078B3B] text-white py-14 md:py-20 shadow-lg">
-        <div className="absolute inset-0 opacity-30 pointer-events-none">
+        {/* Right-side clean teamwork hands photo only */}
+        <div className="hidden md:block absolute inset-y-0 right-0 w-1/2 pointer-events-none">
           <img
-            src="/assets/sections/contact-banner.png"
+            src="/assets/sections/contact-hands.png"
             alt=""
             aria-hidden="true"
-            className="w-full h-full object-cover object-top"
+            className="w-full h-full object-cover object-center opacity-55"
           />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0753A6] via-[#0753A6]/40 to-transparent" />
         </div>
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs sm:text-sm text-white/85 mb-4">
+            <Link to="/" className="inline-flex items-center gap-1 hover:text-white">
+              <Home className="w-3.5 h-3.5" />
+              <span>Home</span>
+            </Link>
+            <ChevronRight className="w-3.5 h-3.5 text-white/60" />
+            <span className="font-semibold text-white">Contact Us</span>
+          </nav>
+
           <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#078B3B] border border-white/25 text-xs font-bold uppercase tracking-wider mb-3">
             <Mail className="w-3.5 h-3.5" />
             <span>GET IN TOUCH</span>
           </span>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">
-            Contact <span className="text-[#36A852]">Us</span>
+            Contact{' '}
+            <span className="text-[#36A852] underline decoration-[#FFE082] decoration-4 underline-offset-4">
+              Us
+            </span>
           </h1>
-          <p className="mt-3 text-base sm:text-lg text-white/90 max-w-2xl leading-relaxed">
+          <p className="mt-3 text-base sm:text-lg text-white/95 max-w-xl leading-relaxed">
             Reach out to Prajwala Community Development Society (PCDS), Guntur for volunteering, CSR partnerships, donations, or community support.
           </p>
         </div>
       </section>
 
-      <section className="py-14 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
-        <ScrollReveal direction="left" className="lg:col-span-5">
-          <div className="bg-white/95 rounded-3xl shadow-xl border border-slate-100 overflow-hidden h-full">
+      <section className="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <ScrollReveal direction="left" className="lg:col-span-6">
+          <div className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden h-full">
             <div className="bg-gradient-to-r from-[#082F70] to-[#078B3B] text-white px-6 py-4 font-bold text-lg flex items-center gap-2">
               <MapPin className="w-5 h-5 text-[#FFE082]" />
               <span>Registered Office &amp; Contact Details</span>
             </div>
-            <div className="p-6 sm:p-7 space-y-5">
-              <div className="space-y-4 text-sm text-[#14294A]">
+            <div className="p-6 sm:p-7 grid grid-cols-1 sm:grid-cols-12 gap-6 items-start">
+              <div className="sm:col-span-5">
+                <img
+                  src="/assets/sections/contact-building.png"
+                  alt="Prajwala Community Development Society Building"
+                  className="w-full rounded-2xl shadow-md border border-slate-100 object-cover aspect-square"
+                />
+              </div>
+
+              <div className="sm:col-span-7 space-y-4 text-sm text-[#14294A]">
                 <div className="flex items-start gap-3">
                   <span className="w-9 h-9 rounded-full bg-[#EDF8EF] text-[#078B3B] flex items-center justify-center shrink-0">
                     <MapPin className="w-4 h-4" />
                   </span>
                   <div>
                     <div className="font-bold text-[#082F70]">Address</div>
-                    <div>{ORG_INFO.address}</div>
+                    <div className="text-xs sm:text-sm leading-relaxed">{ORG_INFO.address}</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -385,7 +419,7 @@ export const ContactPage: React.FC = () => {
                     <Phone className="w-4 h-4" />
                   </span>
                   <div>
-                    <div className="font-bold text-[#082F70]">Phone / WhatsApp Number</div>
+                    <div className="font-bold text-[#082F70]">Phone Number</div>
                     <a href="tel:+919502046096" className="hover:text-[#078B3B] font-bold text-[#082F70]">
                       {ORG_INFO.phone}
                     </a>
@@ -397,51 +431,31 @@ export const ContactPage: React.FC = () => {
                   </span>
                   <div>
                     <div className="font-bold text-[#082F70]">Email</div>
-                    <a href={`mailto:${ORG_INFO.email}`} className="hover:text-[#078B3B] font-bold">
+                    <a href={`mailto:${ORG_INFO.email}`} className="hover:text-[#078B3B] font-bold break-all">
                       {ORG_INFO.email}
                     </a>
                   </div>
                 </div>
-              </div>
 
-              <div className="pt-4 border-t border-slate-100 space-y-2.5 text-xs text-[#63738B]">
-                <div className="font-bold text-[#082F70] text-sm">Follow Us</div>
+                {/* Direct WhatsApp Integration Button */}
                 <a
-                  href={ORG_INFO.social.facebookUrl}
+                  href="https://wa.me/919502046096?text=Hello%20PCDS%2C%20I%20would%20like%20to%20inquire%20about..."
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-2 hover:text-[#082F70]"
+                  className="inline-flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-full bg-[#078B3B] hover:bg-[#066d2e] text-white text-sm font-bold shadow-md transition-all"
                 >
-                  <Facebook className="w-4 h-4 text-[#0753A6]" />
-                  <span>{ORG_INFO.social.facebook}</span>
-                </a>
-                <a
-                  href={ORG_INFO.social.youtubeUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2 hover:text-[#082F70]"
-                >
-                  <Youtube className="w-4 h-4 text-[#D71920]" />
-                  <span>{ORG_INFO.social.youtube}</span>
-                </a>
-                <a
-                  href={ORG_INFO.social.instagramUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2 hover:text-[#082F70]"
-                >
-                  <Instagram className="w-4 h-4 text-[#078B3B]" />
-                  <span>{ORG_INFO.social.instagram}</span>
+                  <MessageCircle className="w-4 h-4" />
+                  <span>Chat on WhatsApp</span>
                 </a>
               </div>
             </div>
           </div>
         </ScrollReveal>
 
-        <ScrollReveal direction="right" className="lg:col-span-7">
+        <ScrollReveal direction="right" className="lg:col-span-6">
           <form
             onSubmit={handleSubmit}
-            className="bg-white/95 rounded-3xl shadow-xl border border-slate-100 overflow-hidden h-full"
+            className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden h-full"
             noValidate
           >
             <div className="bg-gradient-to-r from-[#082F70] to-[#078B3B] text-white px-6 py-4 font-bold text-lg flex items-center gap-2">
@@ -515,13 +529,22 @@ export const ContactPage: React.FC = () => {
                   placeholder="How would you like to connect with PCDS?"
                 />
               </div>
-              <button
-                type="submit"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#078B3B] to-[#36A852] hover:from-[#082F70] hover:to-[#0753A6] text-white text-sm font-bold shadow-lg transition-all cursor-pointer"
-              >
-                <Send className="w-4 h-4" />
-                <span>Send Message →</span>
-              </button>
+              <div className="text-center pt-1">
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-[#078B3B] to-[#36A852] hover:from-[#082F70] hover:to-[#0753A6] text-white text-sm font-bold shadow-lg transition-all cursor-pointer disabled:opacity-75"
+                >
+                  {submitting ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" />
+                      <span>Send Message →</span>
+                    </>
+                  )}
+                </button>
+              </div>
             </div>
           </form>
         </ScrollReveal>

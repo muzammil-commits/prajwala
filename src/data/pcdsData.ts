@@ -637,7 +637,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     id: 'g4',
     title: 'Voluntary Blood Donation Drive',
     category: 'Blood Donation',
-    image: '/assets/gallery/blood-donation.svg',
+    image: '/assets/gallery/blood-donation.png',
     caption: '7 Blood Donation Camps organized with Indian Red Cross Society, Guntur.',
   },
   {
