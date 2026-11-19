@@ -30,6 +30,38 @@ import { PageRichSections } from '../components/PageRichSections';
 
 export const OngoingProjectsPage: React.FC = () => {
   const [donateOpen, setDonateOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  const oldAgePhotos = [
+    {
+      id: 'oah-1',
+      title: 'PCDS Old Age Home Meal Care',
+      image: '/images/real/services/old-age-1.jpg',
+      category: 'Old Age Home',
+      caption: 'Nutritious meals and compassionate daily elder care in Sangadi Gunta, Guntur.',
+    },
+    {
+      id: 'oah-2',
+      title: 'Senior Citizen Medical Checkups',
+      image: '/images/real/services/old-age-2.jpg',
+      category: 'Old Age Home',
+      caption: 'Regular geriatric healthcare and clinical checkups by advisory medical team.',
+    },
+    {
+      id: 'oah-3',
+      title: 'Elder Companionship & Dignity',
+      image: '/images/real/services/old-age-3.jpg',
+      category: 'Old Age Home',
+      caption: 'Emotional support, warmth, and respectful family atmosphere for resident seniors.',
+    },
+    {
+      id: 'oah-4',
+      title: 'Residential Care Since Inception',
+      image: '/images/real/services/old-age-4.jpg',
+      category: 'Old Age Home',
+      caption: 'Over 46+ senior citizens sheltered and supported since inception.',
+    },
+  ];
 
   return (
     <div>
@@ -39,14 +71,16 @@ export const OngoingProjectsPage: React.FC = () => {
         badge="Ongoing Project"
         breadcrumb={[{ label: 'Ongoing Projects' }]}
       />
-      <section className="py-14 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      <section className="py-14 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-100">
           <ScrollReveal direction="left" className="lg:col-span-5">
-            <img
-              src="/assets/sections/old-age-clean.png"
-              alt="PCDS Old Age Home Guntur"
-              className="w-full h-72 sm:h-80 object-cover rounded-2xl shadow-md"
-            />
+            <div className="relative rounded-2xl overflow-hidden shadow-md aspect-[4/3] group border border-slate-200">
+              <img
+                src="/images/real/services/old-age-1.jpg"
+                alt="PCDS Old Age Home Guntur"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
           </ScrollReveal>
 
           <ScrollReveal direction="right" className="lg:col-span-7 space-y-4">
@@ -91,9 +125,48 @@ export const OngoingProjectsPage: React.FC = () => {
             </button>
           </ScrollReveal>
         </div>
+
+        {/* Old Age Home Authentic Photographs */}
+        <div className="bg-white/95 rounded-3xl p-6 sm:p-8 shadow-lg border border-slate-200/90 space-y-4">
+          <div className="flex items-center justify-between">
+            <h3 className="text-lg sm:text-xl font-bold text-[#082F70]">
+              Life at PCDS Old Age Home
+            </h3>
+            <span className="text-xs font-semibold text-[#078B3B]">
+              4 Authentic Photographs
+            </span>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            {oldAgePhotos.map((photo, idx) => (
+              <button
+                key={photo.id}
+                type="button"
+                onClick={() => setLightboxIndex(idx)}
+                className="group relative rounded-2xl overflow-hidden aspect-[4/3] shadow-sm hover:shadow-lg transition-all cursor-pointer border border-slate-200 text-left"
+              >
+                <img
+                  src={photo.image}
+                  alt={photo.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#082F70]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-2.5">
+                  <span className="text-[11px] font-bold text-white line-clamp-1">{photo.title}</span>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
       </section>
       <PageRichSections />
       <DonateModal isOpen={donateOpen} onClose={() => setDonateOpen(false)} />
+      {lightboxIndex !== null && (
+        <LightboxModal
+          items={oldAgePhotos}
+          currentIndex={lightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+          onChangeIndex={(i) => setLightboxIndex(i)}
+        />
+      )}
     </div>
   );
 };

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, CheckCircle2, Heart, Maximize2 } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, Heart, Maximize2, Camera } from 'lucide-react';
 import { ACTIVITIES } from '../data/pcdsData';
 import { PageBanner, ScrollReveal, StaggerGrid, StaggerItem } from '../components/MotionPrimitives';
-import { DonateModal, PreviewModalData, SectionPreviewModal } from '../components/Modals';
+import { DonateModal, LightboxModal, PreviewModalData, SectionPreviewModal } from '../components/Modals';
 import { PageRichSections } from '../components/PageRichSections';
 
 export const MajorActivitiesPage: React.FC = () => {
@@ -97,11 +97,24 @@ export const MajorActivitiesPage: React.FC = () => {
 export const ActivityDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const [donateOpen, setDonateOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const index = ACTIVITIES.findIndex((a) => a.slug === slug);
   const activity = index >= 0 ? ACTIVITIES[index] : ACTIVITIES[0];
   const prevActivity = ACTIVITIES[(index - 1 + ACTIVITIES.length) % ACTIVITIES.length];
   const nextActivity = ACTIVITIES[(index + 1) % ACTIVITIES.length];
+
+  const galleryList = (activity.galleryImages && activity.galleryImages.length > 0)
+    ? activity.galleryImages
+    : [activity.image];
+
+  const lightboxItems = galleryList.map((img, i) => ({
+    id: `${activity.slug}-${i}`,
+    title: `${activity.shortTitle} - Photograph ${i + 1}`,
+    image: img,
+    category: activity.category,
+    caption: activity.summary,
+  }));
 
   return (
     <div>
@@ -180,6 +193,44 @@ export const ActivityDetailPage: React.FC = () => {
           </ScrollReveal>
         </div>
 
+        {/* Authentic Programme Photographs Gallery */}
+        {galleryList.length > 1 && (
+          <div className="bg-white/95 rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200/90 space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Camera className="w-5 h-5 text-[#078B3B]" />
+                <h3 className="text-lg font-bold text-[#082F70]">
+                  Photographs of {activity.shortTitle}
+                </h3>
+              </div>
+              <span className="text-xs font-semibold text-[#63738B]">
+                {galleryList.length} Photographs
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+              {galleryList.map((img, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => setLightboxIndex(i)}
+                  className="group relative rounded-2xl overflow-hidden aspect-[4/3] shadow-sm hover:shadow-lg transition-all cursor-pointer border border-slate-200"
+                >
+                  <img
+                    src={img}
+                    alt={`${activity.title} photo ${i + 1}`}
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-[#082F70]/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <Maximize2 className="w-5 h-5 text-white drop-shadow" />
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Previous / Next Activity Navigation */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-200">
           <Link
@@ -208,6 +259,14 @@ export const ActivityDetailPage: React.FC = () => {
 
       <PageRichSections excludeSlug={activity.slug} />
       <DonateModal isOpen={donateOpen} onClose={() => setDonateOpen(false)} />
+      {lightboxIndex !== null && (
+        <LightboxModal
+          items={lightboxItems}
+          currentIndex={lightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+          onChangeIndex={(i) => setLightboxIndex(i)}
+        />
+      )}
     </div>
   );
 };

@@ -19,6 +19,8 @@ import {
   Baby,
   Trees,
   Briefcase,
+  Quote,
+  Calendar,
 } from 'lucide-react';
 import {
   ABOUT_TEXT,
@@ -34,6 +36,8 @@ import {
   TARGET_BENEFICIARIES,
   VISION_MISSION_VALUES,
   WHY_SUPPORT_US,
+  FOUNDER_INFO,
+  TIMELINE_MILESTONES,
 } from '../data/pcdsData';
 import { CountUpNumber, PageBanner, ScrollReveal, StaggerGrid, StaggerItem } from '../components/MotionPrimitives';
 import { PageRichSections } from '../components/PageRichSections';
@@ -57,41 +61,149 @@ export const AboutPage: React.FC = () => (
       badge="Organization Profile"
       breadcrumb={[{ label: 'Organization' }, { label: 'About Us' }]}
     />
-    <section className="py-14 md:py-18 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <section className="py-14 md:py-18 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      {/* Overview with Real Headquarters Image */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        <ScrollReveal direction="left" className="lg:col-span-5">
-          <img
-            src="/assets/gallery/about-sapling.svg"
-            alt="Prajwala Community Development Society"
-            className="rounded-3xl shadow-xl w-full object-cover aspect-[4/3]"
-          />
+        <ScrollReveal direction="left" className="lg:col-span-5 space-y-4">
+          <div className="relative rounded-3xl overflow-hidden shadow-xl aspect-[4/3] group border border-slate-200">
+            <img
+              src="/images/real/office/ngoofc.jpg"
+              alt="Prajwala Community Development Society Official Headquarters"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#082F70]/80 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute bottom-3 left-4 right-4 text-white">
+              <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#078B3B] text-[11px] font-bold uppercase mb-1">
+                Registered Society
+              </span>
+              <p className="text-xs font-semibold text-white/90">
+                PCDS Headquarters • Sangadi Gunta, Guntur
+              </p>
+            </div>
+          </div>
+          <div className="rounded-2xl overflow-hidden shadow-md aspect-[16/9] border border-slate-200 hidden sm:block">
+            <img
+              src="/images/real/office/ngoofc1.jpg"
+              alt="PCDS Operations and Community Hall"
+              className="w-full h-full object-cover"
+            />
+          </div>
         </ScrollReveal>
-        <ScrollReveal direction="right" className="lg:col-span-7 space-y-4 bg-white/90 p-6 sm:p-8 rounded-3xl shadow-md border border-slate-100">
-          <span className="inline-block px-3 py-1 rounded-full bg-[#EDF8EF] text-[#078B3B] text-xs font-bold">
+
+        <ScrollReveal direction="right" className="lg:col-span-7 space-y-5 bg-white/95 p-6 sm:p-10 rounded-3xl shadow-lg border border-slate-200/90">
+          <span className="inline-block px-3.5 py-1 rounded-full bg-[#EDF8EF] text-[#078B3B] text-xs font-bold uppercase tracking-wider">
             Established: {ORG_INFO.establishedDate} • Regd No: {ORG_INFO.regNumber}
           </span>
-          <h2 className="text-2xl sm:text-3xl font-bold text-[#082F70]">
-            About Prajwala Community Development Society (PCDS)
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#082F70]">
+            Prajwala Community Development Society (PCDS)
           </h2>
           <p className="text-base text-[#14294A] leading-relaxed">{ABOUT_TEXT.intro}</p>
           <p className="text-base text-[#14294A] leading-relaxed">{ABOUT_TEXT.missionParagraph}</p>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+            <div className="p-3 rounded-2xl bg-[#F3F8FC] border border-slate-200/80">
+              <div className="text-xs text-[#63738B] font-semibold">PAN Card</div>
+              <div className="text-sm font-bold text-[#082F70]">AAJAP2309P</div>
+            </div>
+            <div className="p-3 rounded-2xl bg-[#EDF8EF] border border-[#078B3B]/20">
+              <div className="text-xs text-[#63738B] font-semibold">12A &amp; 80G</div>
+              <div className="text-sm font-bold text-[#078B3B]">Tax-Exempted</div>
+            </div>
+            <div className="p-3 rounded-2xl bg-[#F3F8FC] border border-slate-200/80 col-span-2 sm:col-span-1">
+              <div className="text-xs text-[#63738B] font-semibold">CSR-1 Regd.</div>
+              <div className="text-sm font-bold text-[#0753A6]">CSR00108210</div>
+            </div>
+          </div>
+
           <div className="pt-2 flex flex-wrap gap-3">
             <Link
               to="/organization/vision-mission"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#082F70] text-white text-sm font-semibold hover:bg-[#0753A6]"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#082F70] text-white text-sm font-semibold hover:bg-[#0753A6] transition-colors"
             >
               <span>Vision &amp; Mission</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               to="/major-activities"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#078B3B] text-white text-sm font-semibold hover:bg-[#082F70]"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#078B3B] text-white text-sm font-semibold hover:bg-[#082F70] transition-colors"
             >
-              <span>Explore Our Activities</span>
+              <span>Explore All Activities</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </ScrollReveal>
+      </div>
+
+      {/* Founder & Leadership Card on About Page */}
+      <div id="founder" className="bg-white/95 rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-200/90">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="lg:col-span-4 flex flex-col items-center">
+            <div className="relative w-full max-w-xs rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[4/5]">
+              <img
+                src={FOUNDER_INFO.image}
+                alt={`${FOUNDER_INFO.name} - ${FOUNDER_INFO.designation}`}
+                className="w-full h-full object-cover object-top"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#082F70]/80 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-3 left-3 right-3 text-white">
+                <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#078B3B] text-[10px] font-bold uppercase mb-1">
+                  {FOUNDER_INFO.designation}
+                </span>
+                <div className="font-extrabold text-lg leading-tight">{FOUNDER_INFO.name}</div>
+                <div className="text-xs text-[#FFE082]">{FOUNDER_INFO.qualification} • Advocate</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:col-span-8 space-y-4">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EDF8EF] text-[#078B3B] text-xs font-bold uppercase tracking-wider">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Founder’s Message &amp; Leadership</span>
+            </div>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-[#082F70]">
+              “{FOUNDER_INFO.quote}”
+            </h3>
+            <div className="space-y-3 text-sm sm:text-base text-[#14294A] leading-relaxed">
+              {FOUNDER_INFO.message.map((msg, i) => (
+                <p key={i}>{msg}</p>
+              ))}
+            </div>
+            <div className="pt-2 text-sm font-bold text-[#082F70]">
+              — {FOUNDER_INFO.name}, {FOUNDER_INFO.qualification}
+              <div className="text-xs text-[#078B3B] font-semibold">{FOUNDER_INFO.designation}, PCDS</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* PCDS Journey & Evolutionary Milestones */}
+      <div className="space-y-8">
+        <div className="text-center max-w-2xl mx-auto">
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#EDF8EF] text-[#078B3B] text-xs font-bold uppercase tracking-wider">
+            <Calendar className="w-3.5 h-3.5" />
+            <span>Organizational Journey</span>
+          </span>
+          <h3 className="mt-2 text-2xl sm:text-3xl font-extrabold text-[#082F70]">
+            PCDS Milestones &amp; Evolution
+          </h3>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {TIMELINE_MILESTONES.map((m, idx) => (
+            <div
+              key={idx}
+              className="bg-white/95 rounded-3xl p-6 shadow-md border border-slate-200/90 hover:shadow-xl transition-all flex flex-col justify-between"
+            >
+              <div>
+                <span className="inline-block px-3 py-1 rounded-full bg-[#EDF8EF] text-[#078B3B] text-xs font-extrabold mb-3">
+                  {m.year}
+                </span>
+                <h4 className="text-base font-bold text-[#082F70] mb-2">{m.title}</h4>
+                <p className="text-xs sm:text-sm text-[#14294A] leading-relaxed">{m.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
     <PageRichSections />
@@ -434,13 +546,39 @@ export const AdvisoryTeamPage: React.FC = () => (
       <StaggerGrid className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {ADVISORY_TEAM.map((member) => (
           <StaggerItem key={member.name}>
-            <div className="h-full bg-white rounded-3xl p-6 shadow-md border border-slate-100 space-y-2.5">
-              <span className="inline-block px-3 py-1 rounded-full bg-[#EDF8EF] text-[#078B3B] text-xs font-bold">
-                {member.role}
-              </span>
-              <h2 className="text-lg font-bold text-[#082F70]">{member.name}</h2>
-              <p className="text-xs font-semibold text-[#0753A6]">{member.designation}</p>
-              <p className="text-sm text-[#14294A] leading-relaxed pt-1">{member.responsibilities}</p>
+            <div className="h-full bg-white/95 rounded-3xl p-6 sm:p-7 shadow-lg border border-slate-200/90 flex flex-col justify-between hover:shadow-xl hover:border-[#078B3B]/40 transition-all">
+              <div className="flex items-start gap-4">
+                {member.image ? (
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden shrink-0 shadow-md border-2 border-white bg-slate-100">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover object-top"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[#EDF8EF] text-[#078B3B] flex items-center justify-center shrink-0 shadow-sm font-bold text-xl">
+                    <Users className="w-8 h-8" />
+                  </div>
+                )}
+                <div className="space-y-1 flex-1">
+                  <span className="inline-block px-3 py-0.5 rounded-full bg-[#EDF8EF] text-[#078B3B] text-xs font-bold">
+                    {member.role}
+                  </span>
+                  <h2 className="text-lg sm:text-xl font-bold text-[#082F70]">{member.name}</h2>
+                  <p className="text-xs font-semibold text-[#0753A6]">{member.designation}</p>
+                </div>
+              </div>
+
+              {member.clinic && (
+                <div className="mt-4 px-3.5 py-1.5 rounded-xl bg-[#F3F8FC] border border-slate-200/80 text-xs font-semibold text-[#082F70]">
+                  🏥 {member.clinic}
+                </div>
+              )}
+
+              <p className="mt-3 text-xs sm:text-sm text-[#14294A] leading-relaxed pt-1 flex-1">
+                {member.responsibilities}
+              </p>
             </div>
           </StaggerItem>
         ))}

@@ -5,6 +5,7 @@ export interface ActivityItem {
   summary: string;
   fullDescription: string[];
   image: string;
+  galleryImages?: string[];
   category: string;
   highlights?: string[];
   metrics?: { label: string; value: string }[];
@@ -38,6 +39,18 @@ export interface AdvisoryMember {
   designation: string;
   role: string;
   responsibilities: string;
+  image?: string;
+  clinic?: string;
+}
+
+export interface FounderInfo {
+  name: string;
+  qualification: string;
+  designation: string;
+  image: string;
+  quote: string;
+  message: string[];
+  achievements: { label: string; value: string }[];
 }
 
 export const ORG_INFO = {
@@ -72,6 +85,26 @@ export const ORG_INFO = {
     branch: 'Lanchester Road',
     upiId: '7706047528@myapgb',
   },
+};
+
+export const FOUNDER_INFO: FounderInfo = {
+  name: 'Perumalla Gowri Sireesha',
+  qualification: 'B.Com., LL.B.',
+  designation: 'Founder & President',
+  image: '/images/real/founder/gowri-sireesha.jpg',
+  quote: 'Service to humanity is not charity; it is our responsibility.',
+  message: [
+    'It is with immense joy and gratitude that I welcome you to Prajwala Community Development Society. Our journey began with a simple belief — that every human being deserves to live with dignity, care, and hope.',
+    'Over the years, we have grown into a family of dedicated volunteers, supporters, and changemakers committed to uplifting the vulnerable, protecting the neglected, and creating sustainable development across Guntur and beyond.',
+    'Whether providing safe shelter and loving care to abandoned senior citizens, organizing free medical and hair donation camps, championing legal literacy and child protection, or empowering women and youth with practical skills — every initiative is driven by heartfelt dedication.',
+    'Together, let us build a society where compassion leads, justice prevails, and no one is left behind.',
+  ],
+  achievements: [
+    { label: 'Senior Citizens Supported', value: '46+' },
+    { label: 'Free Meals During COVID-19', value: '12,574' },
+    { label: 'Saplings Planted', value: '6,515+' },
+    { label: 'Students Reached', value: '3,000+' },
+  ],
 };
 
 export const ABOUT_TEXT = {
@@ -119,7 +152,12 @@ export const ACTIVITIES: ActivityItem[] = [
       'Prajwala Community Development Society (PCDS) organizes dedicated Hair Donation Campaigns to support cancer patients undergoing chemotherapy and treatment.',
       'Successfully organized 3 Hair Donation Camps, where 17 voluntary hair donors contributed their hair to support the preparation of wigs for cancer patients, restoring hope and confidence.',
     ],
-    image: '/assets/activities/hair-donation.jpg',
+    image: '/images/real/services/hair-donation-1.jpg',
+    galleryImages: [
+      '/images/real/services/hair-donation-1.jpg',
+      '/images/real/services/hair-donation-2.jpg',
+      '/images/real/services/hair-donation-3.jpg',
+    ],
     highlights: [
       'Voluntary hair donation drives with youth and women',
       'Supporting wig preparation for cancer patients',
@@ -141,7 +179,13 @@ export const ACTIVITIES: ActivityItem[] = [
       'PCDS is currently operating an Old Age Home that provides safe shelter, nutritious food, clothing, healthcare support, emotional care, and a dignified living environment for 25 senior citizens. The organization is committed to ensuring that every resident receives compassionate care, respect, and a sense of belonging.',
       'Since its establishment, the Old Age Home has provided shelter, food, clothing, healthcare, and emotional support to 46 senior citizens. Currently, 25 senior citizens are residing in the Home, receiving continuous care and support.',
     ],
-    image: '/assets/activities/old-age-home.png',
+    image: '/images/real/services/old-age-1.jpg',
+    galleryImages: [
+      '/images/real/services/old-age-1.jpg',
+      '/images/real/services/old-age-2.jpg',
+      '/images/real/services/old-age-3.jpg',
+      '/images/real/services/old-age-4.jpg',
+    ],
     highlights: [
       'Safe and dignified residential shelter in Sangadi Gunta Area, Guntur',
       'Daily nutritious meals, clothing, and regular health check-ups',
@@ -163,7 +207,8 @@ export const ACTIVITIES: ActivityItem[] = [
       'PCDS works actively to promote inclusion, equal opportunities, assistive support, awareness, and access to welfare schemes for persons with disabilities.',
       'Through our PCDS Old Age & Persons with Disabilities Home and community outreach, we strive to ensure dignified living, social acceptance, and practical support.',
     ],
-    image: '/assets/activities/disability-support.png',
+    image: '/images/real/services/disabled-1.jpg',
+    galleryImages: ['/images/real/services/disabled-1.jpg'],
     highlights: [
       'Inclusive support and community awareness',
       'Access to welfare schemes and assistive care',
@@ -181,7 +226,8 @@ export const ACTIVITIES: ActivityItem[] = [
       "PCDS organizes skill development programs, awareness campaigns, leadership training, health education, and initiatives that promote women's rights and economic independence.",
       'Our women empowerment programmes equip women across urban and rural Guntur with confidence, legal awareness, health knowledge, and livelihood skills.',
     ],
-    image: '/assets/activities/women-empowerment.png',
+    image: '/images/real/services/women-empowerment-1.jpg',
+    galleryImages: ['/images/real/services/women-empowerment-1.jpg'],
     highlights: [
       'Skill development & vocational workshops',
       'Leadership training & gender equality awareness',
@@ -199,7 +245,11 @@ export const ACTIVITIES: ActivityItem[] = [
       "PCDS is dedicated to supporting children's education, health, nutrition, protection, and overall development through community-based initiatives.",
       'Through our Child Protection & Legal Awareness campaigns, PCDS has created awareness among over 3,000 students on Emergency Response Support System (112), Childline (1098), the POCSO Act, child rights, child safety, and other child protection laws through awareness programs conducted in educational institutions and communities.',
     ],
-    image: '/assets/activities/child-welfare.png',
+    image: '/images/real/services/child-welfare-1.jpg',
+    galleryImages: [
+      '/images/real/services/child-welfare-1.jpg',
+      '/images/real/services/child-welfare-2.jpg',
+    ],
     highlights: [
       'Awareness on Emergency Response Support System (112) & Childline (1098)',
       'POCSO Act, child rights, and child safety education',
@@ -218,7 +268,8 @@ export const ACTIVITIES: ActivityItem[] = [
       'Founded by a Legal Professional (Advocate), PCDS conducts legal literacy programs, rights awareness campaigns, counselling, and facilitates access to free legal assistance for disadvantaged communities.',
       'Special focus is placed on empowering victims of domestic violence, abuse, or social injustice, as well as educating citizens on constitutional rights and child protection laws.',
     ],
-    image: '/assets/activities/legal-aid.png',
+    image: '/images/real/services/legal-aid-1.jpg',
+    galleryImages: ['/images/real/services/legal-aid-1.jpg'],
     highlights: [
       'Legal literacy & constitutional rights campaigns',
       'Counselling for victims of domestic violence and social injustice',
@@ -236,7 +287,14 @@ export const ACTIVITIES: ActivityItem[] = [
       'PCDS has conducted 5 Free Medical Camps, providing health check-ups, medical consultations, basic treatment, and health awareness services to underprivileged communities.',
       'In addition, PCDS has organized 7 Blood Donation Camps in partnership with the Indian Red Cross Society and local medical volunteers to support emergency blood needs in Guntur.',
     ],
-    image: '/assets/activities/medical-camps.png',
+    image: '/images/real/services/healthcare-1.jpg',
+    galleryImages: [
+      '/images/real/services/healthcare-1.jpg',
+      '/images/real/services/medical-camp-1.jpg',
+      '/images/real/services/medical-camp-2.jpg',
+      '/images/real/services/medical-camp-3.jpg',
+      '/images/real/services/blood-donation-1.jpg',
+    ],
     highlights: [
       'Free health check-ups, consultations, and basic treatment',
       'Voluntary Blood Donation Camps with Indian Red Cross Society',
@@ -258,7 +316,12 @@ export const ACTIVITIES: ActivityItem[] = [
       'PCDS conducts tree plantation drives, park cleaning & gardening drives, Swachh Bharat cleanliness campaigns, and environmental awareness programs across Guntur.',
       'Planted more than 6,515 saplings since 2018 across rural and urban areas of Guntur with the support of Government officials, contributing to environmental sustainability and community participation.',
     ],
-    image: '/assets/activities/environment.png',
+    image: '/images/real/services/environment-1.jpg',
+    galleryImages: [
+      '/images/real/services/environment-1.jpg',
+      '/images/real/services/environment-2.jpg',
+      '/images/real/services/environment-3.jpg',
+    ],
     highlights: [
       '6,515+ saplings planted since 2018 across rural & urban Guntur',
       'Park cleaning, gardening & Swachh Bharat drives (3x Swachh Bharat Award winner)',
@@ -277,7 +340,15 @@ export const ACTIVITIES: ActivityItem[] = [
       'PCDS supports vocational training, entrepreneurship, and income-generation opportunities to improve self-reliance among economically weaker sections.',
       'Key programmes include Tailoring Training for Homemakers (2017–2020) and Block-Level Youth & Sports Development initiatives to build practical skills, confidence, and economic independence.',
     ],
-    image: '/assets/activities/livelihood.png',
+    image: '/images/real/services/livelihood-1.jpg',
+    galleryImages: [
+      '/images/real/services/livelihood-1.jpg',
+      '/images/real/services/skill-training-1.jpg',
+      '/images/real/services/skill-training-2.jpg',
+      '/images/real/services/youth-sports-1.jpg',
+      '/images/real/services/youth-sports-2.jpg',
+      '/images/real/services/youth-sports-3.jpg',
+    ],
     highlights: [
       'Tailoring Training for Homemakers (2017–2020)',
       'Vocational training & entrepreneurship support',
@@ -295,7 +366,14 @@ export const ACTIVITIES: ActivityItem[] = [
       'PCDS extends emergency relief, essential supplies, and rehabilitation support to communities affected by natural disasters and public health emergencies.',
       'During the COVID-19 pandemic (2020–2021), PCDS served 12,574 free meals to highway travellers and migrant workers for 43 days, supported 4,708+ dry ration beneficiaries (3,458 in 2020 + 1,250 in 2021), distributed 45,000 face masks and 279 litres of sanitizers, provided oxygen concentrators on free loan, and distributed medicine & discharge kits at GGH.',
     ],
-    image: '/assets/activities/disaster-relief.png',
+    image: '/images/real/services/disaster-relief-1.jpg',
+    galleryImages: [
+      '/images/real/services/disaster-relief-1.jpg',
+      '/images/real/services/dry-ration-1.jpg',
+      '/images/real/services/ration-1.jpg',
+      '/images/real/services/ration-2.jpg',
+      '/images/real/services/covid-relief-1.jpg',
+    ],
     highlights: [
       '4,708+ Dry Ration Beneficiaries & 12,574 Free Meals during COVID-19',
       '45,000 face masks & 279 litres of sanitizer distributed',
@@ -319,7 +397,11 @@ export const ACTIVITIES: ActivityItem[] = [
       'PCDS organizes professional self-defence training workshops to equip girls and women with practical self-protection skills, enhance their confidence, promote personal safety, and empower them to respond effectively in challenging situations.',
       "Trained 320 girls and women in self-defence and personal safety. The training programs were conducted at B.H.H. Women's Degree College, Guntur, Government Women's Degree College, Guntur, and in rural communities of Pattipadu Mandal.",
     ],
-    image: '/assets/activities/self-defence.png',
+    image: '/images/real/services/self-defense-1.jpg',
+    galleryImages: [
+      '/images/real/services/self-defense-1.jpg',
+      '/images/real/services/self-defense-2.jpg',
+    ],
     highlights: [
       "Conducted at B.H.H. Women's Degree College & Govt. Women's Degree College, Guntur",
       'Rural outreach in Pattipadu Mandal & selected government/orphanage schools',
@@ -532,27 +614,43 @@ export const IMPLEMENTATION_TEAM = [
 export const ADVISORY_TEAM: AdvisoryMember[] = [
   {
     name: 'Dr. SAHAN KUMAR Garu',
-    designation: 'REAKHA CLINIC, Inner Ring Road, Guntur',
+    designation: 'General Physician, REAKHA CLINIC & RAFA Labs, Inner Ring Road, Guntur',
     role: 'General Physician',
     responsibilities: 'Provides medical consultations, regular health check-ups, treatment guidance, and preventive healthcare services for beneficiaries.',
+    image: '/images/real/advisory/dr-sahan-kumar.jpg',
+    clinic: 'Rekha Clinic & RAFA Labs, Guntur',
   },
   {
-    name: 'Dr. Ch. SOWMYA, B.D.S.; F.A.G.E. & Dr. Ch. Naveen, M.D.S.',
-    designation: 'Cosmetic Dental Surgeon & Prosthodontics & Implantologist — SOWMYA MULTI SPECIALITY DENTAL CLINIC, Kothapet, Guntur',
-    role: 'Dental Surgeons',
-    responsibilities: 'Supports oral health awareness, dental screening, and preventive dental care programmes.',
+    name: 'Dr. Ch. SOWMYA, B.D.S.; F.A.G.E.',
+    designation: 'MDS, Pedodontist — Sowmya Multi Speciality Dental Clinic, Kothapet, Guntur',
+    role: 'Pedodontist / Dental Surgeon',
+    responsibilities: 'Supports oral health awareness, pediatric dental screening, and preventive dental care programmes.',
+    image: '/images/real/advisory/dr-sowmya.jpg',
+    clinic: 'Sowmya Multi Speciality Dental Clinic, Guntur',
   },
   {
-    name: 'RAFA LABS, R. Agraharam & Dr. SAHAN KUMAR Garu',
-    designation: 'Diagnostic & Clinical Laboratory Support',
-    role: 'Medical Laboratory Professionals',
-    responsibilities: 'Assist in diagnostic services, health screening camps, laboratory investigations, and medical reporting.',
+    name: 'Dr. Ch. Naveen, M.D.S.',
+    designation: 'MDS, Prosthodontics & Implantologist — Sowmya Multi Speciality Dental Clinic, Guntur',
+    role: 'Prosthodontist & Implantologist',
+    responsibilities: 'Provides dental consultations, restorative treatments, and oral healthcare guidance for seniors and youth.',
+    image: '/images/real/advisory/dr-naveen.jpg',
+    clinic: 'Sowmya Multi Speciality Dental Clinic, Guntur',
   },
   {
-    name: 'B. Sharmila & B. Krishnabharath',
-    designation: 'Assistant Professor & Psychologist, Guntur | Psychologist & Founder President, Advanced Psychological Services Association (APA India), Hyderabad',
-    role: 'Psychology Professor / Mental Health Experts',
-    responsibilities: 'Provides psychological counselling, emotional well-being support, mental health awareness, and behavioural guidance.',
+    name: 'B. Krishnabharath',
+    designation: 'Psychologist & Founder President, Advanced Psychological Services Association (APA India), Hyderabad',
+    role: 'Psychologist / Mental Health Expert',
+    responsibilities: 'Provides psychological counselling, emotional well-being support, trauma counselling, and mental health awareness.',
+    image: '/images/real/advisory/krishnabharath.jpg',
+    clinic: 'APA India, Hyderabad',
+  },
+  {
+    name: 'B. Sharmila',
+    designation: 'Assistant Professor & Psychologist, Guntur',
+    role: 'Assistant Professor / Psychologist',
+    responsibilities: 'Conducts behavioural guidance, counselling sessions for students and women, and community psychological support.',
+    image: '/images/real/advisory/b-sharmila.jpg',
+    clinic: 'Guntur, Andhra Pradesh',
   },
   {
     name: 'R. SIVARAMA KRISHNA (VARMA)',
@@ -565,6 +663,72 @@ export const ADVISORY_TEAM: AdvisoryMember[] = [
     designation: 'Child Protection & Welfare Specialists',
     role: 'Child Protection Advisors',
     responsibilities: 'Provide expert guidance on child protection, child rights, counselling, rescue, rehabilitation, referrals, and coordination with Indian Red Cross Society and government departments.',
+  },
+];
+
+export const TESTIMONIALS = [
+  {
+    quote:
+      'The legal awareness camp conducted by PCDS opened our eyes to our rights. We are much more confident now in protecting ourselves and our families.',
+    name: 'Sunitha V.',
+    role: 'Beneficiary, Women Empowerment & Legal Aid',
+  },
+  {
+    quote:
+      'Volunteering at the old age home has been the most fulfilling experience of my life. PCDS is a true family where every senior citizen lives with unconditional dignity and love.',
+    name: 'Rahul S.',
+    role: 'Dedicated Volunteer',
+  },
+  {
+    quote:
+      'The timely medical camp saved my father’s life through early diagnosis and free medication. We couldn’t afford private treatment otherwise. Bless this society.',
+    name: 'Ramesh K.',
+    role: 'Community Member & Healthcare Beneficiary',
+  },
+  {
+    quote:
+      'Donating my hair for cancer patients through PCDS gave me immense joy. Their wig preparation and handover process is so transparent, caring, and deeply moving.',
+    name: 'Anjali M.',
+    role: 'Voluntary Hair Donor',
+  },
+];
+
+export const TIMELINE_MILESTONES = [
+  {
+    year: '2014',
+    title: 'Inception of Community Service',
+    description:
+      'Initial grassroots field initiatives, local drives, and social welfare support launched in Guntur by our founder Advocate Perumalla Gowri Sireesha.',
+  },
+  {
+    year: '2017–2018',
+    title: 'Expansion of Local Programs & Green Drives',
+    description:
+      'Conducted large-scale tree plantation drives with government officials, free medical camps, and tailoring training for homemakers.',
+  },
+  {
+    year: '2019',
+    title: 'Formal Registration of PCDS',
+    description:
+      'Officially registered under the Andhra Pradesh Societies Registration Act, 2001 (Reg. No. 240/2019) on 03 August 2019.',
+  },
+  {
+    year: '2020–2021',
+    title: 'COVID-19 Emergency Relief Mission',
+    description:
+      'Served 12,574 free meals to highway travellers and migrant workers for 43 days, distributed 4,708+ dry ration kits, 45,000 masks, and provided free oxygen concentrators.',
+  },
+  {
+    year: '2022–2023',
+    title: 'Special Care Initiatives & Hair Donation',
+    description:
+      'Launched 3 voluntary Hair Donation Camps for cancer wigs, expanded PCDS Old Age Home to 25 residents, and trained 320 girls in self-defence.',
+  },
+  {
+    year: '2024–Present',
+    title: 'Sustainable Growth & Permanent Care Center',
+    description:
+      'Over 6,515+ trees planted, 46+ elders supported since inception, 3,000+ students educated on child rights, and advancing towards our permanent Community Care Center.',
   },
 ];
 
@@ -601,99 +765,211 @@ export const GALLERY_CATEGORIES = [
   'All',
   'Old Age Home',
   'Hair Donation',
-  'Medical Camps',
+  'Healthcare & Camps',
   'Blood Donation',
-  'Women Empowerment',
-  'Skill Development',
-  'Sports & Youth',
-  'Environmental Activities',
-  'Child Protection',
-  'COVID-19 Relief',
+  'Women & Self-Defence',
+  'Child & Education',
+  'Environment',
+  'Disaster Relief',
+  'Livelihood & Sports',
+  'Offices & Team',
 ];
 
 export const GALLERY_ITEMS: GalleryItem[] = [
   {
     id: 'g1',
-    title: 'Old Age Home Meal & Care',
+    title: 'PCDS Old Age Home Inmates & Meal Care',
     category: 'Old Age Home',
-    image: '/assets/activities/old-age-home.png',
-    caption: 'Providing nutritious food, safe shelter, and compassionate daily care for 25 senior citizens.',
+    image: '/images/real/services/old-age-1.jpg',
+    caption: 'Providing compassionate shelter, nutritious daily meals, and medical care for 25 resident senior citizens.',
   },
   {
     id: 'g2',
-    title: 'Voluntary Hair Donation Camp',
-    category: 'Hair Donation',
-    image: '/assets/activities/hair-donation.jpg',
-    caption: '17 voluntary hair donors across 3 camps helping prepare wigs for cancer patients.',
+    title: 'Senior Citizen Daily Care & Healthcare',
+    category: 'Old Age Home',
+    image: '/images/real/services/old-age-2.jpg',
+    caption: 'Regular geriatric health check-ups and loving emotional companionship for elderly residents.',
   },
   {
     id: 'g3',
-    title: 'Free Community Medical Camp',
-    category: 'Medical Camps',
-    image: '/assets/activities/medical-camps.png',
-    caption: '5 Free Medical Camps delivering check-ups, consultations, and preventive care.',
+    title: 'Elderly Residents Recreation & Joy',
+    category: 'Old Age Home',
+    image: '/images/real/services/old-age-3.jpg',
+    caption: 'Fostering a loving family atmosphere where every elderly person feels respected and cherished.',
   },
   {
     id: 'g4',
-    title: 'Voluntary Blood Donation Drive',
-    category: 'Blood Donation',
-    image: '/assets/gallery/blood-donation.png',
-    caption: '7 Blood Donation Camps organized with Indian Red Cross Society, Guntur.',
+    title: 'Dignified Living at PCDS Home',
+    category: 'Old Age Home',
+    image: '/images/real/services/old-age-4.jpg',
+    caption: 'Over 46+ senior citizens supported since inception with safe residential shelter in Guntur.',
   },
   {
     id: 'g5',
-    title: 'Women Empowerment Workshop',
-    category: 'Women Empowerment',
-    image: '/assets/activities/women-empowerment.png',
-    caption: 'Leadership, rights awareness, and economic independence sessions for women.',
+    title: 'Voluntary Hair Donation Camp for Cancer Wigs',
+    category: 'Hair Donation',
+    image: '/images/real/services/hair-donation-1.jpg',
+    caption: '17 voluntary donors contributed hair to prepare custom wigs for underprivileged cancer patients.',
   },
   {
     id: 'g6',
-    title: 'Tailoring & Skill Development',
-    category: 'Skill Development',
-    image: '/assets/activities/livelihood.png',
-    caption: 'Vocational tailoring training empowering homemakers toward financial self-reliance.',
+    title: 'Hair Donation Drive for Cancer Patients',
+    category: 'Hair Donation',
+    image: '/images/real/services/hair-donation-2.jpg',
+    caption: 'Restoring dignity, beauty, and emotional strength to women undergoing chemotherapy.',
   },
   {
     id: 'g7',
-    title: 'Block-Level Youth Sports Meet',
-    category: 'Sports & Youth',
-    image: '/assets/gallery/youth-sports.svg',
-    caption: 'Encouraging youth participation, fitness, and sportsmanship in Guntur.',
+    title: 'Community Hair Donation Awareness',
+    category: 'Hair Donation',
+    image: '/images/real/services/hair-donation-3.jpg',
+    caption: 'Engaging youth and college students to support cancer survivors across Andhra Pradesh.',
   },
   {
     id: 'g8',
-    title: 'Tree Plantation & Green Drive',
-    category: 'Environmental Activities',
-    image: '/assets/activities/environment.png',
-    caption: '6,515+ saplings planted since 2018 across rural and urban Guntur.',
+    title: 'Free Community Health & Medical Camp',
+    category: 'Healthcare & Camps',
+    image: '/images/real/services/healthcare-1.jpg',
+    caption: 'Delivering free clinical check-ups, diagnostics, and essential medicines to underserved families.',
   },
   {
     id: 'g9',
-    title: 'Child Protection & POCSO Awareness',
-    category: 'Child Protection',
-    image: '/assets/activities/child-welfare.png',
-    caption: '3,000+ students reached on 112, Childline 1098, and child safety laws.',
+    title: 'Specialized Medical Consultation Drive',
+    category: 'Healthcare & Camps',
+    image: '/images/real/services/medical-camp-1.jpg',
+    caption: 'Expert medical consultations with volunteer doctors across 5 Free Medical Camps in Guntur.',
   },
   {
     id: 'g10',
-    title: 'COVID-19 Dry Ration & Meal Relief',
-    category: 'COVID-19 Relief',
-    image: '/assets/activities/disaster-relief.png',
-    caption: '12,574 free meals and 4,708+ dry ration beneficiaries supported during lockdown.',
+    title: 'Rural Community Health Screening',
+    category: 'Healthcare & Camps',
+    image: '/images/real/services/medical-camp-2.jpg',
+    caption: 'Providing preventive health screenings and vitals monitoring for rural villagers.',
   },
   {
     id: 'g11',
-    title: 'Self-Defence Training for Girls',
-    category: 'Women Empowerment',
-    image: '/assets/activities/self-defence.png',
-    caption: '320 girls and women trained in practical self-defence across Guntur colleges and villages.',
+    title: 'Geriatric & Pediatric Medical Care',
+    category: 'Healthcare & Camps',
+    image: '/images/real/services/medical-camp-3.jpg',
+    caption: 'On-site medical diagnostics and prescription distribution for elderly and children.',
   },
   {
     id: 'g12',
-    title: 'Support for Persons with Disabilities',
-    category: 'Old Age Home',
-    image: '/assets/activities/disability-support.png',
-    caption: 'Promoting inclusion, assistive support, and dignified living.',
+    title: 'Voluntary Blood Donation Drive',
+    category: 'Blood Donation',
+    image: '/images/real/services/blood-donation-1.jpg',
+    caption: 'Organized 7 Blood Donation Camps in partnership with the Indian Red Cross Society, Guntur.',
+  },
+  {
+    id: 'g13',
+    title: 'Self-Defence Workshop for College Girls',
+    category: 'Women & Self-Defence',
+    image: '/images/real/services/self-defense-1.jpg',
+    caption: 'Trained 320 girls and women in practical martial arts self-protection at B.H.H. Degree College.',
+  },
+  {
+    id: 'g14',
+    title: 'Martial Arts & Personal Safety Training',
+    category: 'Women & Self-Defence',
+    image: '/images/real/services/self-defense-2.jpg',
+    caption: 'Empowering women with confidence, physical techniques, and emergency response training.',
+  },
+  {
+    id: 'g15',
+    title: 'Women Empowerment & Rights Literacy',
+    category: 'Women & Self-Defence',
+    image: '/images/real/services/women-empowerment-1.jpg',
+    caption: 'Workshops promoting gender equality, rights awareness, and women leadership.',
+  },
+  {
+    id: 'g16',
+    title: 'Child Rights & 112/1098 Safety Awareness',
+    category: 'Child & Education',
+    image: '/images/real/services/child-welfare-1.jpg',
+    caption: 'Reached 3,000+ students with POCSO Act, Childline 1098, and emergency response education.',
+  },
+  {
+    id: 'g17',
+    title: 'Educational Support & Child Welfare',
+    category: 'Child & Education',
+    image: '/images/real/services/child-welfare-2.jpg',
+    caption: 'Supporting school education, learning kits, and nutrition for underprivileged children.',
+  },
+  {
+    id: 'g18',
+    title: 'Tree Plantation & Environmental Drive',
+    category: 'Environment',
+    image: '/images/real/services/environment-1.jpg',
+    caption: '6,515+ saplings planted across rural and urban Guntur with community participation.',
+  },
+  {
+    id: 'g19',
+    title: 'Community Green Belt Drive',
+    category: 'Environment',
+    image: '/images/real/services/environment-2.jpg',
+    caption: 'Promoting clean and green environments alongside 3x Swachh Bharat Recognition awards.',
+  },
+  {
+    id: 'g20',
+    title: 'Public Park Cleanliness & Gardening',
+    category: 'Environment',
+    image: '/images/real/services/environment-3.jpg',
+    caption: 'Volunteers and students uniting for environmental preservation and sustainability.',
+  },
+  {
+    id: 'g21',
+    title: 'COVID-19 Humanitarian Food Relief',
+    category: 'Disaster Relief',
+    image: '/images/real/services/disaster-relief-1.jpg',
+    caption: '12,574 free hot meals served for 43 days to stranded migrant workers and highway travellers.',
+  },
+  {
+    id: 'g22',
+    title: 'Dry Ration Kit Distribution',
+    category: 'Disaster Relief',
+    image: '/images/real/services/dry-ration-1.jpg',
+    caption: '4,708+ families provided with comprehensive dry ration kits during pandemic lockdowns.',
+  },
+  {
+    id: 'g23',
+    title: 'Emergency Relief Supply to Red Zones',
+    category: 'Disaster Relief',
+    image: '/images/real/services/ration-1.jpg',
+    caption: 'Direct delivery of vegetables, medicines, and groceries to barricaded containment zones.',
+  },
+  {
+    id: 'g24',
+    title: 'Emergency Medical & Mask Distribution',
+    category: 'Disaster Relief',
+    image: '/images/real/services/covid-relief-1.jpg',
+    caption: 'Distributed 45,000 face masks and 279 litres of sanitizer across hospitals and communities.',
+  },
+  {
+    id: 'g25',
+    title: 'Vocational Tailoring Training for Women',
+    category: 'Livelihood & Sports',
+    image: '/images/real/services/livelihood-1.jpg',
+    caption: 'Tailoring training programs empowering homemakers toward financial self-reliance.',
+  },
+  {
+    id: 'g26',
+    title: 'Youth Sports & Athletic Meets',
+    category: 'Livelihood & Sports',
+    image: '/images/real/services/youth-sports-1.jpg',
+    caption: 'Organizing block-level youth sports tournaments to promote fitness and positive leadership.',
+  },
+  {
+    id: 'g27',
+    title: 'PCDS Society Registered Headquarters',
+    category: 'Offices & Team',
+    image: '/images/real/office/ngoofc.jpg',
+    caption: 'Registered headquarters and central coordination center in Sangadi Gunta Area, Guntur.',
+  },
+  {
+    id: 'g28',
+    title: 'PCDS Field Office & Community Hall',
+    category: 'Offices & Team',
+    image: '/images/real/office/ngoofc1.jpg',
+    caption: 'Field operations office coordinating healthcare, old age care, and legal aid campaigns.',
   },
 ];

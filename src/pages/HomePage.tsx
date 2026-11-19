@@ -36,6 +36,9 @@ import {
   Accessibility,
   Laptop,
   Presentation,
+  Quote,
+  Calendar,
+  MessageSquareHeart,
 } from 'lucide-react';
 import {
   ABOUT_TEXT,
@@ -48,6 +51,9 @@ import {
   FUTURE_PLANS,
   GALLERY_ITEMS,
   WHY_SUPPORT_US,
+  FOUNDER_INFO,
+  TESTIMONIALS,
+  TIMELINE_MILESTONES,
 } from '../data/pcdsData';
 import {
   ScrollReveal,
@@ -374,6 +380,124 @@ export const HomePage: React.FC = () => {
                 <span className="text-xs sm:text-sm font-bold text-[#082F70]">{p.label}</span>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 02.5 — FOUNDER & VISIONARY LEADERSHIP (Authentic Profile from Reference Site) */}
+      <section className="py-16 md:py-20 bg-transparent">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative bg-white/95 rounded-3xl p-6 sm:p-10 lg:p-12 shadow-xl border border-slate-200/90 overflow-hidden">
+            {/* Subtle brand backdrop elements */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-[#EDF8EF] to-transparent rounded-full -mr-28 -mt-28 -z-10 blur-2xl" />
+            <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-[#F3F8FC] to-transparent rounded-full -ml-24 -mb-24 -z-10 blur-2xl" />
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              {/* Founder Image & Credential Card */}
+              <ScrollReveal direction="left" className="lg:col-span-5 flex flex-col items-center">
+                <div className="relative w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white group">
+                  <div className="aspect-[4/5] overflow-hidden">
+                    <img
+                      src={FOUNDER_INFO.image}
+                      alt={`${FOUNDER_INFO.name} - ${FOUNDER_INFO.designation}`}
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#082F70]/90 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute bottom-4 left-4 right-4 text-white">
+                    <span className="inline-block px-3 py-1 rounded-full bg-[#078B3B] text-[11px] font-bold uppercase tracking-wider mb-1.5 shadow-sm">
+                      {FOUNDER_INFO.designation}
+                    </span>
+                    <h3 className="text-xl sm:text-2xl font-extrabold leading-tight">
+                      {FOUNDER_INFO.name}
+                    </h3>
+                    <p className="text-xs sm:text-sm font-semibold text-[#FFE082]">
+                      {FOUNDER_INFO.qualification} • Advocate
+                    </p>
+                  </div>
+                </div>
+
+                {/* Key Metric Chips under Portrait */}
+                <div className="grid grid-cols-2 gap-2.5 w-full max-w-sm mt-4">
+                  {FOUNDER_INFO.achievements.map((item, i) => (
+                    <div
+                      key={i}
+                      className="bg-[#EDF8EF]/90 border border-[#078B3B]/20 rounded-2xl p-2.5 text-center shadow-sm"
+                    >
+                      <div className="text-base sm:text-lg font-extrabold text-[#078B3B]">
+                        {item.value}
+                      </div>
+                      <div className="text-[11px] font-semibold text-[#14294A] leading-tight">
+                        {item.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </ScrollReveal>
+
+              {/* Founder Narrative & Message */}
+              <ScrollReveal direction="right" className="lg:col-span-7 space-y-5">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#EDF8EF] text-[#078B3B] text-xs font-bold uppercase tracking-wider">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>Founder &amp; Visionary Profile</span>
+                </div>
+
+                <div>
+                  <h2 className="text-3xl sm:text-4xl font-extrabold text-[#082F70] leading-tight">
+                    {FOUNDER_INFO.name}
+                  </h2>
+                  <p className="mt-1 text-sm sm:text-base font-semibold text-[#0753A6]">
+                    Advocate &amp; Founder-President, Prajwala Community Development Society (PCDS)
+                  </p>
+                </div>
+
+                {/* Quote Box */}
+                <div className="relative bg-gradient-to-r from-[#F3F8FC] to-[#EDF8EF] rounded-2xl p-4 sm:p-5 border-l-4 border-[#078B3B] shadow-sm">
+                  <Quote className="w-8 h-8 text-[#078B3B]/30 absolute top-3 right-3" />
+                  <p className="text-base sm:text-lg font-bold italic text-[#082F70] pr-8">
+                    “{FOUNDER_INFO.quote}”
+                  </p>
+                </div>
+
+                <div className="space-y-3 text-sm sm:text-base text-[#14294A] leading-relaxed">
+                  <p>{FOUNDER_INFO.message[0]}</p>
+                  <p>{FOUNDER_INFO.message[1]}</p>
+                  <p className="hidden sm:block">{FOUNDER_INFO.message[2]}</p>
+                </div>
+
+                <div className="pt-2 flex flex-wrap items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setPreviewData({
+                        title: `${FOUNDER_INFO.name} — Message & Profile`,
+                        category: `${FOUNDER_INFO.qualification} • ${FOUNDER_INFO.designation}`,
+                        image: FOUNDER_INFO.image,
+                        description: `“${FOUNDER_INFO.quote}”\n\n${FOUNDER_INFO.message.join('\n\n')}`,
+                        bullets: [
+                          'Practicing Advocate & Dedicated Community Social Reformer',
+                          'Founded PCDS in Guntur on 03 August 2019 (Reg. No: 240/2019)',
+                          'Established PCDS Old Age Home providing full residential care for senior citizens',
+                          'Spearheaded 12,574 COVID relief meals, 4,708 ration kits & 6,515 saplings',
+                        ],
+                        route: '/organization/about-us',
+                        routeLabel: 'Open About Us & Leadership Page',
+                      })
+                    }
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#078B3B] hover:bg-[#082F70] text-white text-sm font-semibold shadow-md transition-all cursor-pointer"
+                  >
+                    <span>Read Full Message</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white hover:bg-[#F3F8FC] text-[#082F70] border border-[#082F70]/25 text-sm font-semibold shadow-sm transition-all"
+                  >
+                    <span>Connect with Leadership</span>
+                  </Link>
+                </div>
+              </ScrollReveal>
+            </div>
           </div>
         </div>
       </section>
@@ -1081,6 +1205,105 @@ export const HomePage: React.FC = () => {
                     <div className="font-bold text-base">{item.title}</div>
                   </div>
                 </button>
+              </StaggerItem>
+            ))}
+          </StaggerGrid>
+        </div>
+      </section>
+
+      {/* SECTION 11.1 — PCDS JOURNEY & KEY MILESTONES (Timeline from Reference Site) */}
+      <section className="py-16 md:py-20 bg-transparent">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal className="text-center max-w-2xl mx-auto mb-12">
+            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#EDF8EF] text-[#078B3B] text-xs font-bold uppercase tracking-wider">
+              <Calendar className="w-3.5 h-3.5" />
+              <span>Our Evolutionary Path</span>
+            </span>
+            <h2 className="mt-2 text-3xl sm:text-4xl font-extrabold text-[#082F70]">
+              PCDS Journey &amp; Milestones
+            </h2>
+            <p className="mt-2 text-sm sm:text-base text-[#63738B]">
+              From grassroots community service in 2014 to a registered society driving sustainable change.
+            </p>
+          </ScrollReveal>
+
+          <div className="relative border-l-2 border-[#078B3B]/30 ml-4 sm:ml-8 md:mx-auto md:max-w-4xl space-y-8 pl-6 sm:pl-8">
+            {TIMELINE_MILESTONES.map((m, idx) => (
+              <ScrollReveal key={idx} delay={idx * 0.08} className="relative group">
+                {/* Timeline node icon */}
+                <div className="absolute -left-[35px] sm:-left-[43px] top-1 w-8 h-8 rounded-full bg-[#082F70] border-4 border-white text-white flex items-center justify-center shadow-md group-hover:bg-[#078B3B] group-hover:scale-110 transition-all">
+                  <span className="w-2 h-2 rounded-full bg-[#FFE082]" />
+                </div>
+
+                <div className="bg-white/95 rounded-2xl p-5 sm:p-6 shadow-md border border-slate-200/90 group-hover:shadow-xl transition-all">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                    <span className="px-3 py-1 rounded-full bg-[#EDF8EF] text-[#078B3B] text-xs font-extrabold tracking-wider">
+                      {m.year}
+                    </span>
+                    <span className="text-xs font-semibold text-[#0753A6]">Milestone #{idx + 1}</span>
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-bold text-[#082F70]">{m.title}</h3>
+                  <p className="mt-2 text-xs sm:text-sm text-[#14294A] leading-relaxed">
+                    {m.description}
+                  </p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 11.2 — COMMUNITY VOICES & TESTIMONIALS (Authentic Voices from Reference Site) */}
+      <section className="py-16 md:py-20 bg-gradient-to-b from-transparent via-[#F3F8FC]/50 to-transparent">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+            <ScrollReveal>
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#EDF8EF] text-[#078B3B] text-xs font-bold uppercase tracking-wider">
+                <MessageSquareHeart className="w-3.5 h-3.5" />
+                <span>Voices of Change</span>
+              </span>
+              <h2 className="mt-2 text-3xl sm:text-4xl font-extrabold text-[#082F70]">
+                Words From Beneficiaries &amp; Volunteers
+              </h2>
+              <p className="mt-2 text-sm sm:text-base text-[#63738B] max-w-2xl">
+                Real stories of dignity restored, care received, and community trust created on the ground.
+              </p>
+            </ScrollReveal>
+
+            <Link
+              to="/organization/why-support-us"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#082F70] hover:bg-[#0753A6] text-white text-sm font-semibold shadow-md self-start md:self-auto transition-all"
+            >
+              <span>See Our Impact</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {TESTIMONIALS.map((t, idx) => (
+              <StaggerItem key={idx}>
+                <div className="h-full bg-white/95 rounded-3xl p-6 shadow-md border border-slate-200/90 hover:shadow-2xl hover:border-[#078B3B]/40 transition-all flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="w-10 h-10 rounded-xl bg-[#EDF8EF] text-[#078B3B] flex items-center justify-center">
+                        <Quote className="w-5 h-5" />
+                      </div>
+                      <div className="flex text-[#FFE082] text-xs gap-0.5">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-3.5 h-3.5 fill-[#FFE082]" />
+                        ))}
+                      </div>
+                    </div>
+                    <p className="text-xs sm:text-sm text-[#14294A] italic leading-relaxed">
+                      “{t.quote}”
+                    </p>
+                  </div>
+
+                  <div className="mt-5 pt-4 border-t border-slate-100">
+                    <div className="text-sm font-bold text-[#082F70]">{t.name}</div>
+                    <div className="text-[11px] font-semibold text-[#078B3B]">{t.role}</div>
+                  </div>
+                </div>
               </StaggerItem>
             ))}
           </StaggerGrid>
