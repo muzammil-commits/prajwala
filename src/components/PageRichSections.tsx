@@ -150,7 +150,7 @@ export const PageRichSections: React.FC<{ excludeSlug?: string }> = ({ excludeSl
                 to="/contact"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#082F70] hover:bg-[#0753A6] text-white text-sm font-semibold"
               >
-                <span>Get Involved</span>
+                <span>Join as a Volunteer</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
