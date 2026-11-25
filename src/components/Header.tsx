@@ -267,32 +267,6 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
             >
               Future Plans
             </NavLink>
-
-            <NavLink
-              to="/gallery"
-              className={({ isActive }) =>
-                `px-2.5 xl:px-3 py-1.5 rounded-full text-[13px] xl:text-sm font-semibold whitespace-nowrap transition-all ${
-                  isActive
-                    ? 'bg-[#078B3B] text-white shadow-sm'
-                    : 'text-[#14294A] hover:text-[#082F70] hover:bg-[#F3F8FC]'
-                }`
-              }
-            >
-              Gallery
-            </NavLink>
-
-            <NavLink
-              to="/contact"
-              className={({ isActive }) =>
-                `px-2.5 xl:px-3 py-1.5 rounded-full text-[13px] xl:text-sm font-semibold whitespace-nowrap transition-all ${
-                  isActive
-                    ? 'bg-[#078B3B] text-white shadow-sm'
-                    : 'text-[#14294A] hover:text-[#082F70] hover:bg-[#F3F8FC]'
-                }`
-              }
-            >
-              Contact
-            </NavLink>
           </nav>
 
           {/* Right CTA & Mobile Menu Toggle */}
