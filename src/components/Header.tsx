@@ -297,14 +297,6 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
 
           {/* Right CTA & Mobile Menu Toggle */}
           <div className="flex items-center gap-2 shrink-0">
-            <Link
-              to="/contact"
-              className="hidden xl:inline-flex items-center gap-1.5 px-3.5 xl:px-4 py-2 rounded-full bg-[#082F70] hover:bg-[#0753A6] text-white text-[13px] xl:text-sm font-semibold whitespace-nowrap shadow-md hover:shadow-lg transition-all cursor-pointer"
-            >
-              <Users className="w-4 h-4" />
-              <span>Register as Volunteer</span>
-            </Link>
-
             <button
               onClick={onOpenDonate}
               className="hidden sm:inline-flex items-center gap-1.5 px-3.5 xl:px-4 py-2 rounded-full bg-[#D71920] hover:bg-[#b5141a] text-white text-[13px] xl:text-sm font-semibold whitespace-nowrap shadow-md hover:shadow-lg transition-all cursor-pointer"
