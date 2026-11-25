@@ -65,39 +65,27 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
           </div>
 
           <div className="flex items-center gap-2.5 shrink-0">
-            <span className="hidden md:inline text-[11px] font-semibold uppercase tracking-wider text-white/75">
-              Follow Us:
-            </span>
-            <a
-              href={ORG_INFO.social.facebookUrl}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="PCDS Facebook"
-              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/15 hover:bg-[#078B3B] transition-colors"
+            <NavLink
+              to="/gallery"
+              className={({ isActive }) =>
+                `inline-flex items-center gap-1 px-3 py-1 rounded-full transition-all text-xs font-semibold ${
+                  isActive ? 'bg-[#078B3B] text-white shadow-sm font-bold' : 'text-white/90 hover:text-white hover:bg-white/15'
+                }`
+              }
             >
-              <Facebook className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline text-[11px] font-medium">Facebook</span>
-            </a>
-            <a
-              href={ORG_INFO.social.youtubeUrl}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="PCDS YouTube"
-              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/15 hover:bg-[#D71920] transition-colors"
+              <span>Gallery</span>
+            </NavLink>
+            <span className="text-white/30">|</span>
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                `inline-flex items-center gap-1 px-3 py-1 rounded-full transition-all text-xs font-semibold ${
+                  isActive ? 'bg-[#078B3B] text-white shadow-sm font-bold' : 'text-white/90 hover:text-white hover:bg-white/15'
+                }`
+              }
             >
-              <Youtube className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline text-[11px] font-medium">YouTube</span>
-            </a>
-            <a
-              href={ORG_INFO.social.instagramUrl}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="PCDS Instagram"
-              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/15 hover:bg-[#078B3B] transition-colors"
-            >
-              <Instagram className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline text-[11px] font-medium">Instagram</span>
-            </a>
+              <span>Contact Us</span>
+            </NavLink>
           </div>
         </div>
       </div>

@@ -17,6 +17,15 @@ import {
   Send,
   Youtube,
   Building2,
+  Scale,
+  Briefcase,
+  HeartPulse,
+  ShieldCheck,
+  GraduationCap,
+  Trees,
+  Award,
+  Users,
+  Globe,
 } from 'lucide-react';
 import {
   FUTURE_PLANS,
@@ -171,30 +180,92 @@ export const OngoingProjectsPage: React.FC = () => {
   );
 };
 
+const PLAN_ICONS: Record<string, React.ReactNode> = {
+  '01': <Home className="w-6 h-6 text-[#078B3B]" />,
+  '02': <Scale className="w-6 h-6 text-[#078B3B]" />,
+  '03': <Briefcase className="w-6 h-6 text-[#078B3B]" />,
+  '04': <Heart className="w-6 h-6 text-[#078B3B]" />,
+  '05': <HeartPulse className="w-6 h-6 text-[#078B3B]" />,
+  '06': <ShieldCheck className="w-6 h-6 text-[#078B3B]" />,
+  '07': <GraduationCap className="w-6 h-6 text-[#078B3B]" />,
+  '08': <Trees className="w-6 h-6 text-[#078B3B]" />,
+  '09': <Award className="w-6 h-6 text-[#078B3B]" />,
+  '10': <Users className="w-6 h-6 text-[#078B3B]" />,
+};
+
 export const FuturePlansPage: React.FC = () => (
   <div>
     <PageBanner
       title="Future Plans"
-      subtitle="Prajwala Community Development Society (PCDS) is committed to expanding its services and creating a greater social impact through these 10 future initiatives."
-      badge="10 Future Initiatives"
+      subtitle="Prajwala Community Development Society (PCDS) is committed to expanding its services and creating a greater social impact through 10 strategic future initiatives."
+      badge="9. Future Plans"
       breadcrumb={[{ label: 'Future Plans' }]}
     />
-    <section className="py-14 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <StaggerGrid className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {FUTURE_PLANS.map((plan) => (
-          <StaggerItem key={plan.number}>
-            <div className="h-full bg-white rounded-3xl p-6 shadow-md border border-slate-100 flex items-start gap-4">
-              <span className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#082F70] to-[#078B3B] text-white font-extrabold text-base flex items-center justify-center shrink-0">
-                {plan.number}
-              </span>
-              <div>
-                <h2 className="text-lg font-bold text-[#082F70]">{plan.title}</h2>
-                <p className="mt-1.5 text-sm text-[#14294A] leading-relaxed">{plan.description}</p>
+    <section className="py-14 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      {/* Official Header Quote */}
+      <ScrollReveal className="text-center max-w-4xl mx-auto">
+        <span className="inline-block px-4 py-1.5 rounded-full bg-[#082F70] text-white text-xs font-bold uppercase tracking-wider mb-3">
+          9. 🌍 FUTURE PLANS
+        </span>
+        <blockquote className="text-base sm:text-lg font-bold text-[#082F70] leading-relaxed bg-[#EDF8EF]/70 p-6 rounded-3xl border border-[#078B3B]/20">
+          “Prajwala Community Development Society (PCDS) is committed to expanding its services and creating a greater social impact through the following future initiatives:”
+        </blockquote>
+      </ScrollReveal>
+
+      {/* Pictorial Chevron Ribbon List Matching image copy 48 */}
+      <div className="space-y-4">
+        {FUTURE_PLANS.map((plan, idx) => (
+          <ScrollReveal key={plan.number}>
+            <div className="group bg-white rounded-3xl p-4 sm:p-6 shadow-md hover:shadow-xl border border-slate-200/90 hover:border-[#078B3B]/50 transition-all duration-300 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 hover:-translate-y-0.5">
+              {/* Left Ribbon / Badge with Icon and Chevron Number */}
+              <div className="flex items-center gap-3 shrink-0">
+                {/* Circular Icon Container */}
+                <div className="w-14 h-14 rounded-full bg-[#EDF8EF] ring-4 ring-[#EDF8EF]/60 border-2 border-[#078B3B]/30 flex items-center justify-center shrink-0 shadow-sm group-hover:scale-105 transition-transform">
+                  {PLAN_ICONS[plan.number] || <Globe className="w-6 h-6 text-[#078B3B]" />}
+                </div>
+
+                {/* Chevron Badge */}
+                <div
+                  className={`relative flex items-center justify-center px-4 py-2 text-white font-black text-lg tracking-wider rounded-xl shadow-md min-w-[56px] ${
+                    idx % 2 === 0
+                      ? 'bg-gradient-to-r from-[#082F70] to-[#0753A6]'
+                      : 'bg-gradient-to-r from-[#078B3B] to-[#36A852]'
+                  }`}
+                >
+                  <span>{plan.number}</span>
+                </div>
+              </div>
+
+              {/* Right Content */}
+              <div className="flex-1 min-w-0">
+                <h3 className="text-base sm:text-lg font-extrabold text-[#078B3B] group-hover:text-[#082F70] transition-colors leading-snug">
+                  {plan.title}
+                </h3>
+                <p className="mt-1 text-xs sm:text-sm text-[#14294A] leading-relaxed">
+                  {plan.description}
+                </p>
               </div>
             </div>
-          </StaggerItem>
+          </ScrollReveal>
         ))}
-      </StaggerGrid>
+      </div>
+
+      {/* Authentic Diagram From PDF Page 18 */}
+      <ScrollReveal className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200 text-center">
+        <h3 className="text-lg font-bold text-[#082F70] mb-2">
+          Official Future Plans Graphic from Organization Profile (Page 18)
+        </h3>
+        <p className="text-xs text-[#63738B] mb-5">
+          Pictorial representation as documented in the official 24-page PCDS Organization Profile.
+        </p>
+        <div className="max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-md border border-slate-200">
+          <img
+            src="/images/real/future_plans/future_plans_full.jpg"
+            alt="PCDS Official Future Plans Pictorial Representation"
+            className="w-full h-auto"
+          />
+        </div>
+      </ScrollReveal>
     </section>
     <PageRichSections />
   </div>

@@ -826,12 +826,16 @@ export const HomePage: React.FC = () => {
                       routeLabel: 'View All 14 Beneficiary Groups',
                     })
                   }
-                  className="w-full h-full flex flex-col items-center text-center p-4 rounded-2xl bg-gradient-to-b from-white to-[#F3F8FC] hover:to-[#EDF8EF] border border-[#0753A6]/15 hover:border-[#078B3B]/50 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all cursor-pointer"
+                  className="w-full h-full flex flex-col items-center text-center p-3 sm:p-4 rounded-2xl bg-white hover:bg-[#EDF8EF] border border-[#0753A6]/15 hover:border-[#078B3B]/50 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all cursor-pointer"
                 >
-                  <span className="w-10 h-10 rounded-full bg-gradient-to-br from-[#082F70] to-[#078B3B] text-white text-xs font-extrabold flex items-center justify-center mb-3 shadow-sm">
-                    {b.id}
-                  </span>
-                  <span className="text-xs font-bold text-[#14294A] leading-snug">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden mb-2 shadow-inner border border-slate-100 flex items-center justify-center bg-white p-1">
+                    <img
+                      src={`/images/real/beneficiaries/beneficiary_${b.id}.jpg`}
+                      alt={b.label}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <span className="text-[11px] sm:text-xs font-bold text-[#14294A] leading-snug line-clamp-2">
                     {b.label}
                   </span>
                 </button>

@@ -652,6 +652,14 @@ export const ADVISORY_TEAM: AdvisoryMember[] = [
     image: '/images/real/advisory/b-sharmila.jpg',
     clinic: 'Guntur, Andhra Pradesh',
   },
+  {
+    name: 'R. SIVARAMA KRISHNA (VARMA)',
+    designation: 'Silambam Association GUNTUR',
+    role: 'Self-Defence Trainer / Martial Arts Instructor',
+    responsibilities: 'Provides expert guidance and conducts self-defence training sessions for women, adolescent girls, students, and community groups to promote safety, confidence, and empowerment.',
+    image: '/images/real/advisory/dummy-trainer.png',
+    clinic: 'Silambam Association, Guntur',
+  },
 ];
 
 export const TESTIMONIALS = [
