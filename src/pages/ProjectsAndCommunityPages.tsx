@@ -249,23 +249,6 @@ export const FuturePlansPage: React.FC = () => (
           </ScrollReveal>
         ))}
       </div>
-
-      {/* Authentic Diagram From PDF Page 18 */}
-      <ScrollReveal className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200 text-center">
-        <h3 className="text-lg font-bold text-[#082F70] mb-2">
-          Official Future Plans Graphic from Organization Profile (Page 18)
-        </h3>
-        <p className="text-xs text-[#63738B] mb-5">
-          Pictorial representation as documented in the official 24-page PCDS Organization Profile.
-        </p>
-        <div className="max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-md border border-slate-200">
-          <img
-            src="/images/real/future_plans/future_plans_full.jpg"
-            alt="PCDS Official Future Plans Pictorial Representation"
-            className="w-full h-auto"
-          />
-        </div>
-      </ScrollReveal>
     </section>
     <PageRichSections />
   </div>

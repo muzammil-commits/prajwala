@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight,
@@ -21,6 +21,18 @@ import {
   Briefcase,
   Quote,
   Calendar,
+  HeartHandshake,
+  Smile,
+  Accessibility,
+  Globe,
+  ShieldAlert,
+  LifeBuoy,
+  ArrowDown,
+  Utensils,
+  PackageCheck,
+  Shield,
+  Droplets,
+  Scissors,
 } from 'lucide-react';
 import {
   ABOUT_TEXT,
@@ -41,6 +53,7 @@ import {
 } from '../data/pcdsData';
 import { CountUpNumber, PageBanner, ScrollReveal, StaggerGrid, StaggerItem } from '../components/MotionPrimitives';
 import { PageRichSections } from '../components/PageRichSections';
+import { LightboxModal } from '../components/Modals';
 
 const OBJECTIVE_ICONS: Record<string, React.ReactNode> = {
   GraduationCap: <GraduationCap className="w-7 h-7" />,
@@ -52,6 +65,62 @@ const OBJECTIVE_ICONS: Record<string, React.ReactNode> = {
   Trees: <Trees className="w-7 h-7" />,
   Briefcase: <Briefcase className="w-7 h-7" />,
 };
+
+const BENEFICIARY_ICONS: Record<string, React.ReactNode> = {
+  '01': <Users className="w-8 h-8 text-[#0753A6]" />,
+  '02': <HeartHandshake className="w-8 h-8 text-[#078B3B]" />,
+  '03': <Smile className="w-8 h-8 text-[#0753A6]" />,
+  '04': <Scale className="w-8 h-8 text-[#078B3B]" />,
+  '05': <Heart className="w-8 h-8 text-[#0753A6]" />,
+  '06': <Accessibility className="w-8 h-8 text-[#078B3B]" />,
+  '07': <HeartPulse className="w-8 h-8 text-[#0753A6]" />,
+  '08': <ShieldCheck className="w-8 h-8 text-[#078B3B]" />,
+  '09': <Globe className="w-8 h-8 text-[#0753A6]" />,
+  '10': <GraduationCap className="w-8 h-8 text-[#078B3B]" />,
+  '11': <Home className="w-8 h-8 text-[#0753A6]" />,
+  '12': <ShieldAlert className="w-8 h-8 text-[#078B3B]" />,
+  '13': <Scale className="w-8 h-8 text-[#0753A6]" />,
+  '14': <LifeBuoy className="w-8 h-8 text-[#078B3B]" />,
+};
+
+const IMPACT_CARD_ICONS: Record<string, React.ReactNode> = {
+  '01': <Users className="w-6 h-6 text-[#082F70]" />,
+  '02': <Home className="w-6 h-6 text-[#078B3B]" />,
+  '03': <Utensils className="w-6 h-6 text-[#082F70]" />,
+  '04': <PackageCheck className="w-6 h-6 text-[#078B3B]" />,
+  '05': <Shield className="w-6 h-6 text-[#082F70]" />,
+  '06': <Droplets className="w-6 h-6 text-[#078B3B]" />,
+  '07': <Scissors className="w-6 h-6 text-[#082F70]" />,
+  '08': <Heart className="w-6 h-6 text-[#078B3B]" />,
+  '09': <HeartPulse className="w-6 h-6 text-[#082F70]" />,
+  '10': <Building2 className="w-6 h-6 text-[#078B3B]" />,
+  '11': <Award className="w-6 h-6 text-[#082F70]" />,
+  '12': <Trees className="w-6 h-6 text-[#078B3B]" />,
+  '13': <GraduationCap className="w-6 h-6 text-[#082F70]" />,
+};
+
+const ACHIEVEMENT_PHOTOS = [
+  { id: 'ach-0', title: 'Dry Ration Distribution in Urban area', image: '/images/real/achievements/covid_dry_ration_urban.jpg', category: 'COVID-19 Relief', caption: 'PCDS volunteers distributing dry ration kits in urban slums during lockdown.' },
+  { id: 'ach-1', title: 'GGH Hospital Sanitation & Immunity Kits', image: '/images/real/achievements/covid_ggh_sanitation.jpg', category: 'COVID-19 Relief', caption: 'Personal sanitation kits & immunity boosters provided to COVID-19 positive patients at GGH.' },
+  { id: 'ach-2', title: 'Dry Ration Distribution in Rural area', image: '/images/real/achievements/covid_dry_ration_rural.jpg', category: 'COVID-19 Relief', caption: 'Emergency relief and food distribution in remote rural villages.' },
+  { id: 'ach-3', title: 'Old Age Home Senior Citizens Care', image: '/images/real/achievements/old_age_home_1.jpg', category: 'Senior Citizen Care', caption: 'Elderly residents supported with dignity, healthcare, and continuous shelter.' },
+  { id: 'ach-4', title: 'Old Age Home Community Gathering', image: '/images/real/achievements/old_age_home_2.jpg', category: 'Senior Citizen Care', caption: 'Nutritious meals and recreational sessions for senior citizens.' },
+  { id: 'ach-5', title: 'Senior Citizen Healthcare & Wellness', image: '/images/real/achievements/old_age_home_3.jpg', category: 'Senior Citizen Care', caption: 'Regular health screenings and medical guidance for old age home inmates.' },
+  { id: 'ach-6', title: 'Hair Donation Campaigns for Cancer Patients', image: '/images/real/achievements/hair_donation_grid.jpg', category: 'Hair Donation', caption: '17 voluntary donors contributed hair for preparing wigs for cancer patients.' },
+  { id: 'ach-7', title: 'Free Medical Camps Consultation', image: '/images/real/achievements/medical_camps_1.jpg', category: 'Healthcare', caption: 'Free health check-ups and diagnostic consultations for underprivileged communities.' },
+  { id: 'ach-8', title: 'Pediatric & Geriatric Health Screening', image: '/images/real/achievements/medical_camps_2.jpg', category: 'Healthcare', caption: 'Vital signs, diagnostic screening, and basic treatments at community medical camps.' },
+  { id: 'ach-9', title: 'Medicine Distribution & Patient Care', image: '/images/real/achievements/medical_camps_3.jpg', category: 'Healthcare', caption: 'Distributing essential medicines and health counseling.' },
+  { id: 'ach-10', title: 'Community Slum & Village Survey', image: '/images/real/achievements/community_slum_1.jpg', category: 'Community Development', caption: 'Surveying underserved slums lacking basic amenities.' },
+  { id: 'ach-11', title: 'Community Infrastructure Advocacy', image: '/images/real/achievements/community_slum_2.jpg', category: 'Community Development', caption: 'Advocacy reports resulting in improved roads, drinking water, and electricity.' },
+  { id: 'ach-12', title: 'Tailoring Training for Homemakers (2017–2020)', image: '/images/real/achievements/tailoring_1.jpg', category: 'Skill Development', caption: 'Vocational tailoring skills for women and homemakers.' },
+  { id: 'ach-13', title: 'Women Self-Employment Training', image: '/images/real/achievements/tailoring_2.jpg', category: 'Skill Development', caption: 'Empowering women with livelihood promotion and garment stitching.' },
+  { id: 'ach-14', title: 'Block-Level Sports Meet Dignitaries', image: '/images/real/achievements/sports_1.jpg', category: 'Sports & Youth', caption: 'Organized sports meets in collaboration with Nehru Yuva Kendra.' },
+  { id: 'ach-15', title: 'Youth Kabaddi & Athletics Competition', image: '/images/real/achievements/sports_2.jpg', category: 'Sports & Youth', caption: 'Encouraging youth participation and sportsmanship.' },
+  { id: 'ach-16', title: 'Volleyball Tournament', image: '/images/real/achievements/sports_3.jpg', category: 'Sports & Youth', caption: 'Promoting youth wellness and healthy community bonding.' },
+  { id: 'ach-17', title: 'Self-Defence Training for Girls and Women', image: '/images/real/achievements/self_defence_collage.jpg', category: 'Women Empowerment', caption: '320 girls and women trained in self-defence and personal safety across colleges and rural mandals.' },
+  { id: 'ach-18', title: 'Environmental Conservation & Tree Plantation', image: '/images/real/achievements/environment_collage.jpg', category: 'Environment', caption: '6,515+ saplings planted and park cleaning drives since 2018.' },
+  { id: 'ach-19', title: 'Child Protection & Legal Awareness Campaigns', image: '/images/real/achievements/child_protection_collage.jpg', category: 'Child Protection', caption: 'Over 3,000 students educated on ERSS 112, Childline 1098, and POCSO Act.' },
+];
 
 export const AboutPage: React.FC = () => (
   <div>
@@ -314,20 +383,24 @@ export const TargetBeneficiariesPage: React.FC = () => (
         </blockquote>
       </ScrollReveal>
 
-      {/* 14 Target Beneficiaries Grid with Authentic PDF Badges */}
+      {/* 14 Target Beneficiaries Grid with Dedicated Crisp Icons */}
       <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {TARGET_BENEFICIARIES.map((b) => (
           <StaggerItem key={b.id}>
-            <div className="group h-full bg-white rounded-3xl p-4 sm:p-5 shadow-md hover:shadow-2xl border border-slate-200/90 hover:border-[#078B3B]/50 transition-all duration-300 flex flex-col items-center text-center hover:-translate-y-1 relative overflow-hidden">
-              <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden bg-white mb-3 shadow-inner border border-slate-100 flex items-center justify-center p-1">
-                <img
-                  src={`/images/real/beneficiaries/beneficiary_${b.id}.jpg`}
-                  alt={b.label}
-                  className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
-                />
+            <div className="group h-full bg-white rounded-3xl p-6 shadow-md hover:shadow-2xl border border-slate-200/90 hover:border-[#078B3B]/50 transition-all duration-300 flex flex-col items-center text-center hover:-translate-y-1 relative overflow-hidden">
+              {/* Circular Icon Container */}
+              <div className="relative mb-4">
+                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#EDF8EF] to-[#F3F8FC] border border-[#078B3B]/20 flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform duration-300">
+                  {BENEFICIARY_ICONS[b.id] || <Users className="w-8 h-8 text-[#0753A6]" />}
+                </div>
+                <span className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-[#082F70] group-hover:bg-[#078B3B] text-white font-black text-xs flex items-center justify-center shadow-md transition-colors">
+                  {b.id}
+                </span>
               </div>
+
+              {/* Title Badge */}
               <div className="w-full mt-auto">
-                <span className="inline-block w-full px-3 py-2 rounded-xl bg-[#082F70] group-hover:bg-[#078B3B] text-white text-xs sm:text-[13px] font-bold leading-tight transition-colors shadow-sm">
+                <span className="inline-block w-full px-3.5 py-2.5 rounded-xl bg-[#082F70] group-hover:bg-[#078B3B] text-white text-xs sm:text-[13px] font-bold leading-tight transition-colors shadow-sm">
                   {b.label}
                 </span>
               </div>
@@ -340,354 +413,449 @@ export const TargetBeneficiariesPage: React.FC = () => (
   </div>
 );
 
-export const ImpactAchievementsPage: React.FC = () => (
-  <div>
-    <PageBanner
-      title="Impact & Achievements"
-      subtitle="Verified community impact across COVID-19 relief, Old Age Home care, cancer patient hair donation, medical camps, women empowerment, self-defence, education, and environment."
-      badge="6. Impact / Achievements"
-      breadcrumb={[{ label: 'Organization' }, { label: 'Impact & Achievements' }]}
-    />
-    <section className="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-      {/* Intro Header */}
-      <ScrollReveal className="text-center max-w-4xl mx-auto">
-        <span className="inline-block px-4 py-1.5 rounded-full bg-[#082F70] text-white text-xs font-bold uppercase tracking-wider mb-3">
-          6. IMPACT / ACHIEVEMENTS
-        </span>
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#082F70]">
-          Dedicated Community Service &amp; Measurable Social Impact
-        </h2>
-        <p className="mt-3 text-base text-[#14294A] leading-relaxed">
-          Prajwala Community Development Society (PCDS) has made a significant impact through its dedicated community service initiatives. Some of the key achievements include:
-        </p>
-      </ScrollReveal>
+export const ImpactAchievementsPage: React.FC = () => {
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-      {/* SECTION 1: IMPACT AT A GLANCE (Page 15 & image copy 44) */}
-      <ScrollReveal className="bg-gradient-to-br from-[#082F70] via-[#0753A6] to-[#082F70] rounded-3xl p-6 sm:p-10 text-white shadow-2xl relative overflow-hidden">
-        <div className="text-center max-w-3xl mx-auto mb-10">
-          <span className="inline-block px-4 py-1 rounded-full bg-[#078B3B] text-white text-xs font-bold uppercase tracking-wider mb-3">
-            IMPACT AT A GLANCE
+  return (
+    <div>
+      <PageBanner
+        title="Impact & Achievements"
+        subtitle="Prajwala Community Development Society (PCDS) has made a significant impact through its dedicated community service initiatives. Some of the key achievements include:"
+        badge="6. Impact / Achievements"
+        breadcrumb={[{ label: 'Organization' }, { label: 'Impact & Achievements' }]}
+      />
+      <section className="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        {/* Intro Header */}
+        <ScrollReveal className="text-center max-w-4xl mx-auto">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-[#082F70] text-white text-xs font-bold uppercase tracking-wider mb-3">
+            6. IMPACT / ACHIEVEMENTS
           </span>
-          <h3 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-            IMPACT AT A GLANCE
-          </h3>
-          <p className="mt-2 text-sm sm:text-base text-white/90 font-medium">
-            Transforming Lives. Building Communities. Creating a Better Tomorrow.
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#082F70]">
+            Dedicated Community Service &amp; Measurable Social Impact
+          </h2>
+          <p className="mt-3 text-base text-[#14294A] leading-relaxed">
+            Prajwala Community Development Society (PCDS) has made a significant impact through its dedicated community service initiatives. Some of the key achievements include:
           </p>
-        </div>
+        </ScrollReveal>
 
-        {/* 13 Animated Impact Cards Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5">
-          {IMPACT_METRICS.map((m) => (
-            <div
-              key={m.id}
-              className="bg-white rounded-2xl p-4 sm:p-5 text-center shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all flex flex-col justify-between"
+        {/* SECTION 1: IMPACT AT A GLANCE (Page 15 & image copy 44) */}
+        <ScrollReveal className="bg-gradient-to-br from-[#082F70] via-[#0753A6] to-[#082F70] rounded-3xl p-6 sm:p-10 text-white shadow-2xl relative overflow-hidden">
+          <div className="text-center max-w-3xl mx-auto mb-10">
+            <span className="inline-block px-4 py-1 rounded-full bg-[#078B3B] text-white text-xs font-bold uppercase tracking-wider mb-3">
+              IMPACT AT A GLANCE
+            </span>
+            <h3 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+              IMPACT AT A GLANCE
+            </h3>
+            <p className="mt-2 text-sm sm:text-base text-white/90 font-medium">
+              Transforming Lives. Building Communities. Creating a Better Tomorrow.
+            </p>
+          </div>
+
+          {/* 13 Animated Impact Cards Grid with Dedicated Icons */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5">
+            {IMPACT_METRICS.map((m) => (
+              <div
+                key={m.id}
+                className="bg-white rounded-2xl p-4 sm:p-5 text-center shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all flex flex-col justify-between"
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <span className="w-7 h-7 rounded-full bg-[#082F70] text-white text-xs font-black flex items-center justify-center">
+                    {m.id}
+                  </span>
+                  <div className="w-9 h-9 rounded-xl bg-[#F3F8FC] border border-slate-100 flex items-center justify-center">
+                    {IMPACT_CARD_ICONS[m.id]}
+                  </div>
+                  <span className="text-[10px] font-extrabold text-[#078B3B] uppercase tracking-wider">
+                    Verified
+                  </span>
+                </div>
+                <div className="my-2">
+                  <div className="text-2xl sm:text-3xl font-black text-[#082F70] leading-none">
+                    <CountUpNumber target={m.number} suffix={m.suffix} />
+                  </div>
+                </div>
+                <div>
+                  <div className="text-xs sm:text-sm font-bold text-[#078B3B] leading-tight">
+                    {m.label}
+                  </div>
+                  <div className="mt-1 text-[11px] text-[#63738B] leading-tight">
+                    {m.detail}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </ScrollReveal>
+
+        {/* SECTION A: COVID-19 EMERGENCY RESPONSE (Page 10) */}
+        <ScrollReveal className="bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-200">
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-100">
+            <span className="px-4 py-1.5 rounded-full bg-[#078B3B] text-white text-xs sm:text-sm font-bold">
+              A) COVID-19 EMERGENCY RESPONSE (2020–2021)
+            </span>
+            <span className="text-xs font-semibold text-[#0753A6]">Official PCDS Profile • Page 10</span>
+          </div>
+
+          {/* 18 Verbatim Bullets */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
+            {COVID_RESPONSE_BULLETS.map((item, idx) => (
+              <div key={idx} className="flex items-start gap-3 bg-[#F3F8FC] p-3.5 rounded-2xl text-xs sm:text-sm text-[#14294A]">
+                <CheckCircle2 className="w-4 h-4 text-[#078B3B] shrink-0 mt-0.5" />
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Authentic Page 10 Photos with Click-to-Popup */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            <div className="space-y-2">
+              <button
+                type="button"
+                onClick={() => setLightboxIndex(0)}
+                className="w-full text-left rounded-2xl overflow-hidden shadow-md border-2 border-slate-100 aspect-[4/3] bg-slate-100 group cursor-pointer"
+              >
+                <img
+                  src="/images/real/achievements/covid_dry_ration_urban.jpg"
+                  alt="Dry Ration Distribution in Urban area"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                />
+              </button>
+              <p className="text-xs font-bold text-[#082F70] text-center">
+                Dry Ration Distribution in Urban area
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <button
+                type="button"
+                onClick={() => setLightboxIndex(1)}
+                className="w-full text-left rounded-2xl overflow-hidden shadow-md border-2 border-slate-100 aspect-[4/3] bg-slate-100 group cursor-pointer"
+              >
+                <img
+                  src="/images/real/achievements/covid_ggh_sanitation.jpg"
+                  alt="At GGH personal sanitation kits"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                />
+              </button>
+              <p className="text-xs font-bold text-[#082F70] text-center">
+                At GGH, personal sanitation kits and immunity-boosting kits given to COVID-positive patients
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <button
+                type="button"
+                onClick={() => setLightboxIndex(2)}
+                className="w-full text-left rounded-2xl overflow-hidden shadow-md border-2 border-slate-100 aspect-[4/3] bg-slate-100 group cursor-pointer"
+              >
+                <img
+                  src="/images/real/achievements/covid_dry_ration_rural.jpg"
+                  alt="Dry Ration Distribution in Rural area"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                />
+              </button>
+              <p className="text-xs font-bold text-[#082F70] text-center">
+                Dry Ration Distribution in Rural area
+              </p>
+            </div>
+          </div>
+        </ScrollReveal>
+
+        {/* SECTION B & C: OLD AGE HOME & HAIR DONATION (Page 11) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Section B: Old Age Home */}
+          <ScrollReveal className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
+                <span className="px-3.5 py-1 rounded-full bg-[#078B3B] text-white text-xs font-bold">
+                  B) OLD AGE HOME SERVICES &amp; SENIOR CITIZEN
+                </span>
+                <span className="text-xs font-semibold text-[#0753A6]">Page 11</span>
+              </div>
+              <p className="text-sm sm:text-base text-[#14294A] leading-relaxed mb-6">
+                Since its establishment, the Old Age Home has provided shelter, food, clothing, healthcare, and emotional support to <strong>46 senior citizens</strong>. Currently, <strong>25 senior citizens</strong> are residing in the Home, receiving continuous care and support.
+              </p>
+            </div>
+
+            {/* 3 Photos with Click-to-Popup */}
+            <div className="grid grid-cols-3 gap-3">
+              <button
+                type="button"
+                onClick={() => setLightboxIndex(3)}
+                className="rounded-xl overflow-hidden shadow-sm aspect-square bg-slate-100 group cursor-pointer"
+              >
+                <img src="/images/real/achievements/old_age_home_1.jpg" alt="PCDS Old Age Home Elders" className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+              </button>
+              <button
+                type="button"
+                onClick={() => setLightboxIndex(4)}
+                className="rounded-xl overflow-hidden shadow-sm aspect-square bg-slate-100 group cursor-pointer"
+              >
+                <img src="/images/real/achievements/old_age_home_2.jpg" alt="Old Age Home Community Gathering" className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+              </button>
+              <button
+                type="button"
+                onClick={() => setLightboxIndex(5)}
+                className="rounded-xl overflow-hidden shadow-sm aspect-square bg-slate-100 group cursor-pointer"
+              >
+                <img src="/images/real/achievements/old_age_home_3.jpg" alt="Care and Support for Seniors" className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+              </button>
+            </div>
+          </ScrollReveal>
+
+          {/* Section C: Hair Donation */}
+          <ScrollReveal className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
+                <span className="px-3.5 py-1 rounded-full bg-[#078B3B] text-white text-xs font-bold">
+                  C) HAIR DONATION CAMPAIGNS
+                </span>
+                <span className="text-xs font-semibold text-[#0753A6]">Page 11</span>
+              </div>
+              <p className="text-sm sm:text-base text-[#14294A] leading-relaxed mb-6">
+                Successfully organized <strong>3 Hair Donation Camps</strong>, where <strong>17 voluntary hair donors</strong> contributed their hair to support the preparation of wigs for cancer patients, restoring hope and confidence.
+              </p>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setLightboxIndex(6)}
+              className="w-full text-left rounded-2xl overflow-hidden shadow-md border border-slate-100 aspect-[16/9] bg-slate-100 group cursor-pointer"
             >
-              <div className="flex items-center justify-between mb-2">
-                <span className="w-7 h-7 rounded-full bg-[#082F70] text-white text-xs font-black flex items-center justify-center">
-                  {m.id}
+              <img src="/images/real/achievements/hair_donation_grid.jpg" alt="17 Voluntary Hair Donors & Hair Donation Camps" className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+            </button>
+          </ScrollReveal>
+        </div>
+
+        {/* SECTION D & E: MEDICAL CAMPS & COMMUNITY DEV (Page 12) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Section D: Medical Camps */}
+          <ScrollReveal className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
+                <span className="px-3.5 py-1 rounded-full bg-[#078B3B] text-white text-xs font-bold">
+                  D) MEDICAL CAMPS
                 </span>
-                <span className="text-[10px] font-extrabold text-[#078B3B] uppercase tracking-wider">
-                  Verified
+                <span className="text-xs font-semibold text-[#0753A6]">Page 12</span>
+              </div>
+              <p className="text-sm sm:text-base text-[#14294A] leading-relaxed mb-6">
+                Conducted <strong>5 Free Medical Camps</strong>, providing health check-ups, medical consultations, basic treatment, and health awareness services to underprivileged communities.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-3 gap-3">
+              <button
+                type="button"
+                onClick={() => setLightboxIndex(7)}
+                className="rounded-xl overflow-hidden shadow-sm aspect-square bg-slate-100 group cursor-pointer"
+              >
+                <img src="/images/real/achievements/medical_camps_1.jpg" alt="Medical Camp Doctor Consultation" className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+              </button>
+              <button
+                type="button"
+                onClick={() => setLightboxIndex(8)}
+                className="rounded-xl overflow-hidden shadow-sm aspect-square bg-slate-100 group cursor-pointer"
+              >
+                <img src="/images/real/achievements/medical_camps_2.jpg" alt="Free Health Screening" className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+              </button>
+              <button
+                type="button"
+                onClick={() => setLightboxIndex(9)}
+                className="rounded-xl overflow-hidden shadow-sm aspect-square bg-slate-100 group cursor-pointer"
+              >
+                <img src="/images/real/achievements/medical_camps_3.jpg" alt="PCDS Health Camp Services" className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+              </button>
+            </div>
+          </ScrollReveal>
+
+          {/* Section E: Community Development Initiatives */}
+          <ScrollReveal className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
+                <span className="px-3.5 py-1 rounded-full bg-[#078B3B] text-white text-xs font-bold">
+                  E) COMMUNITY DEVELOPMENT INITIATIVES
                 </span>
+                <span className="text-xs font-semibold text-[#0753A6]">Page 12</span>
               </div>
-              <div className="my-2">
-                <div className="text-2xl sm:text-3xl font-black text-[#082F70] leading-none">
-                  <CountUpNumber target={m.number} suffix={m.suffix} />
+              <div className="space-y-3 mb-6">
+                <div className="flex items-start gap-2.5 bg-[#F3F8FC] p-3 rounded-xl text-sm text-[#14294A]">
+                  <CheckCircle2 className="w-4 h-4 text-[#078B3B] shrink-0 mt-0.5" />
+                  <span>Surveyed underserved slums and villages lacking basic amenities.</span>
+                </div>
+                <div className="flex items-start gap-2.5 bg-[#F3F8FC] p-3 rounded-xl text-sm text-[#14294A]">
+                  <CheckCircle2 className="w-4 h-4 text-[#078B3B] shrink-0 mt-0.5" />
+                  <span>Submitted reports to Government authorities, resulting in improvements in roads, drinking water supply, and electricity in several areas.</span>
                 </div>
               </div>
-              <div>
-                <div className="text-xs sm:text-sm font-bold text-[#078B3B] leading-tight">
-                  {m.label}
-                </div>
-                <div className="mt-1 text-[11px] text-[#63738B] leading-tight">
-                  {m.detail}
-                </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <button
+                type="button"
+                onClick={() => setLightboxIndex(10)}
+                className="rounded-xl overflow-hidden shadow-sm aspect-[4/3] bg-slate-100 group cursor-pointer"
+              >
+                <img src="/images/real/achievements/community_slum_1.jpg" alt="Slum Community Survey" className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+              </button>
+              <button
+                type="button"
+                onClick={() => setLightboxIndex(11)}
+                className="rounded-xl overflow-hidden shadow-sm aspect-[4/3] bg-slate-100 group cursor-pointer"
+              >
+                <img src="/images/real/achievements/community_slum_2.jpg" alt="Village Community Welfare" className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+              </button>
+            </div>
+          </ScrollReveal>
+        </div>
+
+        {/* SECTION F, G, H: SKILL DEV, SPORTS, SELF-DEFENCE (Page 13) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
+          {/* Section F: Skill Development */}
+          <ScrollReveal className="bg-white rounded-3xl p-6 shadow-xl border border-slate-200 flex flex-col justify-between">
+            <div>
+              <span className="inline-block px-3 py-1 rounded-full bg-[#078B3B] text-white text-xs font-bold mb-3">
+                F) SKILL DEVELOPMENT
+              </span>
+              <h3 className="font-bold text-[#082F70] text-base mb-2">Tailoring Training for Homemakers (2017–2020)</h3>
+              <p className="text-xs text-[#14294A] leading-relaxed mb-4">
+                Vocational tailoring and garment making programmes empowering women with self-employment skills.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              <button
+                type="button"
+                onClick={() => setLightboxIndex(12)}
+                className="rounded-xl overflow-hidden aspect-square bg-slate-100 group cursor-pointer"
+              >
+                <img src="/images/real/achievements/tailoring_1.jpg" alt="Tailoring Class" className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+              </button>
+              <button
+                type="button"
+                onClick={() => setLightboxIndex(13)}
+                className="rounded-xl overflow-hidden aspect-square bg-slate-100 group cursor-pointer"
+              >
+                <img src="/images/real/achievements/tailoring_2.jpg" alt="Women Tailoring Trainees" className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+              </button>
+            </div>
+          </ScrollReveal>
+
+          {/* Section G: Sports & Youth Development */}
+          <ScrollReveal className="bg-white rounded-3xl p-6 shadow-xl border border-slate-200 flex flex-col justify-between">
+            <div>
+              <span className="inline-block px-3 py-1 rounded-full bg-[#078B3B] text-white text-xs font-bold mb-3">
+                G) SPORTS &amp; YOUTH DEVELOPMENT
+              </span>
+              <p className="text-xs sm:text-sm text-[#14294A] leading-relaxed mb-4">
+                Organized Block-Level Sports Meets to encourage youth participation and promote sportsmanship in collaboration with Nehru Yuva Kendra.
+              </p>
+            </div>
+            <div className="grid grid-cols-3 gap-2">
+              <button
+                type="button"
+                onClick={() => setLightboxIndex(14)}
+                className="rounded-xl overflow-hidden aspect-square bg-slate-100 group cursor-pointer"
+              >
+                <img src="/images/real/achievements/sports_1.jpg" alt="Sports Meet Dignitaries" className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+              </button>
+              <button
+                type="button"
+                onClick={() => setLightboxIndex(15)}
+                className="rounded-xl overflow-hidden aspect-square bg-slate-100 group cursor-pointer"
+              >
+                <img src="/images/real/achievements/sports_2.jpg" alt="Kabaddi & Athletics" className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+              </button>
+              <button
+                type="button"
+                onClick={() => setLightboxIndex(16)}
+                className="rounded-xl overflow-hidden aspect-square bg-slate-100 group cursor-pointer"
+              >
+                <img src="/images/real/achievements/sports_3.jpg" alt="Volleyball Tournament" className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+              </button>
+            </div>
+          </ScrollReveal>
+
+          {/* Section H: Self-Defence Training */}
+          <ScrollReveal className="bg-white rounded-3xl p-6 shadow-xl border border-slate-200 flex flex-col justify-between">
+            <div>
+              <span className="inline-block px-3 py-1 rounded-full bg-[#078B3B] text-white text-xs font-bold mb-3">
+                H) SELF-DEFENCE TRAINING
+              </span>
+              <p className="text-xs sm:text-sm text-[#14294A] leading-relaxed mb-4">
+                Trained <strong>320 girls and women</strong> in self-defence and personal safety across B.H.H. Women&apos;s Degree College, Government Women&apos;s Degree College, and rural communities.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setLightboxIndex(17)}
+              className="w-full text-left rounded-xl overflow-hidden aspect-[4/3] bg-slate-100 group cursor-pointer"
+            >
+              <img src="/images/real/achievements/self_defence_collage.jpg" alt="Silambam Self-Defence Classes" className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+            </button>
+          </ScrollReveal>
+        </div>
+
+        {/* SECTION I & J: ENVIRONMENT & CHILD PROTECTION (Page 14) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Section I: Environmental Conservation */}
+          <ScrollReveal className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
+                <span className="px-3.5 py-1 rounded-full bg-[#078B3B] text-white text-xs font-bold">
+                  I) ENVIRONMENTAL CONSERVATION
+                </span>
+                <span className="text-xs font-semibold text-[#0753A6]">Page 14</span>
               </div>
+              <p className="text-sm sm:text-base text-[#14294A] leading-relaxed mb-6">
+                Planted <strong>more than 6,515 saplings</strong> since 2018 across rural and urban areas of Guntur with the support of Government officials, contributing to environmental sustainability and community participation.
+              </p>
             </div>
-          ))}
-        </div>
-      </ScrollReveal>
 
-      {/* SECTION A: COVID-19 EMERGENCY RESPONSE (Page 10) */}
-      <ScrollReveal className="bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-200">
-        <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-100">
-          <span className="px-4 py-1.5 rounded-full bg-[#078B3B] text-white text-xs sm:text-sm font-bold">
-            A) COVID-19 EMERGENCY RESPONSE (2020–2021)
-          </span>
-          <span className="text-xs font-semibold text-[#0753A6]">Official PCDS Profile • Page 10</span>
-        </div>
+            <button
+              type="button"
+              onClick={() => setLightboxIndex(18)}
+              className="w-full text-left rounded-2xl overflow-hidden shadow-md aspect-[16/9] bg-slate-100 group cursor-pointer"
+            >
+              <img src="/images/real/achievements/environment_collage.jpg" alt="Park Cleaning and 6,515 Saplings Planted" className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+            </button>
+          </ScrollReveal>
 
-        {/* 18 Verbatim Bullets */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
-          {COVID_RESPONSE_BULLETS.map((item, idx) => (
-            <div key={idx} className="flex items-start gap-3 bg-[#F3F8FC] p-3.5 rounded-2xl text-xs sm:text-sm text-[#14294A]">
-              <CheckCircle2 className="w-4 h-4 text-[#078B3B] shrink-0 mt-0.5" />
-              <span>{item}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Authentic Page 10 Photos with Captions */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-          <div className="space-y-2">
-            <div className="rounded-2xl overflow-hidden shadow-md border-2 border-slate-100 aspect-[4/3] bg-slate-100">
-              <img
-                src="/images/real/achievements/covid_dry_ration_urban.jpg"
-                alt="Dry Ration Distribution in Urban area"
-                className="w-full h-full object-cover hover:scale-105 transition-transform"
-              />
-            </div>
-            <p className="text-xs font-bold text-[#082F70] text-center">
-              Dry Ration Distribution in Urban area
-            </p>
-          </div>
-
-          <div className="space-y-2">
-            <div className="rounded-2xl overflow-hidden shadow-md border-2 border-slate-100 aspect-[4/3] bg-slate-100">
-              <img
-                src="/images/real/achievements/covid_ggh_sanitation.jpg"
-                alt="At GGH personal sanitation kits"
-                className="w-full h-full object-cover hover:scale-105 transition-transform"
-              />
-            </div>
-            <p className="text-xs font-bold text-[#082F70] text-center">
-              At GGH, personal sanitation kits and immunity-boosting kits given to COVID-positive patients
-            </p>
-          </div>
-
-          <div className="space-y-2">
-            <div className="rounded-2xl overflow-hidden shadow-md border-2 border-slate-100 aspect-[4/3] bg-slate-100">
-              <img
-                src="/images/real/achievements/covid_dry_ration_rural.jpg"
-                alt="Dry Ration Distribution in Rural area"
-                className="w-full h-full object-cover hover:scale-105 transition-transform"
-              />
-            </div>
-            <p className="text-xs font-bold text-[#082F70] text-center">
-              Dry Ration Distribution in Rural area
-            </p>
-          </div>
-        </div>
-      </ScrollReveal>
-
-      {/* SECTION B & C: OLD AGE HOME & HAIR DONATION (Page 11) */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Section B: Old Age Home */}
-        <ScrollReveal className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200 flex flex-col justify-between">
-          <div>
-            <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
-              <span className="px-3.5 py-1 rounded-full bg-[#078B3B] text-white text-xs font-bold">
-                B) OLD AGE HOME SERVICES &amp; SENIOR CITIZEN
-              </span>
-              <span className="text-xs font-semibold text-[#0753A6]">Page 11</span>
-            </div>
-            <p className="text-sm sm:text-base text-[#14294A] leading-relaxed mb-6">
-              Since its establishment, the Old Age Home has provided shelter, food, clothing, healthcare, and emotional support to <strong>46 senior citizens</strong>. Currently, <strong>25 senior citizens</strong> are residing in the Home, receiving continuous care and support.
-            </p>
-          </div>
-
-          {/* 3 Photos */}
-          <div className="grid grid-cols-3 gap-3">
-            <div className="rounded-xl overflow-hidden shadow-sm aspect-square bg-slate-100">
-              <img src="/images/real/achievements/old_age_home_1.jpg" alt="PCDS Old Age Home Elders" className="w-full h-full object-cover hover:scale-105 transition-transform" />
-            </div>
-            <div className="rounded-xl overflow-hidden shadow-sm aspect-square bg-slate-100">
-              <img src="/images/real/achievements/old_age_home_2.jpg" alt="Old Age Home Community Gathering" className="w-full h-full object-cover hover:scale-105 transition-transform" />
-            </div>
-            <div className="rounded-xl overflow-hidden shadow-sm aspect-square bg-slate-100">
-              <img src="/images/real/achievements/old_age_home_3.jpg" alt="Care and Support for Seniors" className="w-full h-full object-cover hover:scale-105 transition-transform" />
-            </div>
-          </div>
-        </ScrollReveal>
-
-        {/* Section C: Hair Donation */}
-        <ScrollReveal className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200 flex flex-col justify-between">
-          <div>
-            <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
-              <span className="px-3.5 py-1 rounded-full bg-[#078B3B] text-white text-xs font-bold">
-                C) HAIR DONATION CAMPAIGNS
-              </span>
-              <span className="text-xs font-semibold text-[#0753A6]">Page 11</span>
-            </div>
-            <p className="text-sm sm:text-base text-[#14294A] leading-relaxed mb-6">
-              Successfully organized <strong>3 Hair Donation Camps</strong>, where <strong>17 voluntary hair donors</strong> contributed their hair to support the preparation of wigs for cancer patients, restoring hope and confidence.
-            </p>
-          </div>
-
-          <div className="rounded-2xl overflow-hidden shadow-md border border-slate-100 aspect-[16/9] bg-slate-100">
-            <img src="/images/real/achievements/hair_donation_grid.jpg" alt="17 Voluntary Hair Donors & Hair Donation Camps" className="w-full h-full object-cover hover:scale-105 transition-transform" />
-          </div>
-        </ScrollReveal>
-      </div>
-
-      {/* SECTION D & E: MEDICAL CAMPS & COMMUNITY DEV (Page 12) */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Section D: Medical Camps */}
-        <ScrollReveal className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200 flex flex-col justify-between">
-          <div>
-            <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
-              <span className="px-3.5 py-1 rounded-full bg-[#078B3B] text-white text-xs font-bold">
-                D) MEDICAL CAMPS
-              </span>
-              <span className="text-xs font-semibold text-[#0753A6]">Page 12</span>
-            </div>
-            <p className="text-sm sm:text-base text-[#14294A] leading-relaxed mb-6">
-              Conducted <strong>5 Free Medical Camps</strong>, providing health check-ups, medical consultations, basic treatment, and health awareness services to underprivileged communities.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-3 gap-3">
-            <div className="rounded-xl overflow-hidden shadow-sm aspect-square bg-slate-100">
-              <img src="/images/real/achievements/medical_camps_1.jpg" alt="Medical Camp Doctor Consultation" className="w-full h-full object-cover hover:scale-105 transition-transform" />
-            </div>
-            <div className="rounded-xl overflow-hidden shadow-sm aspect-square bg-slate-100">
-              <img src="/images/real/achievements/medical_camps_2.jpg" alt="Free Health Screening" className="w-full h-full object-cover hover:scale-105 transition-transform" />
-            </div>
-            <div className="rounded-xl overflow-hidden shadow-sm aspect-square bg-slate-100">
-              <img src="/images/real/achievements/medical_camps_3.jpg" alt="PCDS Health Camp Services" className="w-full h-full object-cover hover:scale-105 transition-transform" />
-            </div>
-          </div>
-        </ScrollReveal>
-
-        {/* Section E: Community Development Initiatives */}
-        <ScrollReveal className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200 flex flex-col justify-between">
-          <div>
-            <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
-              <span className="px-3.5 py-1 rounded-full bg-[#078B3B] text-white text-xs font-bold">
-                E) COMMUNITY DEVELOPMENT INITIATIVES
-              </span>
-              <span className="text-xs font-semibold text-[#0753A6]">Page 12</span>
-            </div>
-            <div className="space-y-3 mb-6">
-              <div className="flex items-start gap-2.5 bg-[#F3F8FC] p-3 rounded-xl text-sm text-[#14294A]">
-                <CheckCircle2 className="w-4 h-4 text-[#078B3B] shrink-0 mt-0.5" />
-                <span>Surveyed underserved slums and villages lacking basic amenities.</span>
+          {/* Section J: Child Protection & Legal Awareness */}
+          <ScrollReveal className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
+                <span className="px-3.5 py-1 rounded-full bg-[#078B3B] text-white text-xs font-bold">
+                  J) CHILD PROTECTION &amp; LEGAL AWARENESS
+                </span>
+                <span className="text-xs font-semibold text-[#0753A6]">Page 14</span>
               </div>
-              <div className="flex items-start gap-2.5 bg-[#F3F8FC] p-3 rounded-xl text-sm text-[#14294A]">
-                <CheckCircle2 className="w-4 h-4 text-[#078B3B] shrink-0 mt-0.5" />
-                <span>Submitted reports to Government authorities, resulting in improvements in roads, drinking water supply, and electricity in several areas.</span>
-              </div>
+              <p className="text-sm sm:text-base text-[#14294A] leading-relaxed mb-6">
+                Created awareness among <strong>over 3,000 students</strong> on Emergency Response Support System (112), Childline (1098), the POCSO Act, child rights, child safety, and other child protection laws through programs conducted in educational institutions and communities.
+              </p>
             </div>
-          </div>
 
-          <div className="grid grid-cols-2 gap-3">
-            <div className="rounded-xl overflow-hidden shadow-sm aspect-[4/3] bg-slate-100">
-              <img src="/images/real/achievements/community_slum_1.jpg" alt="Slum Community Survey" className="w-full h-full object-cover hover:scale-105 transition-transform" />
-            </div>
-            <div className="rounded-xl overflow-hidden shadow-sm aspect-[4/3] bg-slate-100">
-              <img src="/images/real/achievements/community_slum_2.jpg" alt="Village Community Welfare" className="w-full h-full object-cover hover:scale-105 transition-transform" />
-            </div>
-          </div>
-        </ScrollReveal>
-      </div>
+            <button
+              type="button"
+              onClick={() => setLightboxIndex(19)}
+              className="w-full text-left rounded-2xl overflow-hidden shadow-md aspect-[16/9] bg-slate-100 group cursor-pointer"
+            >
+              <img src="/images/real/achievements/child_protection_collage.jpg" alt="Child Rights & POCSO Act School Campaigns" className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+            </button>
+          </ScrollReveal>
+        </div>
+      </section>
 
-      {/* SECTION F, G, H: SKILL DEV, SPORTS, SELF-DEFENCE (Page 13) */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
-        {/* Section F: Skill Development */}
-        <ScrollReveal className="bg-white rounded-3xl p-6 shadow-xl border border-slate-200 flex flex-col justify-between">
-          <div>
-            <span className="inline-block px-3 py-1 rounded-full bg-[#078B3B] text-white text-xs font-bold mb-3">
-              F) SKILL DEVELOPMENT
-            </span>
-            <h3 className="font-bold text-[#082F70] text-base mb-2">Tailoring Training for Homemakers (2017–2020)</h3>
-            <p className="text-xs text-[#14294A] leading-relaxed mb-4">
-              Vocational tailoring and garment making programmes empowering women with self-employment skills.
-            </p>
-          </div>
-          <div className="grid grid-cols-2 gap-2">
-            <div className="rounded-xl overflow-hidden aspect-square bg-slate-100">
-              <img src="/images/real/achievements/tailoring_1.jpg" alt="Tailoring Class" className="w-full h-full object-cover" />
-            </div>
-            <div className="rounded-xl overflow-hidden aspect-square bg-slate-100">
-              <img src="/images/real/achievements/tailoring_2.jpg" alt="Women Tailoring Trainees" className="w-full h-full object-cover" />
-            </div>
-          </div>
-        </ScrollReveal>
-
-        {/* Section G: Sports & Youth Development */}
-        <ScrollReveal className="bg-white rounded-3xl p-6 shadow-xl border border-slate-200 flex flex-col justify-between">
-          <div>
-            <span className="inline-block px-3 py-1 rounded-full bg-[#078B3B] text-white text-xs font-bold mb-3">
-              G) SPORTS &amp; YOUTH DEVELOPMENT
-            </span>
-            <p className="text-xs sm:text-sm text-[#14294A] leading-relaxed mb-4">
-              Organized Block-Level Sports Meets to encourage youth participation and promote sportsmanship in collaboration with Nehru Yuva Kendra.
-            </p>
-          </div>
-          <div className="grid grid-cols-3 gap-2">
-            <div className="rounded-xl overflow-hidden aspect-square bg-slate-100">
-              <img src="/images/real/achievements/sports_1.jpg" alt="Sports Meet Dignitaries" className="w-full h-full object-cover" />
-            </div>
-            <div className="rounded-xl overflow-hidden aspect-square bg-slate-100">
-              <img src="/images/real/achievements/sports_2.jpg" alt="Kabaddi & Athletics" className="w-full h-full object-cover" />
-            </div>
-            <div className="rounded-xl overflow-hidden aspect-square bg-slate-100">
-              <img src="/images/real/achievements/sports_3.jpg" alt="Volleyball Tournament" className="w-full h-full object-cover" />
-            </div>
-          </div>
-        </ScrollReveal>
-
-        {/* Section H: Self-Defence Training */}
-        <ScrollReveal className="bg-white rounded-3xl p-6 shadow-xl border border-slate-200 flex flex-col justify-between">
-          <div>
-            <span className="inline-block px-3 py-1 rounded-full bg-[#078B3B] text-white text-xs font-bold mb-3">
-              H) SELF-DEFENCE TRAINING
-            </span>
-            <p className="text-xs sm:text-sm text-[#14294A] leading-relaxed mb-4">
-              Trained <strong>320 girls and women</strong> in self-defence and personal safety across B.H.H. Women&apos;s Degree College, Government Women&apos;s Degree College, and rural communities.
-            </p>
-          </div>
-          <div className="rounded-xl overflow-hidden aspect-[4/3] bg-slate-100">
-            <img src="/images/real/achievements/self_defence_collage.jpg" alt="Silambam Self-Defence Classes" className="w-full h-full object-cover" />
-          </div>
-        </ScrollReveal>
-      </div>
-
-      {/* SECTION I & J: ENVIRONMENT & CHILD PROTECTION (Page 14) */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Section I: Environmental Conservation */}
-        <ScrollReveal className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200 flex flex-col justify-between">
-          <div>
-            <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
-              <span className="px-3.5 py-1 rounded-full bg-[#078B3B] text-white text-xs font-bold">
-                I) ENVIRONMENTAL CONSERVATION
-              </span>
-              <span className="text-xs font-semibold text-[#0753A6]">Page 14</span>
-            </div>
-            <p className="text-sm sm:text-base text-[#14294A] leading-relaxed mb-6">
-              Planted <strong>more than 6,515 saplings</strong> since 2018 across rural and urban areas of Guntur with the support of Government officials, contributing to environmental sustainability and community participation.
-            </p>
-          </div>
-
-          <div className="rounded-2xl overflow-hidden shadow-md aspect-[16/9] bg-slate-100">
-            <img src="/images/real/achievements/environment_collage.jpg" alt="Park Cleaning and 6,515 Saplings Planted" className="w-full h-full object-cover hover:scale-105 transition-transform" />
-          </div>
-        </ScrollReveal>
-
-        {/* Section J: Child Protection & Legal Awareness */}
-        <ScrollReveal className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200 flex flex-col justify-between">
-          <div>
-            <div className="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
-              <span className="px-3.5 py-1 rounded-full bg-[#078B3B] text-white text-xs font-bold">
-                J) CHILD PROTECTION &amp; LEGAL AWARENESS
-              </span>
-              <span className="text-xs font-semibold text-[#0753A6]">Page 14</span>
-            </div>
-            <p className="text-sm sm:text-base text-[#14294A] leading-relaxed mb-6">
-              Created awareness among <strong>over 3,000 students</strong> on Emergency Response Support System (112), Childline (1098), the POCSO Act, child rights, child safety, and other child protection laws through programs conducted in educational institutions and communities.
-            </p>
-          </div>
-
-          <div className="rounded-2xl overflow-hidden shadow-md aspect-[16/9] bg-slate-100">
-            <img src="/images/real/achievements/child_protection_collage.jpg" alt="Child Rights & POCSO Act School Campaigns" className="w-full h-full object-cover hover:scale-105 transition-transform" />
-          </div>
-        </ScrollReveal>
-      </div>
-    </section>
-    <PageRichSections />
-  </div>
-);
+      {/* Lightbox Modal for Full Authentic Image Popup */}
+      <LightboxModal
+        items={ACHIEVEMENT_PHOTOS}
+        currentIndex={lightboxIndex}
+        onClose={() => setLightboxIndex(null)}
+        onChangeIndex={(idx) => setLightboxIndex(idx)}
+      />
+      <PageRichSections />
+    </div>
+  );
+};
 
 export const AwardsPage: React.FC = () => (
   <div>
@@ -819,8 +987,10 @@ export const OrgStructurePage: React.FC = () => (
               </div>
             </div>
 
-            {/* Connecting line */}
-            <div className="w-0.5 h-6 bg-[#0753A6] mx-auto" />
+            {/* Downward Arrow */}
+            <div className="flex justify-center my-1.5">
+              <ArrowDown className="w-5 h-5 text-[#0753A6] animate-bounce" />
+            </div>
 
             {/* Level 2: VP, Secretary, Treasurer */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
@@ -835,8 +1005,10 @@ export const OrgStructurePage: React.FC = () => (
               </div>
             </div>
 
-            {/* Connecting line under Secretary */}
-            <div className="w-0.5 h-6 bg-[#078B3B] mx-auto" />
+            {/* Downward Arrow under Secretary */}
+            <div className="flex justify-center my-1.5">
+              <ArrowDown className="w-5 h-5 text-[#078B3B]" />
+            </div>
 
             {/* Level 3: Joint Secretary */}
             <div className="flex justify-center">
@@ -845,8 +1017,10 @@ export const OrgStructurePage: React.FC = () => (
               </div>
             </div>
 
-            {/* Connecting line */}
-            <div className="w-0.5 h-6 bg-[#082F70] mx-auto" />
+            {/* Downward Arrow */}
+            <div className="flex justify-center my-1.5">
+              <ArrowDown className="w-5 h-5 text-[#082F70]" />
+            </div>
 
             {/* Level 4: Executive Committee */}
             <div className="flex justify-center">
@@ -873,69 +1047,60 @@ export const OrgStructurePage: React.FC = () => (
               </div>
             </div>
 
-            {/* Connecting line */}
-            <div className="w-0.5 h-6 bg-[#0753A6] mx-auto" />
+            {/* Downward Arrow */}
+            <div className="flex justify-center my-1.5">
+              <ArrowDown className="w-5 h-5 text-[#0753A6]" />
+            </div>
 
             {/* Implementation Branches */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {/* Branch 1 */}
-              <div className="space-y-3">
+              <div className="space-y-2">
                 <div className="bg-[#0753A6] text-white rounded-xl p-3 text-center font-bold text-xs sm:text-sm shadow min-h-[58px] flex items-center justify-center">
                   OLD AGE HOME COORDINATOR
                 </div>
-                <div className="w-0.5 h-4 bg-[#082F70] mx-auto" />
+                <div className="flex justify-center">
+                  <ArrowDown className="w-4 h-4 text-[#082F70]" />
+                </div>
                 <div className="bg-[#082F70] text-white rounded-xl p-2.5 text-center font-bold text-xs shadow">
                   COUNSELLOR
                 </div>
               </div>
 
               {/* Branch 2 */}
-              <div className="space-y-3">
+              <div className="space-y-2">
                 <div className="bg-[#0753A6] text-white rounded-xl p-3 text-center font-bold text-xs sm:text-sm shadow min-h-[58px] flex items-center justify-center">
                   SOCIAL WORKERS
                 </div>
-                <div className="w-0.5 h-4 bg-[#082F70] mx-auto" />
+                <div className="flex justify-center">
+                  <ArrowDown className="w-4 h-4 text-[#082F70]" />
+                </div>
                 <div className="bg-[#082F70] text-white rounded-xl p-2.5 text-center font-bold text-xs shadow">
                   SELF-DEFENCE TRAINERS
                 </div>
               </div>
 
               {/* Branch 3 */}
-              <div className="space-y-3">
+              <div className="space-y-2">
                 <div className="bg-[#0753A6] text-white rounded-xl p-3 text-center font-bold text-xs sm:text-sm shadow min-h-[58px] flex items-center justify-center">
                   LEGAL ADVISOR
                 </div>
               </div>
 
               {/* Branch 4 */}
-              <div className="space-y-3">
+              <div className="space-y-2">
                 <div className="bg-[#0753A6] text-white rounded-xl p-3 text-center font-bold text-xs sm:text-sm shadow min-h-[58px] flex items-center justify-center">
                   MEDICAL VOLUNTEERS
                 </div>
-                <div className="w-0.5 h-4 bg-[#082F70] mx-auto" />
+                <div className="flex justify-center">
+                  <ArrowDown className="w-4 h-4 text-[#082F70]" />
+                </div>
                 <div className="bg-[#082F70] text-white rounded-xl p-2.5 text-center font-bold text-xs shadow">
                   VOLUNTEER TEAM
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </ScrollReveal>
-
-      {/* Authentic Diagram From PDF Page 20 */}
-      <ScrollReveal className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200 text-center">
-        <h3 className="text-lg font-bold text-[#082F70] mb-2">
-          Official Structure Diagram from Organization Profile (Page 20)
-        </h3>
-        <p className="text-xs text-[#63738B] mb-5">
-          As documented in the official registered constitution and profile of PCDS.
-        </p>
-        <div className="max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-md border border-slate-200">
-          <img
-            src="/images/real/structure/pcds_org_structure_diagram.jpg"
-            alt="PCDS Official Organisation Structure Chart"
-            className="w-full h-auto"
-          />
         </div>
       </ScrollReveal>
 

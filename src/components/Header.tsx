@@ -64,47 +64,27 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
             </a>
           </div>
 
-          <div className="flex items-center gap-2.5 shrink-0">
-            <NavLink
-              to="/gallery"
-              className={({ isActive }) =>
-                `inline-flex items-center gap-1 px-3 py-1 rounded-full transition-all text-xs font-semibold ${
-                  isActive ? 'bg-[#078B3B] text-white shadow-sm font-bold' : 'text-white/90 hover:text-white hover:bg-white/15'
-                }`
-              }
-            >
-              <span>Gallery</span>
-            </NavLink>
-            <span className="text-white/30">|</span>
-            <NavLink
-              to="/contact"
-              className={({ isActive }) =>
-                `inline-flex items-center gap-1 px-3 py-1 rounded-full transition-all text-xs font-semibold ${
-                  isActive ? 'bg-[#078B3B] text-white shadow-sm font-bold' : 'text-white/90 hover:text-white hover:bg-white/15'
-                }`
-              }
-            >
-              <span>Contact Us</span>
-            </NavLink>
+          <div className="flex items-center gap-2.5 shrink-0 text-white/80 font-medium text-[11px] sm:text-xs">
+            <span>Govt. Regd. Society: 240/2019</span>
           </div>
         </div>
       </div>
 
       {/* Main Navigation Bar */}
       <div className="bg-white/95 backdrop-blur-md border-b border-slate-200/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 md:h-[72px] flex items-center justify-between gap-3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 sm:h-24 flex items-center justify-between gap-3">
           {/* Logo & Org Name */}
-          <Link to="/" className="flex items-center gap-2 sm:gap-2.5 shrink-0 group">
+          <Link to="/" className="flex items-center gap-3 sm:gap-3.5 shrink-0 group">
             <img
               src="/assets/logo/pcds-logo.png"
               alt="Prajwala Community Development Society Official Logo"
-              className="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-contain bg-white shadow-sm ring-1 ring-[#082F70]/15 group-hover:scale-105 transition-transform"
+              className="w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 rounded-full object-contain bg-white shadow-md ring-2 ring-[#082F70]/20 group-hover:scale-105 transition-transform"
             />
-            <div className="leading-tight max-w-[215px]">
-              <div className="text-[11px] sm:text-xs font-extrabold text-[#082F70] tracking-tight uppercase">
+            <div className="leading-tight max-w-[240px] sm:max-w-xs">
+              <div className="text-xs sm:text-sm md:text-[15px] font-black text-[#082F70] tracking-tight uppercase">
                 PRAJWALA COMMUNITY DEVELOPMENT SOCIETY
               </div>
-              <div className="text-[10px] font-bold text-[#078B3B] tracking-widest uppercase">
+              <div className="text-[10px] sm:text-xs font-bold text-[#078B3B] tracking-widest uppercase mt-0.5">
                 GUNTUR • ESTD. 2019
               </div>
             </div>
@@ -178,7 +158,7 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
               </AnimatePresence>
             </div>
 
-            {/* Major Activities Dropdown */}
+            {/* Major Activities Dropdown / Green Pill Button */}
             <div
               className="relative shrink-0"
               onMouseEnter={() => setActivitiesOpen(true)}
@@ -188,13 +168,9 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
                 type="button"
                 onClick={() => setActivitiesOpen((v) => !v)}
                 aria-expanded={activitiesOpen}
-                className={`inline-flex items-center gap-1 px-2.5 xl:px-3 py-1.5 rounded-full text-[13px] xl:text-sm font-semibold whitespace-nowrap shrink-0 transition-all cursor-pointer ${
-                  isActivitiesActive
-                    ? 'bg-[#078B3B] text-white shadow-sm'
-                    : 'text-[#14294A] hover:text-[#082F70] hover:bg-[#F3F8FC]'
-                }`}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] xl:text-sm font-bold whitespace-nowrap shrink-0 transition-all cursor-pointer bg-[#0A8944] hover:bg-[#077336] text-white shadow-md hover:shadow-lg"
               >
-                <span className="whitespace-nowrap">Major Activities</span>
+                <span>Major Activities</span>
                 <ChevronDown className={`w-3.5 h-3.5 shrink-0 transition-transform ${activitiesOpen ? 'rotate-180' : ''}`} />
               </button>
 
@@ -267,32 +243,6 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
               }
             >
               Future Plans
-            </NavLink>
-
-            <NavLink
-              to="/gallery"
-              className={({ isActive }) =>
-                `px-2.5 xl:px-3 py-1.5 rounded-full text-[13px] xl:text-sm font-semibold whitespace-nowrap transition-all ${
-                  isActive
-                    ? 'bg-[#078B3B] text-white shadow-sm'
-                    : 'text-[#14294A] hover:text-[#082F70] hover:bg-[#F3F8FC]'
-                }`
-              }
-            >
-              Gallery
-            </NavLink>
-
-            <NavLink
-              to="/contact"
-              className={({ isActive }) =>
-                `px-2.5 xl:px-3 py-1.5 rounded-full text-[13px] xl:text-sm font-semibold whitespace-nowrap transition-all ${
-                  isActive
-                    ? 'bg-[#078B3B] text-white shadow-sm'
-                    : 'text-[#14294A] hover:text-[#082F70] hover:bg-[#F3F8FC]'
-                }`
-              }
-            >
-              Contact
             </NavLink>
           </nav>
 

@@ -39,6 +39,11 @@ import {
   Quote,
   Calendar,
   MessageSquareHeart,
+  HeartHandshake,
+  Smile,
+  Globe,
+  ShieldAlert,
+  LifeBuoy,
 } from 'lucide-react';
 import {
   ABOUT_TEXT,
@@ -67,6 +72,23 @@ import {
   PreviewModalData,
   LightboxModal,
 } from '../components/Modals';
+
+const HOME_BENEFICIARY_ICONS: Record<string, React.ReactNode> = {
+  '01': <Users className="w-7 h-7 text-[#0753A6]" />,
+  '02': <HeartHandshake className="w-7 h-7 text-[#078B3B]" />,
+  '03': <Smile className="w-7 h-7 text-[#0753A6]" />,
+  '04': <Scale className="w-7 h-7 text-[#078B3B]" />,
+  '05': <Heart className="w-7 h-7 text-[#0753A6]" />,
+  '06': <Accessibility className="w-7 h-7 text-[#078B3B]" />,
+  '07': <HeartPulse className="w-7 h-7 text-[#0753A6]" />,
+  '08': <ShieldCheck className="w-7 h-7 text-[#078B3B]" />,
+  '09': <Globe className="w-7 h-7 text-[#0753A6]" />,
+  '10': <GraduationCap className="w-7 h-7 text-[#078B3B]" />,
+  '11': <Home className="w-7 h-7 text-[#0753A6]" />,
+  '12': <ShieldAlert className="w-7 h-7 text-[#078B3B]" />,
+  '13': <Briefcase className="w-7 h-7 text-[#0753A6]" />,
+  '14': <LifeBuoy className="w-7 h-7 text-[#078B3B]" />,
+};
 
 const HERO_SLIDES = [
   {
@@ -826,16 +848,12 @@ export const HomePage: React.FC = () => {
                       routeLabel: 'View All 14 Beneficiary Groups',
                     })
                   }
-                  className="w-full h-full flex flex-col items-center text-center p-3 sm:p-4 rounded-2xl bg-white hover:bg-[#EDF8EF] border border-[#0753A6]/15 hover:border-[#078B3B]/50 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all cursor-pointer"
+                  className="w-full h-full flex flex-col items-center text-center p-3 sm:p-4 rounded-2xl bg-white hover:bg-[#EDF8EF] border border-[#0753A6]/15 hover:border-[#078B3B]/50 shadow-sm hover:shadow-lg hover:-translate-y-0.5 transition-all cursor-pointer group"
                 >
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden mb-2 shadow-inner border border-slate-100 flex items-center justify-center bg-white p-1">
-                    <img
-                      src={`/images/real/beneficiaries/beneficiary_${b.id}.jpg`}
-                      alt={b.label}
-                      className="w-full h-full object-contain"
-                    />
+                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl mb-2.5 shadow-inner border border-slate-100 flex items-center justify-center bg-gradient-to-br from-[#EDF8EF] to-[#F3F8FC] group-hover:scale-110 transition-transform">
+                    {HOME_BENEFICIARY_ICONS[b.id] || <Users className="w-7 h-7 text-[#0753A6]" />}
                   </div>
-                  <span className="text-[11px] sm:text-xs font-bold text-[#14294A] leading-snug line-clamp-2">
+                  <span className="text-[11px] sm:text-xs font-bold text-[#14294A] group-hover:text-[#082F70] leading-snug line-clamp-2">
                     {b.label}
                   </span>
                 </button>
