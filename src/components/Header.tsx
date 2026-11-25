@@ -9,6 +9,7 @@ import {
   Menu,
   X,
   Heart,
+  Users,
   Facebook,
   Youtube,
   Instagram,
@@ -65,7 +66,29 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
           </div>
 
           <div className="flex items-center gap-2.5 shrink-0 text-white/80 font-medium text-[11px] sm:text-xs">
-            <span>Govt. Regd. Society: 240/2019</span>
+            <span className="hidden sm:inline">Govt. Regd. Society: 240/2019</span>
+            <span className="hidden sm:inline text-white/30">|</span>
+            <NavLink
+              to="/gallery"
+              className={({ isActive }) =>
+                `inline-flex items-center gap-1 px-3 py-1 rounded-full transition-all text-xs font-semibold ${
+                  isActive ? 'bg-[#078B3B] text-white shadow-sm font-bold' : 'text-white/90 hover:text-white hover:bg-white/15'
+                }`
+              }
+            >
+              <span>Gallery</span>
+            </NavLink>
+            <span className="text-white/30">|</span>
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                `inline-flex items-center gap-1 px-3 py-1 rounded-full transition-all text-xs font-semibold ${
+                  isActive ? 'bg-[#078B3B] text-white shadow-sm font-bold' : 'text-white/90 hover:text-white hover:bg-white/15'
+                }`
+              }
+            >
+              <span>Contact Us</span>
+            </NavLink>
           </div>
         </div>
       </div>
@@ -244,10 +267,44 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
             >
               Future Plans
             </NavLink>
+
+            <NavLink
+              to="/gallery"
+              className={({ isActive }) =>
+                `px-2.5 xl:px-3 py-1.5 rounded-full text-[13px] xl:text-sm font-semibold whitespace-nowrap transition-all ${
+                  isActive
+                    ? 'bg-[#078B3B] text-white shadow-sm'
+                    : 'text-[#14294A] hover:text-[#082F70] hover:bg-[#F3F8FC]'
+                }`
+              }
+            >
+              Gallery
+            </NavLink>
+
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                `px-2.5 xl:px-3 py-1.5 rounded-full text-[13px] xl:text-sm font-semibold whitespace-nowrap transition-all ${
+                  isActive
+                    ? 'bg-[#078B3B] text-white shadow-sm'
+                    : 'text-[#14294A] hover:text-[#082F70] hover:bg-[#F3F8FC]'
+                }`
+              }
+            >
+              Contact
+            </NavLink>
           </nav>
 
           {/* Right CTA & Mobile Menu Toggle */}
           <div className="flex items-center gap-2 shrink-0">
+            <Link
+              to="/contact"
+              className="hidden xl:inline-flex items-center gap-1.5 px-3.5 xl:px-4 py-2 rounded-full bg-[#082F70] hover:bg-[#0753A6] text-white text-[13px] xl:text-sm font-semibold whitespace-nowrap shadow-md hover:shadow-lg transition-all cursor-pointer"
+            >
+              <Users className="w-4 h-4" />
+              <span>Register as Volunteer</span>
+            </Link>
+
             <button
               onClick={onOpenDonate}
               className="hidden sm:inline-flex items-center gap-1.5 px-3.5 xl:px-4 py-2 rounded-full bg-[#D71920] hover:bg-[#b5141a] text-white text-[13px] xl:text-sm font-semibold whitespace-nowrap shadow-md hover:shadow-lg transition-all cursor-pointer"
@@ -417,13 +474,21 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
                 </Link>
               </div>
 
-              <div className="p-4 border-t border-slate-100 space-y-2">
+              <div className="p-4 border-t border-slate-100 space-y-2.5">
+                <Link
+                  to="/contact"
+                  onClick={() => setMobileOpen(false)}
+                  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-[#082F70] hover:bg-[#0753A6] text-white font-bold text-sm shadow-md transition-all cursor-pointer"
+                >
+                  <Users className="w-4 h-4 text-white" />
+                  <span>Register as a Volunteer</span>
+                </Link>
                 <button
                   onClick={() => {
                     setMobileOpen(false);
                     onOpenDonate();
                   }}
-                  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-[#D71920] text-white font-semibold shadow-md cursor-pointer"
+                  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-[#D71920] hover:bg-[#b5141a] text-white font-semibold shadow-md cursor-pointer transition-all"
                 >
                   <Heart className="w-4 h-4 fill-white" />
                   <span>Donate Now</span>
