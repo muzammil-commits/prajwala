@@ -724,7 +724,7 @@ export const HomePage: React.FC = () => {
                 Major Activities
               </span>
               <h2 className="mt-1 text-3xl sm:text-4xl font-extrabold text-[#082F70]">
-                Our 11 Key Community Initiatives
+                Our 13 Key Community Initiatives
               </h2>
               <p className="mt-2 text-sm sm:text-base text-[#14294A] max-w-2xl">
                 Click Quick Preview to inspect highlights in a popup, or Explore More to open each dedicated activity webpage.
@@ -734,7 +734,7 @@ export const HomePage: React.FC = () => {
               to="/major-activities"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#078B3B] hover:bg-[#082F70] text-white text-sm font-semibold self-start md:self-auto shadow-md transition-all"
             >
-              <span>View All 11 Activities</span>
+              <span>View All 13 Activities</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

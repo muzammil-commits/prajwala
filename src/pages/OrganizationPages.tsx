@@ -1229,57 +1229,145 @@ export const AdvisoryTeamPage: React.FC = () => (
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200 text-xs sm:text-sm text-[#14294A]">
+                {/* Row 1: Dr. SAHAN KUMAR Garu */}
                 <tr className="hover:bg-[#F3F8FC] transition-colors">
                   <td className="p-4 sm:p-5 border-r border-slate-200 align-top">
-                    <div className="font-bold text-[#082F70]">Dr. SAHAN KUMAR Garu.</div>
-                    <div className="text-slate-600 mt-0.5">REAKHA CLINIC, Inner Ring Road, Guntur.</div>
+                    <div className="flex items-start gap-3.5 sm:gap-4">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden shadow-md ring-2 ring-[#EDF8EF] border border-[#078B3B]/30 shrink-0 bg-slate-100">
+                        <img
+                          src="/images/real/advisory/dr-sahan-kumar.jpg"
+                          alt="Dr. SAHAN KUMAR Garu"
+                          className="w-full h-full object-cover object-top"
+                        />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="font-bold text-[#082F70] text-sm sm:text-base">Dr. SAHAN KUMAR Garu.</div>
+                        <div className="text-slate-600 text-xs sm:text-sm mt-1">REAKHA CLINIC, Inner Ring Road, Guntur.</div>
+                      </div>
+                    </div>
                   </td>
                   <td className="p-4 sm:p-5 align-top">
                     <strong className="text-[#078B3B]">• General Physician</strong> – Provides medical consultations, regular health check-ups, treatment guidance, and preventive healthcare services for beneficiaries.
                   </td>
                 </tr>
+
+                {/* Row 2: Dr. Ch. SOWMYA */}
                 <tr className="hover:bg-[#F3F8FC] transition-colors">
                   <td className="p-4 sm:p-5 border-r border-slate-200 align-top">
-                    <div className="font-bold text-[#082F70]">Dr. Ch. SOWMYA, B.D.S.; F.A.G.E.</div>
-                    <div className="text-slate-600 mt-0.5">Cosmetic Dental Surgeon — SOWMYA MULTI SPECIALITY DENTAL CLINIC, (Kothapet, Guntur)</div>
+                    <div className="flex items-start gap-3.5 sm:gap-4">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden shadow-md ring-2 ring-[#EDF8EF] border border-[#078B3B]/30 shrink-0 bg-slate-100">
+                        <img
+                          src="/images/real/advisory/dr-sowmya.jpg"
+                          alt="Dr. Ch. SOWMYA"
+                          className="w-full h-full object-cover object-top"
+                        />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="font-bold text-[#082F70] text-sm sm:text-base">Dr. Ch. SOWMYA, B.D.S.; F.A.G.E.</div>
+                        <div className="text-slate-600 text-xs sm:text-sm mt-1">Cosmetic Dental Surgeon — SOWMYA MULTI SPECIALITY DENTAL CLINIC, (Kothapet, Guntur)</div>
+                      </div>
+                    </div>
                   </td>
                   <td className="p-4 sm:p-5 align-top">
                     <strong className="text-[#078B3B]">• Dental Surgeon</strong> – Supports oral health awareness, dental screening, and preventive dental care programmes.
                   </td>
                 </tr>
+
+                {/* Row 3: Dr. Ch. Naveen */}
                 <tr className="hover:bg-[#F3F8FC] transition-colors">
                   <td className="p-4 sm:p-5 border-r border-slate-200 align-top">
-                    <div className="font-bold text-[#082F70]">2. Dr. Ch. Naveen, M.D.S.</div>
-                    <div className="text-slate-600 mt-0.5">Prosthodontics &amp; Implantologist — SOWMYA MULTI SPECIALITY DENTAL CLINIC, (Kothapet, Guntur)</div>
+                    <div className="flex items-start gap-3.5 sm:gap-4">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden shadow-md ring-2 ring-[#EDF8EF] border border-[#078B3B]/30 shrink-0 bg-slate-100">
+                        <img
+                          src="/images/real/advisory/dr-naveen.jpg"
+                          alt="2. Dr. Ch. Naveen"
+                          className="w-full h-full object-cover object-top"
+                        />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="font-bold text-[#082F70] text-sm sm:text-base">2. Dr. Ch. Naveen, M.D.S.</div>
+                        <div className="text-slate-600 text-xs sm:text-sm mt-1">Prosthodontics &amp; Implantologist — SOWMYA MULTI SPECIALITY DENTAL CLINIC, (Kothapet, Guntur)</div>
+                      </div>
+                    </div>
                   </td>
                   <td className="p-4 sm:p-5 align-top">
                     <strong className="text-[#078B3B]">• Dental Surgeon</strong> – Supports dental consultations, oral healthcare awareness, restorative treatments, and preventive dental care.
                   </td>
                 </tr>
+
+                {/* Row 4: RAFA LABS */}
                 <tr className="hover:bg-[#F3F8FC] transition-colors">
                   <td className="p-4 sm:p-5 border-r border-slate-200 align-top">
-                    <div className="font-bold text-[#082F70]">RAFA LABS, R.Agraharam</div>
-                    <div className="text-slate-600 mt-0.5">Dr. SAHAN KUMAR Garu</div>
+                    <div className="flex items-start gap-3.5 sm:gap-4">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden shadow-md ring-2 ring-[#EDF8EF] border border-[#078B3B]/30 shrink-0 bg-slate-100">
+                        <img
+                          src="/images/real/advisory/dr-sahan-kumar.jpg"
+                          alt="Dr. SAHAN KUMAR Garu - RAFA LABS"
+                          className="w-full h-full object-cover object-top"
+                        />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="font-bold text-[#082F70] text-sm sm:text-base">RAFA LABS, R.Agraharam</div>
+                        <div className="text-slate-600 text-xs sm:text-sm mt-1">Dr. SAHAN KUMAR Garu</div>
+                      </div>
+                    </div>
                   </td>
                   <td className="p-4 sm:p-5 align-top">
                     <strong className="text-[#078B3B]">• Medical Laboratory Professionals</strong> – Assist in diagnostic services, health screening camps, laboratory investigations, and medical reporting.
                   </td>
                 </tr>
+
+                {/* Row 5: B. Sharmila & B. Krishnabharath */}
                 <tr className="hover:bg-[#F3F8FC] transition-colors">
-                  <td className="p-4 sm:p-5 border-r border-slate-200 align-top">
-                    <div className="font-bold text-[#082F70]">B. Sharmila,</div>
-                    <div className="text-slate-600">Assistant Professor &amp; Psychologist, Guntur.</div>
-                    <div className="font-bold text-[#082F70] mt-2">B. Krishnabharath,</div>
-                    <div className="text-slate-600">Psychologist Founder President Advanced Psychological services Association (APA India) Hyderabad</div>
+                  <td className="p-4 sm:p-5 border-r border-slate-200 align-top space-y-4">
+                    <div className="flex items-start gap-3.5 sm:gap-4">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden shadow-md ring-2 ring-[#EDF8EF] border border-[#078B3B]/30 shrink-0 bg-slate-100">
+                        <img
+                          src="/images/real/advisory/b-sharmila.jpg"
+                          alt="B. Sharmila"
+                          className="w-full h-full object-cover object-top"
+                        />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="font-bold text-[#082F70] text-sm sm:text-base">B. Sharmila,</div>
+                        <div className="text-slate-600 text-xs sm:text-sm mt-1">Assistant Professor &amp; Psychologist, Guntur.</div>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3.5 sm:gap-4 pt-3 border-t border-slate-100">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden shadow-md ring-2 ring-[#EDF8EF] border border-[#078B3B]/30 shrink-0 bg-slate-100">
+                        <img
+                          src="/images/real/advisory/krishnabharath.jpg"
+                          alt="B. Krishnabharath"
+                          className="w-full h-full object-cover object-top"
+                        />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="font-bold text-[#082F70] text-sm sm:text-base">B. Krishnabharath,</div>
+                        <div className="text-slate-600 text-xs sm:text-sm mt-1">Psychologist Founder President Advanced Psychological services Association (APA India) Hyderabad</div>
+                      </div>
+                    </div>
                   </td>
                   <td className="p-4 sm:p-5 align-top">
                     <strong className="text-[#078B3B]">• Psychology Professor / Mental Health Expert</strong> – Provides psychological counselling, emotional well-being support, mental health awareness, and behavioural guidance.
                   </td>
                 </tr>
+
+                {/* Row 6: R.SIVARAMA KRISHNA (VARMA) */}
                 <tr className="hover:bg-[#F3F8FC] transition-colors">
                   <td className="p-4 sm:p-5 border-r border-slate-200 align-top">
-                    <div className="font-bold text-[#082F70]">R.SIVARAMA KRISHNA (VARMA),</div>
-                    <div className="text-slate-600 mt-0.5">Silambam Association GUNTUR</div>
+                    <div className="flex items-start gap-3.5 sm:gap-4">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden shadow-md ring-2 ring-[#EDF8EF] border border-[#078B3B]/30 shrink-0 bg-slate-100">
+                        <img
+                          src="/images/real/advisory/dummy-trainer.png"
+                          alt="R.SIVARAMA KRISHNA (VARMA)"
+                          className="w-full h-full object-cover object-top"
+                        />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="font-bold text-[#082F70] text-sm sm:text-base">R.SIVARAMA KRISHNA (VARMA),</div>
+                        <div className="text-slate-600 text-xs sm:text-sm mt-1">Silambam Association GUNTUR</div>
+                      </div>
+                    </div>
                   </td>
                   <td className="p-4 sm:p-5 align-top">
                     <strong className="text-[#078B3B]">• Self-Defence Trainer / Martial Arts Instructor</strong> – Provides expert guidance and conducts self-defence training sessions for women, adolescent girls, students, and community groups to promote safety, confidence, and empowerment.

@@ -24,8 +24,8 @@ export const MajorActivitiesPage: React.FC = () => {
     <div>
       <PageBanner
         title="Major Activities"
-        subtitle="Under the visionary leadership of Prajwala Community Development Society (PCDS), the organization has initiated and implemented 11 community-focused programs aimed at improving the lives of vulnerable and marginalized sections of society."
-        badge="11 Core Programmes"
+        subtitle="Under the visionary leadership of Prajwala Community Development Society (PCDS), the organization has initiated and implemented 13 community-focused programs and specialized professional support initiatives aimed at improving the lives of vulnerable and marginalized sections of society."
+        badge="13 Core Programmes & Initiatives"
         breadcrumb={[{ label: 'Major Activities' }]}
       />
       <section className="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -141,6 +141,8 @@ export const ActivityDetailPage: React.FC = () => {
         return ADVISORY_TEAM.filter((m) =>
           ['Dr. SAHAN KUMAR Garu', 'RAFA LABS, R.Agraharam'].includes(m.name)
         );
+      case 'advisory-team':
+        return ADVISORY_TEAM;
       default:
         return [];
     }
