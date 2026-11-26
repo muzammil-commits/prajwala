@@ -631,21 +631,21 @@ export const ADVISORY_TEAM: AdvisoryMember[] = [
     responsibilities:
       'Supports oral health awareness, dental screening, and preventive dental care programmes.',
     image: '/images/real/advisory/dr-sowmya.jpg',
-    clinic: 'SOWMYA MULTI SPECIALITY DENTAL CLINIC, Kothapet, Guntur',
+    clinic: 'SOWMYA MULTI SPECIALITY DENTAL CLINIC, (Kothapet, Guntur)',
   },
   {
-    name: 'Dr. Ch. Naveen, M.D.S.',
+    name: '2. Dr. Ch. Naveen, M.D.S.',
     designation:
       'Prosthodontics & Implantologist — SOWMYA MULTI SPECIALITY DENTAL CLINIC, (Kothapet, Guntur)',
-    role: 'Prosthodontist & Implantologist',
+    role: 'Dental Surgeon',
     responsibilities:
-      'Supports dental consultations, restorative treatments, oral health awareness, and preventive dental care programmes.',
+      'Supports dental consultations, oral healthcare awareness, restorative treatments, and preventive dental care.',
     image: '/images/real/advisory/dr-naveen.jpg',
-    clinic: 'SOWMYA MULTI SPECIALITY DENTAL CLINIC, Kothapet, Guntur',
+    clinic: 'SOWMYA MULTI SPECIALITY DENTAL CLINIC, (Kothapet, Guntur)',
   },
   {
-    name: 'RAFA LABS (Dr. SAHAN KUMAR Garu)',
-    designation: 'RAFA LABS, R.Agraharam, Guntur',
+    name: 'RAFA LABS, R.Agraharam',
+    designation: 'Dr. SAHAN KUMAR Garu',
     role: 'Medical Laboratory Professionals',
     responsibilities:
       'Assist in diagnostic services, health screening camps, laboratory investigations, and medical reporting.',
@@ -671,21 +671,13 @@ export const ADVISORY_TEAM: AdvisoryMember[] = [
     clinic: 'APA India, Hyderabad',
   },
   {
-    name: 'R. SIVARAMA KRISHNA (VARMA)',
+    name: 'R.SIVARAMA KRISHNA (VARMA)',
     designation: 'Silambam Association GUNTUR',
     role: 'Self-Defence Trainer / Martial Arts Instructor',
     responsibilities:
       'Provides expert guidance and conducts self-defence training sessions for women, adolescent girls, students, and community groups to promote safety, confidence, and empowerment.',
     image: '/images/real/advisory/dummy-trainer.png',
-    clinic: 'Silambam Association, Guntur',
-  },
-  {
-    name: 'Former Government Childline Officials',
-    designation: 'Child Protection & Welfare Specialists',
-    role: 'Child Protection Advisors',
-    responsibilities:
-      'Provide expert guidance on child protection, child rights, counselling, rescue, rehabilitation, referrals, and coordination with Indian Red Cross Society and government departments.',
-    clinic: 'Indian Red Cross Society & Government Departments',
+    clinic: 'Silambam Association GUNTUR',
   },
 ];
 

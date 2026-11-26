@@ -26,8 +26,11 @@ import {
   Award,
   Users,
   Globe,
+  Sparkles,
+  ArrowRight,
 } from 'lucide-react';
 import {
+  ADVISORY_TEAM,
   FUTURE_PLANS,
   GALLERY_CATEGORIES,
   GALLERY_ITEMS,
@@ -165,6 +168,100 @@ export const OngoingProjectsPage: React.FC = () => {
             ))}
           </div>
         </div>
+
+        {/* Guiding Healthcare & Medical Advisors for Old Age Home */}
+        <ScrollReveal className="space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-slate-200 pb-4">
+            <div>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EDF8EF] text-[#078B3B] text-xs font-bold uppercase tracking-wider mb-2 border border-[#078B3B]/20">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#078B3B]" />
+                PCDS Advisory Medical Support
+              </span>
+              <h3 className="text-xl sm:text-2xl font-black text-[#082F70]">
+                Healthcare &amp; Clinical Advisors Supporting Our Residents
+              </h3>
+            </div>
+            <Link
+              to="/organization/advisory-team"
+              className="text-xs font-bold text-[#0753A6] hover:text-[#078B3B] flex items-center gap-1 shrink-0"
+            >
+              <span>View Full Advisory Board</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {ADVISORY_TEAM.filter((m) =>
+              ['Dr. SAHAN KUMAR Garu', 'RAFA LABS, R.Agraharam'].includes(m.name)
+            ).map((member) => (
+              <div
+                key={member.name}
+                className="group bg-white rounded-3xl p-6 shadow-md hover:shadow-xl border border-slate-200/90 hover:border-[#078B3B]/50 transition-all flex flex-col justify-between relative overflow-hidden"
+              >
+                <div className="absolute top-0 right-0 w-28 h-28 bg-gradient-to-bl from-[#EDF8EF] to-transparent rounded-bl-full pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity" />
+
+                <div>
+                  <div className="flex items-start gap-4 mb-4 relative z-10">
+                    {member.image ? (
+                      <div className="relative shrink-0">
+                        <div className="w-16 h-16 sm:w-18 sm:h-18 rounded-2xl overflow-hidden shadow-sm ring-2 ring-[#EDF8EF] border border-[#078B3B]/30 group-hover:border-[#078B3B] transition-all bg-slate-100">
+                          <img
+                            src={member.image}
+                            alt={member.name}
+                            className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                          />
+                        </div>
+                        <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-[#078B3B] text-white flex items-center justify-center shadow">
+                          <CheckCircle2 className="w-3 h-3" />
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="w-16 h-16 sm:w-18 sm:h-18 rounded-2xl bg-gradient-to-br from-[#EDF8EF] to-[#E3F2FD] text-[#078B3B] flex items-center justify-center shrink-0 shadow-sm ring-2 ring-[#EDF8EF] border border-[#078B3B]/20">
+                        <Users className="w-7 h-7" />
+                      </div>
+                    )}
+
+                    <div className="flex-1 min-w-0 space-y-1">
+                      <span className="inline-block px-2.5 py-0.5 rounded-full bg-gradient-to-r from-[#EDF8EF] to-[#E3F2FD] text-[#078B3B] text-[10px] font-extrabold uppercase tracking-wide border border-[#078B3B]/20">
+                        {member.role}
+                      </span>
+                      <h4 className="text-base sm:text-lg font-black text-[#082F70] leading-snug group-hover:text-[#0753A6] transition-colors">
+                        {member.name}
+                      </h4>
+                    </div>
+                  </div>
+
+                  <p className="text-xs font-semibold text-[#0753A6] leading-relaxed mb-3">
+                    {member.designation}
+                  </p>
+
+                  {member.clinic && (
+                    <div className="mb-3 px-3 py-1.5 rounded-xl bg-gradient-to-r from-[#F3F8FC] to-[#EDF8EF] border border-[#078B3B]/15 text-xs font-bold text-[#082F70] flex items-center gap-1.5">
+                      <Building2 className="w-3.5 h-3.5 text-[#078B3B] shrink-0" />
+                      <span className="truncate">{member.clinic}</span>
+                    </div>
+                  )}
+
+                  <div className="p-3 rounded-2xl bg-slate-50 border border-slate-100 text-xs text-[#14294A] leading-relaxed mb-3">
+                    <div className="font-bold text-[#082F70] text-[10px] uppercase tracking-wider mb-1 flex items-center gap-1">
+                      <ShieldCheck className="w-3 h-3 text-[#078B3B]" />
+                      Key Guidance &amp; Support:
+                    </div>
+                    {member.responsibilities}
+                  </div>
+                </div>
+
+                <div className="pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] font-semibold text-slate-500">
+                  <span className="inline-flex items-center gap-1 text-[#078B3B] font-bold">
+                    <Sparkles className="w-3 h-3 text-[#36A852]" />
+                    Voluntary Medical Advisor
+                  </span>
+                  <span className="text-slate-400">PCDS Guntur</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </ScrollReveal>
       </section>
       <PageRichSections />
       <DonateModal isOpen={donateOpen} onClose={() => setDonateOpen(false)} />
