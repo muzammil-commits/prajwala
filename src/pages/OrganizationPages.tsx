@@ -84,19 +84,19 @@ const BENEFICIARY_ICONS: Record<string, React.ReactNode> = {
 };
 
 const IMPACT_CARD_ICONS: Record<string, React.ReactNode> = {
-  '01': <Users className="w-6 h-6 text-[#082F70]" />,
-  '02': <Home className="w-6 h-6 text-[#078B3B]" />,
-  '03': <Utensils className="w-6 h-6 text-[#082F70]" />,
-  '04': <PackageCheck className="w-6 h-6 text-[#078B3B]" />,
-  '05': <Shield className="w-6 h-6 text-[#082F70]" />,
-  '06': <Droplets className="w-6 h-6 text-[#078B3B]" />,
-  '07': <Scissors className="w-6 h-6 text-[#082F70]" />,
-  '08': <Heart className="w-6 h-6 text-[#078B3B]" />,
-  '09': <HeartPulse className="w-6 h-6 text-[#082F70]" />,
-  '10': <Building2 className="w-6 h-6 text-[#078B3B]" />,
-  '11': <Award className="w-6 h-6 text-[#082F70]" />,
-  '12': <Trees className="w-6 h-6 text-[#078B3B]" />,
-  '13': <GraduationCap className="w-6 h-6 text-[#082F70]" />,
+  '01': <Users className="w-8 h-8 text-[#082F70]" />,
+  '02': <Home className="w-8 h-8 text-[#078B3B]" />,
+  '03': <Utensils className="w-8 h-8 text-[#082F70]" />,
+  '04': <PackageCheck className="w-8 h-8 text-[#078B3B]" />,
+  '05': <Shield className="w-8 h-8 text-[#082F70]" />,
+  '06': <Droplets className="w-8 h-8 text-[#078B3B]" />,
+  '07': <Scissors className="w-8 h-8 text-[#082F70]" />,
+  '08': <Heart className="w-8 h-8 text-[#078B3B]" />,
+  '09': <HeartPulse className="w-8 h-8 text-[#082F70]" />,
+  '10': <Building2 className="w-8 h-8 text-[#078B3B]" />,
+  '11': <Award className="w-8 h-8 text-[#082F70]" />,
+  '12': <Trees className="w-8 h-8 text-[#078B3B]" />,
+  '13': <GraduationCap className="w-8 h-8 text-[#082F70]" />,
 };
 
 const ACHIEVEMENT_PHOTOS = [
@@ -452,25 +452,28 @@ export const ImpactAchievementsPage: React.FC = () => {
             </p>
           </div>
 
-          {/* 13 Animated Impact Cards Grid with Dedicated Icons */}
+          {/* 13 Animated Impact Cards Grid with Large, Clearly Visible Dedicated Icons */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5">
             {IMPACT_METRICS.map((m) => (
               <div
                 key={m.id}
-                className="bg-white rounded-2xl p-4 sm:p-5 text-center shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all flex flex-col justify-between"
+                className="bg-white rounded-2xl p-4 sm:p-5 text-center shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all flex flex-col justify-between group"
               >
-                <div className="flex items-center justify-between mb-2">
-                  <span className="w-7 h-7 rounded-full bg-[#082F70] text-white text-xs font-black flex items-center justify-center">
+                <div className="flex items-center justify-between mb-1">
+                  <span className="w-7 h-7 rounded-full bg-[#082F70] text-white text-xs font-black flex items-center justify-center shadow-sm">
                     {m.id}
                   </span>
-                  <div className="w-9 h-9 rounded-xl bg-[#F3F8FC] border border-slate-100 flex items-center justify-center">
-                    {IMPACT_CARD_ICONS[m.id]}
-                  </div>
-                  <span className="text-[10px] font-extrabold text-[#078B3B] uppercase tracking-wider">
+                  <span className="px-2 py-0.5 rounded-full bg-[#EDF8EF] text-[10px] font-extrabold text-[#078B3B] uppercase tracking-wider border border-[#078B3B]/20">
                     Verified
                   </span>
                 </div>
-                <div className="my-2">
+
+                {/* Clearly Visible Large Dedicated Icon */}
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#EDF8EF] to-[#F3F8FC] border-2 border-[#078B3B]/25 flex items-center justify-center shadow-inner mx-auto my-2.5 group-hover:scale-110 group-hover:border-[#078B3B]/60 transition-all">
+                  {IMPACT_CARD_ICONS[m.id]}
+                </div>
+
+                <div className="mb-2">
                   <div className="text-2xl sm:text-3xl font-black text-[#082F70] leading-none">
                     <CountUpNumber target={m.number} suffix={m.suffix} />
                   </div>
@@ -987,9 +990,17 @@ export const OrgStructurePage: React.FC = () => (
               </div>
             </div>
 
-            {/* Downward Arrow */}
-            <div className="flex justify-center my-1.5">
-              <ArrowDown className="w-5 h-5 text-[#0753A6] animate-bounce" />
+            {/* 3 Downward Arrows below President pointing to VP, Secretary, Treasurer */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto my-2">
+              <div className="flex justify-center">
+                <ArrowDown className="w-5 h-5 text-[#0753A6] animate-bounce" />
+              </div>
+              <div className="flex justify-center">
+                <ArrowDown className="w-5 h-5 text-[#078B3B] animate-bounce" />
+              </div>
+              <div className="flex justify-center">
+                <ArrowDown className="w-5 h-5 text-[#0753A6] animate-bounce" />
+              </div>
             </div>
 
             {/* Level 2: VP, Secretary, Treasurer */}
@@ -1047,9 +1058,20 @@ export const OrgStructurePage: React.FC = () => (
               </div>
             </div>
 
-            {/* Downward Arrow */}
-            <div className="flex justify-center my-1.5">
-              <ArrowDown className="w-5 h-5 text-[#0753A6]" />
+            {/* 4 Downward Arrows below Programme Coordinator */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 my-2">
+              <div className="flex justify-center">
+                <ArrowDown className="w-5 h-5 text-[#0753A6] animate-bounce" />
+              </div>
+              <div className="flex justify-center">
+                <ArrowDown className="w-5 h-5 text-[#0753A6] animate-bounce" />
+              </div>
+              <div className="flex justify-center">
+                <ArrowDown className="w-5 h-5 text-[#0753A6] animate-bounce" />
+              </div>
+              <div className="flex justify-center">
+                <ArrowDown className="w-5 h-5 text-[#0753A6] animate-bounce" />
+              </div>
             </div>
 
             {/* Implementation Branches */}
@@ -1171,7 +1193,7 @@ export const AdvisoryTeamPage: React.FC = () => (
     />
     <section className="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Intro Header */}
-      <ScrollReveal className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+      <ScrollReveal className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
         <span className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-[#EDF8EF] text-[#078B3B] text-xs font-bold uppercase tracking-wider mb-3">
           <HeartPulse className="w-3.5 h-3.5 text-[#078B3B]" />
           Voluntary Professional Board
@@ -1182,6 +1204,101 @@ export const AdvisoryTeamPage: React.FC = () => (
         <p className="mt-3 text-sm sm:text-base text-[#14294A]/80 leading-relaxed">
           PCDS is privileged to receive voluntary clinical guidance, diagnostic support, psychological counselling, and self-defence martial arts instruction from esteemed specialists who dedicate their expertise to uplifting vulnerable communities.
         </p>
+      </ScrollReveal>
+
+      {/* Official Table from Organization Profile matching image copy 57.png */}
+      <ScrollReveal className="mb-12 sm:mb-16">
+        <div className="bg-white rounded-3xl overflow-hidden shadow-lg border border-slate-200">
+          <div className="bg-gradient-to-r from-[#082F70] via-[#0753A6] to-[#078B3B] text-white px-6 py-4 font-bold flex flex-wrap items-center justify-between gap-2">
+            <span className="text-xs sm:text-sm font-extrabold uppercase tracking-wider">
+              INITIATIVES OF PRAJWALA COMMUNITY DEVELOPMENT SOCIETY (PCDS) — PROFESSIONAL ADVISORY BOARD
+            </span>
+            <span className="text-xs bg-white/20 px-3 py-1 rounded-full font-semibold">
+              Official Profile • Page 22
+            </span>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="bg-[#EDF8EF] border-b border-slate-200 text-xs sm:text-sm font-extrabold text-[#082F70]">
+                  <th className="p-4 sm:p-5 w-1/2 border-r border-slate-200">
+                    Medical Professional / Clinic / Institution
+                  </th>
+                  <th className="p-4 sm:p-5 w-1/2">
+                    Designation &amp; Community Responsibilities
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-200 text-xs sm:text-sm text-[#14294A]">
+                <tr className="hover:bg-[#F3F8FC] transition-colors">
+                  <td className="p-4 sm:p-5 border-r border-slate-200 align-top">
+                    <div className="font-bold text-[#082F70]">Dr. SAHAN KUMAR Garu.</div>
+                    <div className="text-slate-600 mt-0.5">REAKHA CLINIC, Inner Ring Road, Guntur.</div>
+                  </td>
+                  <td className="p-4 sm:p-5 align-top">
+                    <strong className="text-[#078B3B]">• General Physician</strong> – Provides medical consultations, regular health check-ups, treatment guidance, and preventive healthcare services for beneficiaries.
+                  </td>
+                </tr>
+                <tr className="hover:bg-[#F3F8FC] transition-colors">
+                  <td className="p-4 sm:p-5 border-r border-slate-200 align-top">
+                    <div className="font-bold text-[#082F70]">Dr. Ch. SOWMYA, B.D.S.; F.A.G.E.</div>
+                    <div className="text-slate-600 mt-0.5">Cosmetic Dental Surgeon — SOWMYA MULTI SPECIALITY DENTAL CLINIC, (Kothapet, Guntur)</div>
+                  </td>
+                  <td className="p-4 sm:p-5 align-top">
+                    <strong className="text-[#078B3B]">• Dental Surgeon</strong> – Supports oral health awareness, dental screening, and preventive dental care programmes.
+                  </td>
+                </tr>
+                <tr className="hover:bg-[#F3F8FC] transition-colors">
+                  <td className="p-4 sm:p-5 border-r border-slate-200 align-top">
+                    <div className="font-bold text-[#082F70]">2. Dr. Ch. Naveen, M.D.S.</div>
+                    <div className="text-slate-600 mt-0.5">Prosthodontics &amp; Implantologist — SOWMYA MULTI SPECIALITY DENTAL CLINIC, (Kothapet, Guntur)</div>
+                  </td>
+                  <td className="p-4 sm:p-5 align-top">
+                    <strong className="text-[#078B3B]">• Dental Surgeon</strong> – Supports dental consultations, oral healthcare awareness, restorative treatments, and preventive dental care.
+                  </td>
+                </tr>
+                <tr className="hover:bg-[#F3F8FC] transition-colors">
+                  <td className="p-4 sm:p-5 border-r border-slate-200 align-top">
+                    <div className="font-bold text-[#082F70]">RAFA LABS, R.Agraharam</div>
+                    <div className="text-slate-600 mt-0.5">Dr. SAHAN KUMAR Garu</div>
+                  </td>
+                  <td className="p-4 sm:p-5 align-top">
+                    <strong className="text-[#078B3B]">• Medical Laboratory Professionals</strong> – Assist in diagnostic services, health screening camps, laboratory investigations, and medical reporting.
+                  </td>
+                </tr>
+                <tr className="hover:bg-[#F3F8FC] transition-colors">
+                  <td className="p-4 sm:p-5 border-r border-slate-200 align-top">
+                    <div className="font-bold text-[#082F70]">B. Sharmila,</div>
+                    <div className="text-slate-600">Assistant Professor &amp; Psychologist, Guntur.</div>
+                    <div className="font-bold text-[#082F70] mt-2">B. Krishnabharath,</div>
+                    <div className="text-slate-600">Psychologist Founder President Advanced Psychological services Association (APA India) Hyderabad</div>
+                  </td>
+                  <td className="p-4 sm:p-5 align-top">
+                    <strong className="text-[#078B3B]">• Psychology Professor / Mental Health Expert</strong> – Provides psychological counselling, emotional well-being support, mental health awareness, and behavioural guidance.
+                  </td>
+                </tr>
+                <tr className="hover:bg-[#F3F8FC] transition-colors">
+                  <td className="p-4 sm:p-5 border-r border-slate-200 align-top">
+                    <div className="font-bold text-[#082F70]">R.SIVARAMA KRISHNA (VARMA),</div>
+                    <div className="text-slate-600 mt-0.5">Silambam Association GUNTUR</div>
+                  </td>
+                  <td className="p-4 sm:p-5 align-top">
+                    <strong className="text-[#078B3B]">• Self-Defence Trainer / Martial Arts Instructor</strong> – Provides expert guidance and conducts self-defence training sessions for women, adolescent girls, students, and community groups to promote safety, confidence, and empowerment.
+                  </td>
+                </tr>
+                <tr className="hover:bg-[#F3F8FC] transition-colors">
+                  <td className="p-4 sm:p-5 border-r border-slate-200 align-top">
+                    <div className="font-bold text-[#082F70]">Former Government Childline Officials</div>
+                    <div className="text-slate-600 mt-0.5">Child Protection &amp; Welfare Specialists</div>
+                  </td>
+                  <td className="p-4 sm:p-5 align-top">
+                    <strong className="text-[#078B3B]">• Child Protection Advisors</strong> – Provide expert guidance on child protection, child rights, counselling, rescue, rehabilitation, referrals, and coordination with Indian Red Cross Society and government departments.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </ScrollReveal>
 
       {/* Grand Cards Grid */}

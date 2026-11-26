@@ -546,10 +546,21 @@ export const ContactPage: React.FC = () => {
                     <Phone className="w-4 h-4" />
                   </span>
                   <div>
-                    <div className="font-bold text-[#082F70]">Phone Number</div>
-                    <a href="tel:+919502046096" className="hover:text-[#078B3B] font-bold text-[#082F70]">
-                      {ORG_INFO.phone}
-                    </a>
+                    <div className="font-bold text-[#082F70]">Phone Numbers</div>
+                    <div className="space-y-1 mt-0.5">
+                      <div>
+                        <span className="text-xs text-slate-500 font-semibold mr-1.5">Office / Landline:</span>
+                        <a href="tel:08632947780" className="hover:text-[#078B3B] font-bold text-[#082F70]">
+                          0863 2947780
+                        </a>
+                      </div>
+                      <div>
+                        <span className="text-xs text-slate-500 font-semibold mr-1.5">Mobile / Helpline:</span>
+                        <a href="tel:+919502046096" className="hover:text-[#078B3B] font-bold text-[#082F70]">
+                          +91 95020 46096
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -674,6 +685,44 @@ export const ContactPage: React.FC = () => {
               </div>
             </div>
           </form>
+        </ScrollReveal>
+      </section>
+
+      {/* Interactive Google Map Section with Exact Location */}
+      <section className="py-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ScrollReveal className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
+          <div className="p-6 sm:p-8 bg-gradient-to-r from-[#082F70] via-[#0753A6] to-[#078B3B] text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <span className="inline-block px-3 py-1 rounded-full bg-white/20 text-xs font-bold uppercase tracking-wider mb-2">
+                PCDS Headquarters &amp; Old Age Home Location
+              </span>
+              <h2 className="text-xl sm:text-2xl font-black">
+                Visit Us at Sangadigunta, Guntur
+              </h2>
+              <p className="text-xs sm:text-sm text-white/90 max-w-2xl mt-1">
+                OLD-AGE HOME, PRAJWALA COMMUNITY DEVELOPMENT SOCIETY, Sri Vasavi Heights, 70-13-1708, 2nd Ln, beside Guntur, I.P.D Colony, Area, Sangadigunta, Guntur, Andhra Pradesh 522003, India
+              </p>
+            </div>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=OLD-AGE+HOME%2C+PRAJWALA+COMMUNITY+DEVELOPMENT+SOCIETY%2C+Sri+Vasavi+Heights%2C+70-13-1708%2C+2nd+Ln%2C+beside+Guntur%2C+I.P.D+Colony%2C+Area%2C+Sangadigunta%2C+Guntur%2C+Andhra+Pradesh+522003%2C+India"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white hover:bg-[#EDF8EF] text-[#082F70] hover:text-[#078B3B] font-extrabold text-sm shadow-md transition-all shrink-0 cursor-pointer"
+            >
+              <MapPin className="w-4 h-4 text-[#078B3B]" />
+              <span>Open in Google Maps ↗</span>
+            </a>
+          </div>
+
+          <div className="w-full h-80 sm:h-96 md:h-[420px] bg-slate-100 relative">
+            <iframe
+              title="Prajwala Community Development Society Official Location"
+              src="https://maps.google.com/maps?q=OLD-AGE+HOME,+PRAJWALA+COMMUNITY+DEVELOPMENT+SOCIETY,+Sri+Vasavi+Heights,+70-13-1708,+2nd+Ln,+beside+Guntur,+I.P.D+Colony,+Area,+Sangadigunta,+Guntur,+Andhra+Pradesh+522003,+India&t=&z=16&ie=UTF8&iwloc=&output=embed"
+              className="w-full h-full border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
         </ScrollReveal>
       </section>
 

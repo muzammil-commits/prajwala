@@ -82,9 +82,18 @@ export const Footer: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
             <MapPin className="w-4 h-4 text-[#36A852] shrink-0 mt-1" />
             <span>{ORG_INFO.address}</span>
           </li>
-          <li className="flex items-center gap-2.5">
-            <Phone className="w-4 h-4 text-[#36A852] shrink-0" />
-            <a href="tel:+919502046096" className="hover:text-white">{ORG_INFO.phone}</a>
+          <li className="flex items-start gap-2.5">
+            <Phone className="w-4 h-4 text-[#36A852] shrink-0 mt-0.5" />
+            <div className="space-y-0.5">
+              <div>
+                <span className="text-white/60 text-xs mr-1">Office:</span>
+                <a href="tel:08632947780" className="hover:text-white font-semibold">0863 2947780</a>
+              </div>
+              <div>
+                <span className="text-white/60 text-xs mr-1">Helpline:</span>
+                <a href="tel:+919502046096" className="hover:text-white font-semibold">{ORG_INFO.phone}</a>
+              </div>
+            </div>
           </li>
           <li className="flex items-center gap-2.5">
             <Mail className="w-4 h-4 text-[#36A852] shrink-0" />

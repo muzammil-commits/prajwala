@@ -57,11 +57,18 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
             </a>
             <span className="text-white/30">|</span>
             <a
-              href="tel:+919502046096"
+              href="tel:08632947780"
               className="inline-flex items-center gap-1.5 hover:text-[#36A852] transition-colors whitespace-nowrap"
             >
               <Phone className="w-3.5 h-3.5 text-[#36A852]" />
-              <span>{ORG_INFO.phone}</span>
+              <span>0863 2947780</span>
+            </a>
+            <span className="text-white/30 hidden md:inline">|</span>
+            <a
+              href="tel:+919502046096"
+              className="hidden md:inline-flex items-center gap-1.5 hover:text-[#36A852] transition-colors whitespace-nowrap"
+            >
+              <span>+91 95020 46096</span>
             </a>
           </div>
 
@@ -181,7 +188,7 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
               </AnimatePresence>
             </div>
 
-            {/* Major Activities Dropdown / Green Pill Button */}
+            {/* Major Activities Dropdown */}
             <div
               className="relative shrink-0"
               onMouseEnter={() => setActivitiesOpen(true)}
@@ -191,7 +198,11 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
                 type="button"
                 onClick={() => setActivitiesOpen((v) => !v)}
                 aria-expanded={activitiesOpen}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] xl:text-sm font-bold whitespace-nowrap shrink-0 transition-all cursor-pointer bg-[#0A8944] hover:bg-[#077336] text-white shadow-md hover:shadow-lg"
+                className={`inline-flex items-center gap-1 px-2.5 xl:px-3 py-1.5 rounded-full text-[13px] xl:text-sm font-semibold whitespace-nowrap shrink-0 transition-all cursor-pointer ${
+                  isActivitiesActive
+                    ? 'bg-[#078B3B] text-white shadow-sm'
+                    : 'text-[#14294A] hover:text-[#082F70] hover:bg-[#F3F8FC]'
+                }`}
               >
                 <span>Major Activities</span>
                 <ChevronDown className={`w-3.5 h-3.5 shrink-0 transition-transform ${activitiesOpen ? 'rotate-180' : ''}`} />
@@ -271,6 +282,14 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
 
           {/* Right CTA & Mobile Menu Toggle */}
           <div className="flex items-center gap-2 shrink-0">
+            <Link
+              to="/contact"
+              className="hidden md:inline-flex items-center gap-1.5 px-3.5 xl:px-4 py-2 rounded-full bg-[#082F70] hover:bg-[#0753A6] text-white text-[13px] xl:text-sm font-semibold whitespace-nowrap shadow-md hover:shadow-lg transition-all cursor-pointer"
+            >
+              <Users className="w-4 h-4" />
+              <span>Register as a Volunteer</span>
+            </Link>
+
             <button
               onClick={onOpenDonate}
               className="hidden sm:inline-flex items-center gap-1.5 px-3.5 xl:px-4 py-2 rounded-full bg-[#D71920] hover:bg-[#b5141a] text-white text-[13px] xl:text-sm font-semibold whitespace-nowrap shadow-md hover:shadow-lg transition-all cursor-pointer"

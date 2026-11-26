@@ -65,8 +65,10 @@ export const ORG_INFO = {
     'A non-profit organization committed to improving the quality of life of underprivileged communities through sustainable social development initiatives.',
   establishedDate: '03 August 2019',
   regNumber: '240/2019',
-  address: '70-13-1708, I.P.D. Colony 2nd Line Opposite Line, Sangadi Gunta Area, Guntur-522003, Andhra Pradesh, India.',
+  address:
+    'OLD-AGE HOME, PRAJWALA COMMUNITY DEVELOPMENT SOCIETY, Sri Vasavi Heights, 70-13-1708, 2nd Ln, beside Guntur, I.P.D Colony, Area, Sangadigunta, Guntur, Andhra Pradesh 522003, India',
   phone: '+91 95020 46096',
+  landline: '0863 2947780',
   email: 'pcdsguntur19@gmail.com',
   website: 'www.prajwalacommunitydevelopmentsociety.org',
   social: {
@@ -614,51 +616,76 @@ export const IMPLEMENTATION_TEAM = [
 export const ADVISORY_TEAM: AdvisoryMember[] = [
   {
     name: 'Dr. SAHAN KUMAR Garu',
-    designation: 'General Physician, REAKHA CLINIC & RAFA Labs, Inner Ring Road, Guntur',
+    designation: 'REAKHA CLINIC, Inner Ring Road, Guntur',
     role: 'General Physician',
-    responsibilities: 'Provides medical consultations, regular health check-ups, treatment guidance, and preventive healthcare services for beneficiaries.',
+    responsibilities:
+      'Provides medical consultations, regular health check-ups, treatment guidance, and preventive healthcare services for beneficiaries.',
     image: '/images/real/advisory/dr-sahan-kumar.jpg',
-    clinic: 'Rekha Clinic & RAFA Labs, Guntur',
+    clinic: 'REAKHA CLINIC, Inner Ring Road, Guntur',
   },
   {
     name: 'Dr. Ch. SOWMYA, B.D.S.; F.A.G.E.',
-    designation: 'MDS, Pedodontist — Sowmya Multi Speciality Dental Clinic, Kothapet, Guntur',
-    role: 'Pedodontist / Dental Surgeon',
-    responsibilities: 'Supports oral health awareness, pediatric dental screening, and preventive dental care programmes.',
+    designation:
+      'Cosmetic Dental Surgeon — SOWMYA MULTI SPECIALITY DENTAL CLINIC, (Kothapet, Guntur)',
+    role: 'Dental Surgeon',
+    responsibilities:
+      'Supports oral health awareness, dental screening, and preventive dental care programmes.',
     image: '/images/real/advisory/dr-sowmya.jpg',
-    clinic: 'Sowmya Multi Speciality Dental Clinic, Guntur',
+    clinic: 'SOWMYA MULTI SPECIALITY DENTAL CLINIC, Kothapet, Guntur',
   },
   {
     name: 'Dr. Ch. Naveen, M.D.S.',
-    designation: 'MDS, Prosthodontics & Implantologist — Sowmya Multi Speciality Dental Clinic, Guntur',
+    designation:
+      'Prosthodontics & Implantologist — SOWMYA MULTI SPECIALITY DENTAL CLINIC, (Kothapet, Guntur)',
     role: 'Prosthodontist & Implantologist',
-    responsibilities: 'Provides dental consultations, restorative treatments, and oral healthcare guidance for seniors and youth.',
+    responsibilities:
+      'Supports dental consultations, restorative treatments, oral health awareness, and preventive dental care programmes.',
     image: '/images/real/advisory/dr-naveen.jpg',
-    clinic: 'Sowmya Multi Speciality Dental Clinic, Guntur',
+    clinic: 'SOWMYA MULTI SPECIALITY DENTAL CLINIC, Kothapet, Guntur',
   },
   {
-    name: 'B. Krishnabharath',
-    designation: 'Psychologist & Founder President, Advanced Psychological Services Association (APA India), Hyderabad',
-    role: 'Psychologist / Mental Health Expert',
-    responsibilities: 'Provides psychological counselling, emotional well-being support, trauma counselling, and mental health awareness.',
-    image: '/images/real/advisory/krishnabharath.jpg',
-    clinic: 'APA India, Hyderabad',
+    name: 'RAFA LABS (Dr. SAHAN KUMAR Garu)',
+    designation: 'RAFA LABS, R.Agraharam, Guntur',
+    role: 'Medical Laboratory Professionals',
+    responsibilities:
+      'Assist in diagnostic services, health screening camps, laboratory investigations, and medical reporting.',
+    clinic: 'RAFA LABS, R.Agraharam, Guntur',
   },
   {
     name: 'B. Sharmila',
     designation: 'Assistant Professor & Psychologist, Guntur',
-    role: 'Assistant Professor / Psychologist',
-    responsibilities: 'Conducts behavioural guidance, counselling sessions for students and women, and community psychological support.',
+    role: 'Psychology Professor / Mental Health Expert',
+    responsibilities:
+      'Provides psychological counselling, emotional well-being support, mental health awareness, and behavioural guidance.',
     image: '/images/real/advisory/b-sharmila.jpg',
     clinic: 'Guntur, Andhra Pradesh',
+  },
+  {
+    name: 'B. Krishnabharath',
+    designation:
+      'Psychologist Founder President Advanced Psychological services Association (APA India) Hyderabad',
+    role: 'Psychology Professor / Mental Health Expert',
+    responsibilities:
+      'Provides psychological counselling, emotional well-being support, mental health awareness, and behavioural guidance.',
+    image: '/images/real/advisory/krishnabharath.jpg',
+    clinic: 'APA India, Hyderabad',
   },
   {
     name: 'R. SIVARAMA KRISHNA (VARMA)',
     designation: 'Silambam Association GUNTUR',
     role: 'Self-Defence Trainer / Martial Arts Instructor',
-    responsibilities: 'Provides expert guidance and conducts self-defence training sessions for women, adolescent girls, students, and community groups to promote safety, confidence, and empowerment.',
+    responsibilities:
+      'Provides expert guidance and conducts self-defence training sessions for women, adolescent girls, students, and community groups to promote safety, confidence, and empowerment.',
     image: '/images/real/advisory/dummy-trainer.png',
     clinic: 'Silambam Association, Guntur',
+  },
+  {
+    name: 'Former Government Childline Officials',
+    designation: 'Child Protection & Welfare Specialists',
+    role: 'Child Protection Advisors',
+    responsibilities:
+      'Provide expert guidance on child protection, child rights, counselling, rescue, rehabilitation, referrals, and coordination with Indian Red Cross Society and government departments.',
+    clinic: 'Indian Red Cross Society & Government Departments',
   },
 ];
 
