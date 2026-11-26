@@ -104,17 +104,17 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
       <div className="bg-white/95 backdrop-blur-md border-b border-slate-200/80">
         <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 h-20 sm:h-22 flex items-center justify-between gap-2 xl:gap-3">
           {/* Logo & Org Name */}
-          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 shrink-0 group">
+          <Link to="/" className="flex items-center gap-2 sm:gap-3 min-w-0 group">
             <img
               src="/assets/logo/pcds-logo.png"
               alt="Prajwala Community Development Society Official Logo"
-              className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-full object-contain bg-white shadow-md ring-2 ring-[#082F70]/20 group-hover:scale-105 transition-transform"
+              className="w-11 h-11 xs:w-12 xs:h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-full object-contain bg-white shadow-md ring-2 ring-[#082F70]/20 group-hover:scale-105 transition-transform shrink-0"
             />
-            <div className="leading-tight max-w-[210px] sm:max-w-[240px] lg:max-w-xs">
-              <div className="text-[11px] sm:text-xs lg:text-[13px] xl:text-[14px] font-black text-[#082F70] tracking-tight uppercase">
+            <div className="leading-tight min-w-0 max-w-[150px] xs:max-w-[195px] sm:max-w-[240px] lg:max-w-xs">
+              <div className="text-[10px] xs:text-[11px] sm:text-xs lg:text-[13px] xl:text-[14px] font-black text-[#082F70] tracking-tight uppercase line-clamp-2">
                 PRAJWALA COMMUNITY DEVELOPMENT SOCIETY
               </div>
-              <div className="text-[9px] sm:text-[10px] lg:text-xs font-bold text-[#078B3B] tracking-widest uppercase mt-0.5">
+              <div className="text-[8px] xs:text-[9px] sm:text-[10px] lg:text-xs font-bold text-[#078B3B] tracking-widest uppercase mt-0.5 truncate">
                 GUNTUR • ESTD. 2019
               </div>
             </div>
@@ -281,7 +281,7 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
           </nav>
 
           {/* Right CTA & Mobile Menu Toggle */}
-          <div className="flex items-center gap-2 shrink-0 pr-1">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             <Link
               to="/contact"
               className="hidden xl:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#082F70] hover:bg-[#0753A6] text-white text-xs xl:text-sm font-bold whitespace-nowrap shadow-md hover:shadow-lg transition-all shrink-0 cursor-pointer"
@@ -290,21 +290,33 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
               <span>Register as Volunteer</span>
             </Link>
 
+            {/* Desktop / Tablet Donate Button */}
             <button
               onClick={onOpenDonate}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#D71920] hover:bg-[#b5141a] text-white text-xs sm:text-sm font-extrabold whitespace-nowrap shadow-md hover:shadow-lg transition-all shrink-0 cursor-pointer"
+              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#D71920] hover:bg-[#b5141a] text-white text-xs sm:text-sm font-extrabold whitespace-nowrap shadow-md hover:shadow-lg transition-all shrink-0 cursor-pointer"
             >
               <Heart className="w-4 h-4 fill-white" />
               <span>Donate Now</span>
             </button>
 
+            {/* Mobile Compact Donate Button (Visible on mobile screens) */}
+            <button
+              onClick={onOpenDonate}
+              aria-label="Donate Now"
+              className="sm:hidden inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-[#D71920] hover:bg-[#b5141a] text-white text-xs font-bold shadow-md shrink-0 cursor-pointer active:scale-95"
+            >
+              <Heart className="w-3.5 h-3.5 fill-white" />
+              <span>Donate</span>
+            </button>
+
+            {/* Mobile Menu Toggle Button — ALWAYS VISIBLE ON MOBILE */}
             <button
               type="button"
               onClick={() => setMobileOpen(true)}
-              aria-label="Open mobile menu"
-              className="lg:hidden p-2 rounded-xl text-[#082F70] hover:bg-[#F3F8FC] transition-colors cursor-pointer"
+              aria-label="Open mobile navigation menu"
+              className="lg:hidden p-2 sm:p-2.5 rounded-xl bg-[#EDF8EF] border border-[#078B3B]/30 text-[#082F70] hover:bg-[#078B3B] hover:text-white transition-all shadow-sm shrink-0 cursor-pointer active:scale-95 flex items-center justify-center"
             >
-              <Menu className="w-6 h-6" />
+              <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
           </div>
         </div>
@@ -317,7 +329,7 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 lg:hidden bg-[#082F70]/60 backdrop-blur-sm"
+            className="fixed inset-0 z-[100] lg:hidden bg-[#082F70]/60 backdrop-blur-sm"
             onClick={() => setMobileOpen(false)}
           >
             <motion.div
@@ -325,7 +337,7 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 28, stiffness: 280 }}
-              className="absolute right-0 top-0 bottom-0 w-80 max-w-[85vw] bg-white shadow-2xl flex flex-col"
+              className="absolute right-0 top-0 bottom-0 w-80 max-w-[85vw] bg-white shadow-2xl flex flex-col z-[101]"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="p-4 border-b border-slate-100 flex items-center justify-between bg-[#082F70] text-white">

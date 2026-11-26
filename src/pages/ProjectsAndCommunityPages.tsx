@@ -801,7 +801,7 @@ export const ContactPage: React.FC = () => {
               </p>
             </div>
             <a
-              href="https://www.google.com/maps/search/?api=1&query=OLD-AGE+HOME%2C+PRAJWALA+COMMUNITY+DEVELOPMENT+SOCIETY%2C+Sri+Vasavi+Heights%2C+70-13-1708%2C+2nd+Ln%2C+beside+Guntur%2C+I.P.D+Colony%2C+Area%2C+Sangadigunta%2C+Guntur%2C+Andhra+Pradesh+522003%2C+India"
+              href="https://www.google.com/maps/search/?api=1&query=16.2854,80.4495+(OLD-AGE+HOME+PRAJWALA+COMMUNITY+DEVELOPMENT+SOCIETY+Sri+Vasavi+Heights+70-13-1708+2nd+Ln+Sangadigunta+Guntur)"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white hover:bg-[#EDF8EF] text-[#082F70] hover:text-[#078B3B] font-extrabold text-sm shadow-md transition-all shrink-0 cursor-pointer"
@@ -811,10 +811,36 @@ export const ContactPage: React.FC = () => {
             </a>
           </div>
 
-          <div className="w-full h-80 sm:h-96 md:h-[420px] bg-slate-100 relative">
+          <div className="w-full h-[450px] sm:h-[500px] md:h-[560px] bg-slate-100 relative">
+            {/* Exact Location Floating Badge on Map */}
+            <div className="absolute top-4 left-4 right-4 sm:right-auto z-10 bg-white/95 backdrop-blur-md rounded-2xl p-3 sm:p-3.5 shadow-xl border border-slate-200/90 flex items-center justify-between gap-3 max-w-md">
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="w-9 h-9 rounded-xl bg-[#D71920]/10 text-[#D71920] flex items-center justify-center shrink-0">
+                  <MapPin className="w-5 h-5 fill-[#D71920]" />
+                </div>
+                <div className="min-w-0">
+                  <div className="text-xs font-black text-[#082F70] truncate">
+                    PCDS Old Age Home (Exact Location)
+                  </div>
+                  <div className="text-[11px] text-[#63738B] truncate">
+                    Sri Vasavi Heights, 2nd Ln, Sangadigunta, Guntur
+                  </div>
+                </div>
+              </div>
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=16.2854,80.4495+(Prajwala+Community+Development+Society+Old+Age+Home)"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-1.5 rounded-full bg-[#078B3B] hover:bg-[#082F70] text-white text-[11px] font-bold shrink-0 shadow transition-colors flex items-center gap-1"
+              >
+                <span>Navigate</span>
+                <span>↗</span>
+              </a>
+            </div>
+
             <iframe
               title="Prajwala Community Development Society Official Location"
-              src="https://maps.google.com/maps?q=OLD-AGE+HOME,+PRAJWALA+COMMUNITY+DEVELOPMENT+SOCIETY,+Sri+Vasavi+Heights,+70-13-1708,+2nd+Ln,+beside+Guntur,+I.P.D+Colony,+Area,+Sangadigunta,+Guntur,+Andhra+Pradesh+522003,+India&t=&z=16&ie=UTF8&iwloc=&output=embed"
+              src="https://maps.google.com/maps?q=16.2854,80.4495+(Prajwala+Community+Development+Society+-+Old+Age+Home,+Sri+Vasavi+Heights,+2nd+Ln,+Sangadigunta,+Guntur)&t=&z=17&ie=UTF8&iwloc=B&output=embed"
               className="w-full h-full border-0"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
