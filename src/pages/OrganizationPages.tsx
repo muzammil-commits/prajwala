@@ -33,6 +33,7 @@ import {
   Shield,
   Droplets,
   Scissors,
+  Sun,
 } from 'lucide-react';
 import {
   ABOUT_TEXT,
@@ -1084,7 +1085,7 @@ export const OrgStructurePage: React.FC = () => (
                   <ArrowDown className="w-4 h-4 text-[#082F70]" />
                 </div>
                 <div className="bg-[#082F70] text-white rounded-xl p-2.5 text-center font-bold text-xs shadow">
-                  COUNSELLOR
+                  COUNSELLING / PSYCHOLOGY COUNSELLING
                 </div>
               </div>
 
@@ -1375,6 +1376,82 @@ export const AdvisoryTeamPage: React.FC = () => (
                 </tr>
               </tbody>
             </table>
+          </div>
+        </div>
+      </ScrollReveal>
+
+      {/* NEW SEPARATE SECTION: DAILY MORNING TIFFIN & BREAKFAST SPONSORSHIP */}
+      <ScrollReveal className="my-14 sm:my-16">
+        <div className="bg-gradient-to-br from-[#FFF9EE] via-white to-[#FDF4DC] rounded-3xl p-6 sm:p-10 border-2 border-[#D4AF37]/50 shadow-xl overflow-hidden relative">
+          {/* Subtle Decorative Glows */}
+          <div className="absolute -top-16 -right-16 w-64 h-64 bg-[#D4AF37]/15 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-[#B8860B]/10 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            {/* Left Column: Malabar Gold & Diamonds Logo Banner Card */}
+            <div className="lg:col-span-5 flex flex-col items-center text-center">
+              <div className="w-full max-w-md rounded-2xl overflow-hidden shadow-xl border-2 border-[#D4AF37]/60 bg-[#7B0B2B] p-2 sm:p-3 hover:scale-[1.02] transition-transform">
+                <img
+                  src="/assets/sponsors/malabar-gold-diamonds.png"
+                  alt="Malabar Gold & Diamonds Guntur Branch Official Daily Tiffin Sponsorship"
+                  className="w-full h-auto object-contain rounded-xl"
+                />
+              </div>
+              <div className="mt-3.5 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#7B0B2B] text-white text-xs font-bold tracking-wider uppercase shadow-md">
+                <span>Malabar Gold &amp; Diamonds • Guntur Branch</span>
+              </div>
+            </div>
+
+            {/* Right Column: Sponsorship Details & Appreciation */}
+            <div className="lg:col-span-7 space-y-4">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/40 text-[#8B6508] text-xs font-extrabold uppercase tracking-wider">
+                <Utensils className="w-3.5 h-3.5 text-[#B8860B]" />
+                <span>Daily Morning Nourishment Programme</span>
+              </div>
+
+              <h3 className="text-2xl sm:text-3xl font-black text-[#082F70] leading-tight">
+                Daily Morning Breakfast &amp; Tiffin Sponsored by{' '}
+                <span className="text-[#991B1B]">Malabar Gold &amp; Diamonds</span> (Guntur Branch)
+              </h3>
+
+              <p className="text-sm sm:text-base text-[#14294A] leading-relaxed">
+                Prajwala Community Development Society (PCDS) expresses our deepest appreciation and gratitude to <strong>Malabar Gold &amp; Diamonds, Guntur Branch</strong> for their compassionate and noble daily sponsorship of fresh, nutritious morning breakfast and tiffin for all elderly residents of the <strong>PCDS Old Age Home</strong> in Guntur.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                <div className="bg-white/90 backdrop-blur rounded-xl p-3.5 border border-[#D4AF37]/35 shadow-sm flex items-start gap-3">
+                  <div className="p-2 rounded-lg bg-[#FFF2CC] text-[#B8860B] shrink-0">
+                    <Sun className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <div className="font-bold text-xs sm:text-sm text-[#082F70]">365 Days Daily Morning Tiffin</div>
+                    <div className="text-xs text-slate-600 mt-0.5">Wholesome, hot, and hygienic meals served every single morning</div>
+                  </div>
+                </div>
+
+                <div className="bg-white/90 backdrop-blur rounded-xl p-3.5 border border-[#D4AF37]/35 shadow-sm flex items-start gap-3">
+                  <div className="p-2 rounded-lg bg-[#EDF8EF] text-[#078B3B] shrink-0">
+                    <HeartHandshake className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <div className="font-bold text-xs sm:text-sm text-[#082F70]">Dedicated CSR Partnership</div>
+                    <div className="text-xs text-slate-600 mt-0.5">Sustaining health, dignity, and care for resident senior citizens</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-2 flex flex-wrap items-center gap-2 text-xs font-semibold text-[#082F70]">
+                <span className="px-3 py-1 rounded-full bg-white border border-slate-200 shadow-xs">
+                  📍 Malabar Gold &amp; Diamonds — Guntur Branch
+                </span>
+                <span className="px-3 py-1 rounded-full bg-white border border-slate-200 shadow-xs">
+                  👵 Supporting 25+ Resident Senior Citizens
+                </span>
+                <span className="px-3 py-1 rounded-full bg-white border border-slate-200 shadow-xs">
+                  🍲 PCDS Old Age Home Daily Tiffin Sponsor
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </ScrollReveal>

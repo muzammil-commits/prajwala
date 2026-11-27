@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Check,
@@ -355,10 +355,10 @@ export const GalleryPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  const filtered =
-    selectedCategory === 'All'
-      ? GALLERY_ITEMS
-      : GALLERY_ITEMS.filter((g) => g.category === selectedCategory);
+  const filtered = useMemo(() => {
+    if (selectedCategory === 'All') return GALLERY_ITEMS;
+    return GALLERY_ITEMS.filter((g) => g.category === selectedCategory);
+  }, [selectedCategory]);
 
   return (
     <div>
@@ -386,31 +386,37 @@ export const GalleryPage: React.FC = () => {
           ))}
         </div>
 
-        <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* High performance, stutter-free immediate photo grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((item, idx) => (
-            <StaggerItem key={item.id}>
+            <div
+              key={item.id}
+              className="group relative w-full h-64 rounded-2xl overflow-hidden shadow-md bg-slate-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+            >
               <button
+                type="button"
                 onClick={() => setLightboxIndex(idx)}
-                className="group relative w-full h-64 rounded-2xl overflow-hidden shadow-md bg-white text-left cursor-pointer"
+                className="w-full h-full text-left cursor-pointer block relative focus:outline-none"
               >
                 <img
                   src={item.image}
                   alt={item.title}
-                  loading="lazy"
+                  loading={idx < 6 ? 'eager' : 'lazy'}
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#082F70]/90 via-transparent to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4 text-white">
-                  <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#078B3B] text-[11px] font-semibold mb-1">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#082F70]/90 via-[#082F70]/20 to-transparent pointer-events-none" />
+                <div className="absolute bottom-4 left-4 right-4 text-white pointer-events-none">
+                  <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#078B3B] text-[11px] font-semibold mb-1 shadow-sm">
                     {item.category}
                   </span>
-                  <div className="font-bold text-base">{item.title}</div>
-                  <div className="text-xs text-white/80 line-clamp-1">{item.caption}</div>
+                  <div className="font-bold text-base line-clamp-1">{item.title}</div>
+                  <div className="text-xs text-white/85 line-clamp-1">{item.caption}</div>
                 </div>
               </button>
-            </StaggerItem>
+            </div>
           ))}
-        </StaggerGrid>
+        </div>
       </section>
 
       <PageRichSections />

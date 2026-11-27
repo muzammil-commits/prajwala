@@ -390,14 +390,14 @@ export const ACTIVITIES: ActivityItem[] = [
   },
   {
     slug: 'self-defence',
-    title: 'Self-Defence Training Programs for Girls and Women',
-    shortTitle: 'Self-Defence Training',
-    category: 'Women Safety',
+    title: 'Sparsha Counselling & Self-Defence Training Programs',
+    shortTitle: 'Sparsha Counselling',
+    category: 'Women Safety & Counselling',
     summary:
-      'Organizing professional self-defence training workshops to equip girls and women with practical self-protection skills, enhance confidence, and promote personal safety.',
+      'Organizing professional Sparsha Counselling and self-defence training workshops to equip girls and women with practical self-protection skills, psychological confidence, and personal safety awareness.',
     fullDescription: [
-      'PCDS organizes professional self-defence training workshops to equip girls and women with practical self-protection skills, enhance their confidence, promote personal safety, and empower them to respond effectively in challenging situations.',
-      "Trained 320 girls and women in self-defence and personal safety. The training programs were conducted at B.H.H. Women's Degree College, Guntur, Government Women's Degree College, Guntur, and in rural communities of Pattipadu Mandal.",
+      'PCDS organizes professional Sparsha Counselling and self-defence training workshops to equip girls and women with practical self-protection skills, psychological confidence, mental resilience, promote personal safety, and empower them to respond effectively in challenging situations.',
+      "Trained 320 girls and women in Sparsha counselling, self-defence, and personal safety. The training programs were conducted at B.H.H. Women's Degree College, Guntur, Government Women's Degree College, Guntur, and in rural communities of Pattipadu Mandal.",
     ],
     image: '/images/real/services/self-defense-1.jpg',
     galleryImages: [
@@ -405,11 +405,12 @@ export const ACTIVITIES: ActivityItem[] = [
       '/images/real/services/self-defense-2.jpg',
     ],
     highlights: [
+      'Sparsha psychological counselling, emotional resilience, and personal safety awareness',
       "Conducted at B.H.H. Women's Degree College & Govt. Women's Degree College, Guntur",
       'Rural outreach in Pattipadu Mandal & selected government/orphanage schools',
-      'Led by Silambam Association Guntur martial arts instructors',
+      'Led by expert psychologists and Silambam Association Guntur martial arts instructors',
     ],
-    metrics: [{ label: 'Girls & Women Trained in Self-Defence', value: '320' }],
+    metrics: [{ label: 'Girls & Women Trained in Sparsha & Safety', value: '320' }],
   },
   {
     slug: 'blood-donation',
@@ -463,7 +464,7 @@ export const IMPACT_METRICS: ImpactMetric[] = [
   { id: '08', number: 17, suffix: '', label: 'Voluntary Hair Donors', detail: 'Supporting wig preparation', iconName: 'Heart' },
   { id: '09', number: 7, suffix: '', label: 'Blood Donation Camps', detail: 'With Indian Red Cross Society', iconName: 'Droplet' },
   { id: '10', number: 5, suffix: '', label: 'Free Medical Camps', detail: 'Health check-ups & consultations', iconName: 'Stethoscope' },
-  { id: '11', number: 320, suffix: '', label: 'Girls & Women Trained', detail: 'In Self-Defence & personal safety', iconName: 'Award' },
+  { id: '11', number: 320, suffix: '', label: 'Girls & Women Trained', detail: 'In Sparsha Counselling, Self-Defence & personal safety', iconName: 'Award' },
   { id: '12', number: 6515, suffix: '+', label: 'Saplings Planted', detail: 'Since 2018 across Guntur', iconName: 'Trees' },
   { id: '13', number: 3000, suffix: '+', label: 'Students Reached', detail: 'Through Awareness Programmes', iconName: 'GraduationCap' },
 ];
@@ -630,7 +631,7 @@ export const IMPLEMENTATION_TEAM = [
   { position: 'Social Workers', responsibility: 'Community Outreach' },
   { position: 'Legal Advisor', responsibility: 'Legal Aid' },
   { position: 'Medical Volunteers', responsibility: 'Health Services' },
-  { position: 'Counsellors', responsibility: 'Counselling' },
+  { position: 'Counsellors / Psychology Counsellor', responsibility: 'Counselling / Psychology Counselling' },
   { position: 'Self-Defence Trainers', responsibility: 'Women Safety Training' },
   { position: 'Volunteer Team', responsibility: 'Field Support' },
 ];

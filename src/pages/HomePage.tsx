@@ -118,14 +118,14 @@ const HERO_SLIDES = [
   {
     desktopBg: '/assets/backgrounds/hero-empowerment.png',
     mobileBg: '/assets/backgrounds/hero-empowerment.png',
-    alt: 'Education, Self-Defence, Women Empowerment, Legal Aid & Environment',
+    alt: 'Education, Sparsha Counselling, Women Empowerment, Legal Aid & Environment',
     eyebrow: 'Empowering Women, Youth & Children',
-    title: 'Education, Self-Defence & Legal Awareness',
+    title: 'Education, Sparsha Counselling & Legal Awareness',
     badge: '320+ Women Trained • 3,000+ Students Reached',
     tagline: 'Building Self-Reliant, Safe and Inclusive Communities',
     motto: 'LEARN • PROTECT • LEAD',
     description:
-      'Driving women’s empowerment, child protection awareness (112 & 1098), free legal aid, vocational tailoring, and 6,515+ tree plantations.',
+      'Driving Sparsha counselling & self-defence, women’s empowerment, child protection awareness (112 & 1098), free legal aid, vocational tailoring, and 6,515+ tree plantations.',
   },
 ];
 
@@ -1247,30 +1247,36 @@ export const HomePage: React.FC = () => {
             </Link>
           </div>
 
-          <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Smooth, high-performance gallery preview grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {GALLERY_ITEMS.slice(0, 6).map((item, idx) => (
-              <StaggerItem key={item.id}>
+              <div
+                key={item.id}
+                className="group relative w-full aspect-[3/2] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 bg-slate-100"
+              >
                 <button
+                  type="button"
                   onClick={() => setLightboxIndex(idx)}
-                  className="group relative w-full aspect-[3/2] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl cursor-pointer text-left"
+                  className="w-full h-full text-left cursor-pointer block relative focus:outline-none"
                 >
                   <img
                     src={item.image}
                     alt={item.title}
-                    loading="lazy"
+                    loading={idx < 3 ? 'eager' : 'lazy'}
+                    decoding="async"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#082F70]/85 via-[#082F70]/15 to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4 text-white">
-                    <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#078B3B] text-[11px] font-semibold mb-1">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#082F70]/85 via-[#082F70]/15 to-transparent pointer-events-none" />
+                  <div className="absolute bottom-4 left-4 right-4 text-white pointer-events-none">
+                    <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#078B3B] text-[11px] font-semibold mb-1 shadow-sm">
                       {item.category}
                     </span>
-                    <div className="font-bold text-base">{item.title}</div>
+                    <div className="font-bold text-base line-clamp-1">{item.title}</div>
                   </div>
                 </button>
-              </StaggerItem>
+              </div>
             ))}
-          </StaggerGrid>
+          </div>
         </div>
       </section>
 
