@@ -92,6 +92,9 @@ const HOME_BENEFICIARY_ICONS: Record<string, React.ReactNode> = {
 
 const HERO_SLIDES = [
   {
+    desktopBg: '/assets/backgrounds/hero-desktop.png',
+    mobileBg: '/assets/backgrounds/hero-mobile.png',
+    alt: 'Prajwala Community Development Society Happy Children',
     eyebrow: 'Together for a Better Tomorrow',
     title: 'Prajwala Community Development Society',
     badge: 'Guntur • Estd. 03 August 2019',
@@ -101,6 +104,9 @@ const HERO_SLIDES = [
       'A non-profit organization committed to improving the quality of life of underprivileged communities through sustainable social development initiatives.',
   },
   {
+    desktopBg: '/assets/backgrounds/hero-old-age-home.png',
+    mobileBg: '/assets/backgrounds/hero-old-age-home.png',
+    alt: 'PCDS Old Age Home & Senior Care Healthcare with Caregiver and Smiling Seniors',
     eyebrow: 'Dignity & Care for Senior Citizens',
     title: 'PCDS Old Age Home & Community Healthcare',
     badge: '25 Residents • 46+ Senior Citizens Supported',
@@ -110,6 +116,9 @@ const HERO_SLIDES = [
       'Operating our Old Age Home in Guntur alongside free medical camps, voluntary blood donation drives, and hair donation campaigns for cancer patients.',
   },
   {
+    desktopBg: '/assets/backgrounds/hero-empowerment.png',
+    mobileBg: '/assets/backgrounds/hero-empowerment.png',
+    alt: 'Education, Self-Defence, Women Empowerment, Legal Aid & Environment',
     eyebrow: 'Empowering Women, Youth & Children',
     title: 'Education, Self-Defence & Legal Awareness',
     badge: '320+ Women Trained • 3,000+ Students Reached',
@@ -203,24 +212,42 @@ export const HomePage: React.FC = () => {
         onMouseLeave={() => setIsSliderHovered(false)}
         className="relative overflow-hidden min-h-[600px] md:min-h-[540px] lg:min-h-[580px] flex items-start md:items-center"
       >
-        {/* Desktop Hero Background (image copy 2.png) with animation */}
+        {/* Desktop Hero Background with dynamic animated slide transition */}
         <div className="hidden md:block absolute inset-0 -z-10 overflow-hidden">
-          <img
-            src="/assets/backgrounds/hero-desktop.png"
-            alt="Prajwala Community Development Society Happy Children"
-            className="w-full h-full object-cover object-right animate-hero-pan"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent w-[65%]" />
+          {HERO_SLIDES.map((slide, idx) => (
+            <div
+              key={idx}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                idx === slideIndex ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+              }`}
+            >
+              <img
+                src={slide.desktopBg}
+                alt={slide.alt}
+                className="w-full h-full object-cover object-right animate-hero-pan"
+              />
+            </div>
+          ))}
+          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-transparent w-[68%] z-20 pointer-events-none" />
         </div>
 
-        {/* Mobile Hero Background (image copy 3.png) with bright look in mobile view only */}
+        {/* Mobile Hero Background with dynamic animated slide transition */}
         <div className="block md:hidden absolute inset-0 -z-10 overflow-hidden">
-          <img
-            src="/assets/backgrounds/hero-mobile.png"
-            alt="Prajwala Community Development Society Mobile Hero"
-            className="w-full h-full object-cover object-bottom brightness-110 saturate-110 animate-hero-pan"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/65 to-transparent h-[65%]" />
+          {HERO_SLIDES.map((slide, idx) => (
+            <div
+              key={idx}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                idx === slideIndex ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+              }`}
+            >
+              <img
+                src={slide.mobileBg}
+                alt={slide.alt}
+                className="w-full h-full object-cover object-bottom brightness-105 saturate-105 animate-hero-pan"
+              />
+            </div>
+          ))}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-white/80 to-transparent h-[70%] z-20 pointer-events-none" />
         </div>
 
         <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-64 md:py-16">
