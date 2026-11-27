@@ -433,39 +433,6 @@ export const ACTIVITIES: ActivityItem[] = [
     ],
     metrics: [{ label: 'Blood Donation Camps Conducted', value: '7' }],
   },
-  {
-    slug: 'advisory-team',
-    title: '13. Advisory & Support Team (Professional Advisory Board)',
-    shortTitle: 'Advisory & Support Team',
-    category: 'Expert Medical & Safety Guidance',
-    summary:
-      'The Advisory & Support Team consists of experienced professionals who voluntarily provide technical guidance, healthcare support, counselling expertise, and safety services to strengthen community welfare initiatives.',
-    fullDescription: [
-      'The Advisory & Support Team consists of experienced professionals who voluntarily provide technical guidance, healthcare support, counselling expertise, and child protection services to strengthen the programmes and community welfare initiatives of Prajwala Community Development Society (PCDS).',
-      'Our distinguished advisory board includes General Physicians, Dental Surgeons, Prosthodontists, Medical Laboratory Specialists, Psychology Professors, Mental Health Experts, and Self-Defence Martial Arts Instructors from esteemed institutions across Guntur and Hyderabad.',
-    ],
-    image: '/images/real/advisory/dr-sahan-kumar.jpg',
-    galleryImages: [
-      '/images/real/advisory/dr-sahan-kumar.jpg',
-      '/images/real/advisory/dr-sowmya.jpg',
-      '/images/real/advisory/dr-naveen.jpg',
-      '/images/real/advisory/b-sharmila.jpg',
-      '/images/real/advisory/krishnabharath.jpg',
-      '/images/real/advisory/dummy-trainer.png',
-    ],
-    highlights: [
-      'General Physician & Regular Health Check-ups (Dr. SAHAN KUMAR Garu, REAKHA CLINIC)',
-      'Cosmetic & Preventive Dental Screening (Dr. Ch. SOWMYA, SOWMYA DENTAL CLINIC)',
-      'Restorative Dental Consultations & Implantology (Dr. Ch. Naveen, M.D.S.)',
-      'Diagnostic Services & Medical Reporting (RAFA LABS, R.Agraharam)',
-      'Psychological Counselling & Mental Health Awareness (B. Sharmila & B. Krishnabharath)',
-      'Self-Defence & Women Safety Training (R. SIVARAMA KRISHNA (VARMA), Silambam Association)',
-    ],
-    metrics: [
-      { label: 'Voluntary Professional Advisors', value: '7+' },
-      { label: 'Specialized Clinical & Safety Domains', value: '6' },
-    ],
-  },
 ];
 
 export const TARGET_BENEFICIARIES = [

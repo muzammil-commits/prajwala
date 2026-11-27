@@ -229,7 +229,7 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
                           }`
                         }
                       >
-                        All 13 Major Activities
+                        All 12 Major Activities
                       </NavLink>
                       {ACTIVITIES.map((act) => (
                         <NavLink
@@ -425,7 +425,7 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
                           onClick={() => setMobileOpen(false)}
                           className="block px-3 py-2 rounded-lg text-sm font-bold text-[#082F70] hover:bg-[#EDF8EF]"
                         >
-                          All 13 Major Activities
+                          All 12 Major Activities
                         </Link>
                         {ACTIVITIES.map((act) => (
                           <Link

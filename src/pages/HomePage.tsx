@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -149,11 +149,21 @@ const IMPACT_ICONS: Record<string, React.ReactNode> = {
 
 export const HomePage: React.FC = () => {
   const [slideIndex, setSlideIndex] = useState(0);
+  const [isSliderHovered, setIsSliderHovered] = useState(false);
   const [donateOpen, setDonateOpen] = useState(false);
   const [previewData, setPreviewData] = useState<PreviewModalData | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [loadingAction, setLoadingAction] = useState<'know-more' | 'quick-preview' | null>(null);
   const navigate = useNavigate();
+
+  // Dynamic automatic slide transition (changes slide every 5 seconds, pauses on hover)
+  useEffect(() => {
+    if (isSliderHovered) return;
+    const interval = setInterval(() => {
+      setSlideIndex((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [isSliderHovered]);
 
   const currentSlide = HERO_SLIDES[slideIndex];
 
@@ -188,7 +198,11 @@ export const HomePage: React.FC = () => {
   return (
     <div className="space-y-0">
       {/* SECTION 01 — HERO SLIDER */}
-      <section className="relative overflow-hidden min-h-[600px] md:min-h-[540px] lg:min-h-[580px] flex items-start md:items-center">
+      <section
+        onMouseEnter={() => setIsSliderHovered(true)}
+        onMouseLeave={() => setIsSliderHovered(false)}
+        className="relative overflow-hidden min-h-[600px] md:min-h-[540px] lg:min-h-[580px] flex items-start md:items-center"
+      >
         {/* Desktop Hero Background (image copy 2.png) with animation */}
         <div className="hidden md:block absolute inset-0 -z-10 overflow-hidden">
           <img
@@ -724,7 +738,7 @@ export const HomePage: React.FC = () => {
                 Major Activities
               </span>
               <h2 className="mt-1 text-3xl sm:text-4xl font-extrabold text-[#082F70]">
-                Our 13 Key Community Initiatives
+                Our 12 Key Community Initiatives
               </h2>
               <p className="mt-2 text-sm sm:text-base text-[#14294A] max-w-2xl">
                 Click Quick Preview to inspect highlights in a popup, or Explore More to open each dedicated activity webpage.
@@ -734,7 +748,7 @@ export const HomePage: React.FC = () => {
               to="/major-activities"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#078B3B] hover:bg-[#082F70] text-white text-sm font-semibold self-start md:self-auto shadow-md transition-all"
             >
-              <span>View All 13 Activities</span>
+              <span>View All 12 Activities</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
