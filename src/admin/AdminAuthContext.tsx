@@ -88,12 +88,13 @@ export const AdminAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       // 2. Check for configured authorized master admin access (for initial provisioning)
       // Allows immediate access to set up and manage the database if user hasn't registered through auth yet
       const cleanEmail = email.trim().toLowerCase();
+      const cleanPass = pass.trim();
       if (
         (cleanEmail === 'admin@prajwala.org' ||
           cleanEmail === 'prajwala.guntur@gmail.com' ||
           cleanEmail === 'muzam@admedtech.com' ||
           cleanEmail === 'admin') &&
-        (pass === 'admin123' || pass === 'prajwala2019' || pass === 'Prajwala@2026')
+        (cleanPass === 'admin123' || cleanPass === 'prajwala2019' || cleanPass === 'Prajwala@2026')
       ) {
         const authUser: AdminUser = {
           id: 'admin-master',

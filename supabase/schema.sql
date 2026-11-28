@@ -59,12 +59,8 @@ CREATE TABLE IF NOT EXISTS public.gallery_items (
 -- 4. GOVERNING BODY
 CREATE TABLE IF NOT EXISTS public.governing_body (
     id TEXT PRIMARY KEY,
-    name TEXT NOT NULL,
-    designation TEXT NOT NULL,
-    role TEXT,
-    qualification TEXT,
-    biography TEXT,
-    image TEXT,
+    position TEXT NOT NULL,
+    responsibility TEXT NOT NULL,
     display_order INTEGER DEFAULT 0,
     is_active BOOLEAN DEFAULT true,
     created_at TIMESTAMPTZ DEFAULT NOW(),
@@ -155,7 +151,7 @@ CREATE TABLE IF NOT EXISTS public.website_sections (
 
 -- 11. CONTACT SUBMISSIONS
 CREATE TABLE IF NOT EXISTS public.contact_submissions (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id TEXT PRIMARY KEY,
     name TEXT NOT NULL,
     email TEXT NOT NULL,
     phone TEXT,
