@@ -97,16 +97,16 @@ export const MediaLibraryPage: React.FC = () => {
             <span>Digital Asset Storage & Optimization</span>
           </div>
           <h1 className="text-2xl font-black text-[#082F70]">
-            Cloudinary Media Library ({media.length})
+            Media Library ({media.length})
           </h1>
           <p className="text-xs sm:text-sm text-slate-500 mt-1">
-            Upload images to Cloudinary (cloud: likt5gb5), copy high-speed CDN URLs, and use across any page or banner.
+            Upload images, copy high-speed CDN URLs, and use across any page or banner.
           </p>
         </div>
 
         <label className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#078B3B] hover:bg-[#067331] text-white font-bold text-xs sm:text-sm shadow-md transition-all cursor-pointer self-start sm:self-auto">
           <Upload className="w-4 h-4" />
-          <span>{uploading ? 'Uploading to Cloudinary...' : 'Upload Asset'}</span>
+          <span>{uploading ? 'Uploading...' : 'Upload Asset'}</span>
           <input
             type="file"
             accept="image/*"
@@ -149,7 +149,7 @@ export const MediaLibraryPage: React.FC = () => {
         </div>
       ) : filteredMedia.length === 0 ? (
         <div className="p-12 text-center bg-white rounded-2xl border border-slate-200 text-slate-500">
-          No media items found. Click "Upload Asset" to upload to Cloudinary.
+          No media items found. Click "Upload Asset" to upload an image.
         </div>
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">

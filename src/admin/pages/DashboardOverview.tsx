@@ -169,12 +169,6 @@ export const DashboardOverview: React.FC = () => {
             <RefreshCw className={`w-3.5 h-3.5 ${seeding ? 'animate-spin' : ''}`} />
             <span>{seeding ? 'Syncing...' : 'Sync Data to Supabase'}</span>
           </button>
-          <Link
-            to="/admin/database"
-            className="inline-flex items-center gap-1 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors"
-          >
-            <span>SQL Schema</span>
-          </Link>
         </div>
       </div>
 
@@ -331,9 +325,9 @@ export const DashboardOverview: React.FC = () => {
             <div className="w-12 h-12 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center group-hover:bg-purple-700 group-hover:text-white transition-colors">
               <ImageIcon className="w-6 h-6" />
             </div>
-            <h3 className="font-bold text-base text-[#082F70]">Photo Gallery &amp; Cloudinary</h3>
+            <h3 className="font-bold text-base text-[#082F70]">Photo Gallery</h3>
             <p className="text-xs text-slate-500 leading-relaxed">
-              Upload event photos to Cloudinary, assign categories, update captions, and preview lightbox.
+              Upload event photos, assign categories, update captions, and preview lightbox.
             </p>
           </div>
           <div className="mt-4 pt-4 border-t border-slate-100 flex items-center gap-1 text-xs font-bold text-[#078B3B] group-hover:translate-x-1 transition-transform">

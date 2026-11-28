@@ -39,7 +39,6 @@ import { ImpactStatsManager } from './admin/pages/ImpactStatsManager';
 import { MediaLibraryPage } from './admin/pages/MediaLibraryPage';
 import { SubmissionsManager } from './admin/pages/SubmissionsManager';
 import { SettingsManager } from './admin/pages/SettingsManager';
-import { DatabaseSetupPage } from './admin/pages/DatabaseSetupPage';
 
 const ScrollToTop: React.FC = () => {
   const { pathname } = useLocation();
@@ -118,7 +117,6 @@ export function App() {
               <Route path="media" element={<MediaLibraryPage />} />
               <Route path="submissions" element={<SubmissionsManager />} />
               <Route path="settings" element={<SettingsManager />} />
-              <Route path="database" element={<DatabaseSetupPage />} />
               <Route path="*" element={<Navigate to="dashboard" replace />} />
             </Route>
 

@@ -31,10 +31,9 @@ const NAV_ITEMS = [
   { to: '/admin/team', label: 'Organization & Teams', icon: Users },
   { to: '/admin/sponsors', label: 'Partners & Sponsors', icon: HandHeart },
   { to: '/admin/impact', label: 'Impact Statistics', icon: BarChart3 },
-  { to: '/admin/media', label: 'Media Library (Cloudinary)', icon: FolderOpen },
+  { to: '/admin/media', label: 'Media Library', icon: FolderOpen },
   { to: '/admin/submissions', label: 'Contact Submissions', icon: Mail },
   { to: '/admin/settings', label: 'Website Settings', icon: Settings },
-  { to: '/admin/database', label: 'Database & Sync', icon: Database },
 ];
 
 export const AdminLayout: React.FC = () => {
@@ -209,14 +208,6 @@ export const AdminLayout: React.FC = () => {
               >
                 <span>View Public Site</span>
                 <ExternalLink className="w-3.5 h-3.5" />
-              </Link>
-
-              <Link
-                to="/admin/database"
-                className="hidden md:inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-emerald-300 bg-emerald-50 text-emerald-800 text-xs font-semibold hover:bg-emerald-100 transition-colors"
-              >
-                <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Supabase Active</span>
               </Link>
             </div>
           </header>
