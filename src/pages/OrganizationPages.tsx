@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight,
@@ -54,6 +54,7 @@ import {
 import { CountUpNumber, PageBanner, ScrollReveal, StaggerGrid, StaggerItem } from '../components/MotionPrimitives';
 import { PageRichSections } from '../components/PageRichSections';
 import { LightboxModal } from '../components/Modals';
+import { CmsService } from '../lib/cmsDataService';
 
 const OBJECTIVE_ICONS: Record<string, React.ReactNode> = {
   GraduationCap: <GraduationCap className="w-7 h-7" />,
@@ -950,7 +951,18 @@ export const LegalInfoPage: React.FC = () => (
   </div>
 );
 
-export const OrgStructurePage: React.FC = () => (
+export const OrgStructurePage: React.FC = () => {
+  const [governingBody, setGoverningBody] = useState(GOVERNING_BODY);
+
+  useEffect(() => {
+    CmsService.getGoverningBody()
+      .then((rows) => {
+        if (rows.length > 0) setGoverningBody(rows);
+      })
+      .catch(() => {});
+  }, []);
+
+  return (
   <div>
     <PageBanner
       title="Organisation Structure"
@@ -1134,7 +1146,7 @@ export const OrgStructurePage: React.FC = () => (
             <span className="text-xs text-white/80">Page 21</span>
           </div>
           <div className="divide-y divide-slate-200">
-            {GOVERNING_BODY.map((g) => (
+            {governingBody.map((g) => (
               <div key={g.position} className="px-6 py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-1 hover:bg-[#F3F8FC]">
                 <span className="font-bold text-[#082F70]">{g.position}</span>
                 <span className="text-sm font-semibold text-[#0753A6]">{g.responsibility}</span>
@@ -1146,9 +1158,21 @@ export const OrgStructurePage: React.FC = () => (
     </section>
     <PageRichSections />
   </div>
-);
+  );
+};
 
-export const ImplementationTeamPage: React.FC = () => (
+export const ImplementationTeamPage: React.FC = () => {
+  const [team, setTeam] = useState(IMPLEMENTATION_TEAM);
+
+  useEffect(() => {
+    CmsService.getImplementationTeam()
+      .then((rows) => {
+        if (rows.length > 0) setTeam(rows);
+      })
+      .catch(() => {});
+  }, []);
+
+  return (
   <div>
     <PageBanner
       title="Programme Implementation Team"
@@ -1164,7 +1188,7 @@ export const ImplementationTeamPage: React.FC = () => (
             <span className="font-bold">RESPONSIBILITY</span>
           </div>
           <div className="divide-y divide-slate-200">
-            {IMPLEMENTATION_TEAM.map((row, idx) => (
+            {team.map((row, idx) => (
               <div
                 key={row.position}
                 className={`px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-1 ${
@@ -1181,7 +1205,8 @@ export const ImplementationTeamPage: React.FC = () => (
     </section>
     <PageRichSections />
   </div>
-);
+  );
+};
 
 export const AdvisoryTeamPage: React.FC = () => (
   <div>

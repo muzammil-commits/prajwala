@@ -25,6 +25,22 @@ import {
   OngoingProjectsPage,
 } from './pages/ProjectsAndCommunityPages';
 
+// Admin CMS imports
+import { AdminAuthProvider } from './admin/AdminAuthContext';
+import { AdminLayout } from './admin/AdminLayout';
+import { AdminLoginPage } from './admin/pages/AdminLoginPage';
+import { DashboardOverview } from './admin/pages/DashboardOverview';
+import { HeroSliderManager } from './admin/pages/HeroSliderManager';
+import { ActivitiesManager } from './admin/pages/ActivitiesManager';
+import { GalleryManager } from './admin/pages/GalleryManager';
+import { TeamManager } from './admin/pages/TeamManager';
+import { SponsorsManager } from './admin/pages/SponsorsManager';
+import { ImpactStatsManager } from './admin/pages/ImpactStatsManager';
+import { MediaLibraryPage } from './admin/pages/MediaLibraryPage';
+import { SubmissionsManager } from './admin/pages/SubmissionsManager';
+import { SettingsManager } from './admin/pages/SettingsManager';
+import { DatabaseSetupPage } from './admin/pages/DatabaseSetupPage';
+
 const ScrollToTop: React.FC = () => {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -82,15 +98,44 @@ const AnimatedRoutes: React.FC = () => {
 export function App() {
   return (
     <MotionConfig reducedMotion="user">
-      <BrowserRouter>
-        <ScrollToTop />
-        <Layout>
-          <AnimatedRoutes />
-        </Layout>
-      </BrowserRouter>
+      <AdminAuthProvider>
+        <BrowserRouter>
+          <ScrollToTop />
+          <Routes>
+            {/* Admin Login Route */}
+            <Route path="/admin/login" element={<AdminLoginPage />} />
+
+            {/* Protected Admin CMS Routes */}
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<Navigate to="dashboard" replace />} />
+              <Route path="dashboard" element={<DashboardOverview />} />
+              <Route path="hero" element={<HeroSliderManager />} />
+              <Route path="activities" element={<ActivitiesManager />} />
+              <Route path="gallery" element={<GalleryManager />} />
+              <Route path="team" element={<TeamManager />} />
+              <Route path="sponsors" element={<SponsorsManager />} />
+              <Route path="impact" element={<ImpactStatsManager />} />
+              <Route path="media" element={<MediaLibraryPage />} />
+              <Route path="submissions" element={<SubmissionsManager />} />
+              <Route path="settings" element={<SettingsManager />} />
+              <Route path="database" element={<DatabaseSetupPage />} />
+              <Route path="*" element={<Navigate to="dashboard" replace />} />
+            </Route>
+
+            {/* Public Website Routes (Wrapped in standard public Layout) */}
+            <Route
+              path="/*"
+              element={
+                <Layout>
+                  <AnimatedRoutes />
+                </Layout>
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+      </AdminAuthProvider>
     </MotionConfig>
   );
 }
 
 export default App;
-

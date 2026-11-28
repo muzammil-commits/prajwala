@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import {
   ArrowLeft,
@@ -16,9 +16,19 @@ import { ACTIVITIES, ADVISORY_TEAM } from '../data/pcdsData';
 import { PageBanner, ScrollReveal, StaggerGrid, StaggerItem } from '../components/MotionPrimitives';
 import { DonateModal, LightboxModal, PreviewModalData, SectionPreviewModal } from '../components/Modals';
 import { PageRichSections } from '../components/PageRichSections';
+import { CmsService } from '../lib/cmsDataService';
 
 export const MajorActivitiesPage: React.FC = () => {
+  const [activities, setActivities] = useState(ACTIVITIES);
   const [previewData, setPreviewData] = useState<PreviewModalData | null>(null);
+
+  useEffect(() => {
+    CmsService.getActivities()
+      .then((acts) => {
+        if (acts.length > 0) setActivities(acts);
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <div>
@@ -30,7 +40,7 @@ export const MajorActivitiesPage: React.FC = () => {
       />
       <section className="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {ACTIVITIES.map((act) => (
+          {activities.map((act) => (
             <StaggerItem key={act.slug}>
               <div className="group h-full bg-white rounded-3xl overflow-hidden shadow-md border border-slate-100 hover:shadow-xl transition-all flex flex-col">
                 <div className="relative h-52 overflow-hidden bg-slate-100">
@@ -107,13 +117,20 @@ export const MajorActivitiesPage: React.FC = () => {
 
 export const ActivityDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
+  const [activities, setActivities] = useState(ACTIVITIES);
+  const [advisoryTeam, setAdvisoryTeam] = useState(ADVISORY_TEAM);
   const [donateOpen, setDonateOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  const index = ACTIVITIES.findIndex((a) => a.slug === slug);
-  const activity = index >= 0 ? ACTIVITIES[index] : ACTIVITIES[0];
-  const prevActivity = ACTIVITIES[(index - 1 + ACTIVITIES.length) % ACTIVITIES.length];
-  const nextActivity = ACTIVITIES[(index + 1) % ACTIVITIES.length];
+  useEffect(() => {
+    CmsService.getActivities().then((a) => a.length > 0 && setActivities(a)).catch(() => {});
+    CmsService.getAdvisoryTeam().then((t) => t.length > 0 && setAdvisoryTeam(t)).catch(() => {});
+  }, []);
+
+  const index = activities.findIndex((a) => a.slug === slug);
+  const activity = index >= 0 ? activities[index] : activities[0];
+  const prevActivity = activities[(index - 1 + activities.length) % activities.length];
+  const nextActivity = activities[(index + 1) % activities.length];
 
   const galleryList = (activity.galleryImages && activity.galleryImages.length > 0)
     ? activity.galleryImages
@@ -122,27 +139,27 @@ export const ActivityDetailPage: React.FC = () => {
   const getRelatedAdvisors = (activitySlug: string) => {
     switch (activitySlug) {
       case 'healthcare':
-        return ADVISORY_TEAM.filter((m) =>
+        return advisoryTeam.filter((m) =>
           ['Dr. SAHAN KUMAR Garu', 'Dr. Ch. SOWMYA, B.D.S.; F.A.G.E.', '2. Dr. Ch. Naveen, M.D.S.', 'RAFA LABS, R.Agraharam'].includes(m.name)
         );
       case 'self-defence':
-        return ADVISORY_TEAM.filter((m) =>
+        return advisoryTeam.filter((m) =>
           m.name.includes('SIVARAMA KRISHNA')
         );
       case 'women-empowerment':
-        return ADVISORY_TEAM.filter((m) =>
+        return advisoryTeam.filter((m) =>
           ['B. Sharmila', 'B. Krishnabharath', 'R.SIVARAMA KRISHNA (VARMA)'].includes(m.name)
         );
       case 'child-welfare':
-        return ADVISORY_TEAM.filter((m) =>
+        return advisoryTeam.filter((m) =>
           ['B. Sharmila', 'B. Krishnabharath'].includes(m.name)
         );
       case 'old-age-home':
-        return ADVISORY_TEAM.filter((m) =>
+        return advisoryTeam.filter((m) =>
           ['Dr. SAHAN KUMAR Garu', 'RAFA LABS, R.Agraharam'].includes(m.name)
         );
       case 'advisory-team':
-        return ADVISORY_TEAM;
+        return advisoryTeam;
       default:
         return [];
     }

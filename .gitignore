@@ -5,4 +5,5 @@ dist
 image copy *.png
 *.pdf
 pdf_extracted_ocr.*
+.env
 

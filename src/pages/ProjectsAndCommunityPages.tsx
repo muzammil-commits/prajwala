@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Check,
@@ -39,6 +39,7 @@ import {
 import { PageBanner, ScrollReveal, StaggerGrid, StaggerItem } from '../components/MotionPrimitives';
 import { ContactSuccessModal, DonateModal, LightboxModal } from '../components/Modals';
 import { PageRichSections } from '../components/PageRichSections';
+import { CmsService } from '../lib/cmsDataService';
 
 export const OngoingProjectsPage: React.FC = () => {
   const [donateOpen, setDonateOpen] = useState(false);
@@ -352,13 +353,28 @@ export const FuturePlansPage: React.FC = () => (
 );
 
 export const GalleryPage: React.FC = () => {
+  const [galleryItems, setGalleryItems] = useState(GALLERY_ITEMS);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
+  useEffect(() => {
+    CmsService.getGalleryItems()
+      .then((items) => {
+        if (items.length > 0) setGalleryItems(items);
+      })
+      .catch(() => {});
+  }, []);
+
+  const categories = useMemo(() => {
+    const dynamic = Array.from(new Set(galleryItems.map((g) => g.category)));
+    const combined = Array.from(new Set([...GALLERY_CATEGORIES.slice(1), ...dynamic]));
+    return ['All', ...combined];
+  }, [galleryItems]);
+
   const filtered = useMemo(() => {
-    if (selectedCategory === 'All') return GALLERY_ITEMS;
-    return GALLERY_ITEMS.filter((g) => g.category === selectedCategory);
-  }, [selectedCategory]);
+    if (selectedCategory === 'All') return galleryItems;
+    return galleryItems.filter((g) => g.category === selectedCategory);
+  }, [selectedCategory, galleryItems]);
 
   return (
     <div>
@@ -371,7 +387,7 @@ export const GalleryPage: React.FC = () => {
 
       <section className="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="flex flex-wrap gap-2">
-          {GALLERY_CATEGORIES.map((cat) => (
+          {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
@@ -546,7 +562,7 @@ export const ContactPage: React.FC = () => {
     mailtoUrl: string;
   } | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
       setError('Please fill in your name, email address, and message.');
@@ -554,6 +570,16 @@ export const ContactPage: React.FC = () => {
     }
     setError('');
     setSubmitting(true);
+
+    try {
+      await CmsService.submitContact({
+        name: form.name.trim(),
+        email: form.email.trim(),
+        phone: form.phone.trim(),
+        subject: form.subject,
+        message: form.message.trim(),
+      });
+    } catch {}
 
     const text = `Hello PCDS Guntur,%0A*Name:* ${encodeURIComponent(form.name.trim())}%0A*Email:* ${encodeURIComponent(form.email.trim())}%0A*Phone:* ${encodeURIComponent(form.phone.trim() || 'Not provided')}%0A*Subject:* ${encodeURIComponent(form.subject)}%0A*Message:* ${encodeURIComponent(form.message.trim())}`;
     const whatsappUrl = `https://wa.me/919502046096?text=${text}`;

@@ -72,6 +72,7 @@ import {
   PreviewModalData,
   LightboxModal,
 } from '../components/Modals';
+import { CmsService } from '../lib/cmsDataService';
 
 const HOME_BENEFICIARY_ICONS: Record<string, React.ReactNode> = {
   '01': <Users className="w-7 h-7 text-[#0753A6]" />,
@@ -157,6 +158,10 @@ const IMPACT_ICONS: Record<string, React.ReactNode> = {
 };
 
 export const HomePage: React.FC = () => {
+  const [heroSlides, setHeroSlides] = useState(HERO_SLIDES);
+  const [activities, setActivities] = useState(ACTIVITIES);
+  const [impactMetrics, setImpactMetrics] = useState(IMPACT_METRICS);
+  const [galleryItems, setGalleryItems] = useState(GALLERY_ITEMS);
   const [slideIndex, setSlideIndex] = useState(0);
   const [isSliderHovered, setIsSliderHovered] = useState(false);
   const [donateOpen, setDonateOpen] = useState(false);
@@ -165,16 +170,52 @@ export const HomePage: React.FC = () => {
   const [loadingAction, setLoadingAction] = useState<'know-more' | 'quick-preview' | null>(null);
   const navigate = useNavigate();
 
+  // Sync dynamic CMS content from Supabase / localStorage
+  useEffect(() => {
+    let active = true;
+    Promise.all([
+      CmsService.getHeroSlides(),
+      CmsService.getActivities(),
+      CmsService.getImpactMetrics(),
+      CmsService.getGalleryItems(),
+    ])
+      .then(([slides, acts, metrics, gallery]) => {
+        if (!active) return;
+        if (slides.length > 0) {
+          setHeroSlides(
+            slides.map((s) => ({
+              desktopBg: s.desktop_bg,
+              mobileBg: s.mobile_bg || s.desktop_bg,
+              alt: s.alt || s.title,
+              eyebrow: s.eyebrow,
+              title: s.title,
+              badge: s.badge,
+              tagline: s.tagline,
+              motto: s.motto,
+              description: s.description,
+            }))
+          );
+        }
+        if (acts.length > 0) setActivities(acts);
+        if (metrics.length > 0) setImpactMetrics(metrics);
+        if (gallery.length > 0) setGalleryItems(gallery);
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, []);
+
   // Dynamic automatic slide transition (changes slide every 5 seconds, pauses on hover)
   useEffect(() => {
-    if (isSliderHovered) return;
+    if (isSliderHovered || heroSlides.length === 0) return;
     const interval = setInterval(() => {
-      setSlideIndex((prev) => (prev + 1) % HERO_SLIDES.length);
+      setSlideIndex((prev) => (prev + 1) % heroSlides.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, [isSliderHovered]);
+  }, [isSliderHovered, heroSlides.length]);
 
-  const currentSlide = HERO_SLIDES[slideIndex];
+  const currentSlide = heroSlides[slideIndex] || heroSlides[0];
 
   const handleAboutKnowMore = () => {
     setLoadingAction('know-more');
@@ -214,7 +255,7 @@ export const HomePage: React.FC = () => {
       >
         {/* Desktop Hero Background with dynamic animated slide transition */}
         <div className="hidden md:block absolute inset-0 -z-10 overflow-hidden">
-          {HERO_SLIDES.map((slide, idx) => (
+          {heroSlides.map((slide, idx) => (
             <div
               key={idx}
               className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
@@ -233,7 +274,7 @@ export const HomePage: React.FC = () => {
 
         {/* Mobile Hero Background with dynamic animated slide transition */}
         <div className="block md:hidden absolute inset-0 -z-10 overflow-hidden">
-          {HERO_SLIDES.map((slide, idx) => (
+          {heroSlides.map((slide, idx) => (
             <div
               key={idx}
               className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
@@ -310,7 +351,7 @@ export const HomePage: React.FC = () => {
         {/* Slider Controls */}
         <button
           type="button"
-          onClick={() => setSlideIndex((i) => (i - 1 + HERO_SLIDES.length) % HERO_SLIDES.length)}
+          onClick={() => setSlideIndex((i) => (i - 1 + heroSlides.length) % heroSlides.length)}
           aria-label="Previous slide"
           className="hidden sm:flex absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/35 hover:bg-[#082F70] text-white items-center justify-center transition-colors cursor-pointer"
         >
@@ -318,7 +359,7 @@ export const HomePage: React.FC = () => {
         </button>
         <button
           type="button"
-          onClick={() => setSlideIndex((i) => (i + 1) % HERO_SLIDES.length)}
+          onClick={() => setSlideIndex((i) => (i + 1) % heroSlides.length)}
           aria-label="Next slide"
           className="hidden sm:flex absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/35 hover:bg-[#082F70] text-white items-center justify-center transition-colors cursor-pointer"
         >
@@ -327,7 +368,7 @@ export const HomePage: React.FC = () => {
 
         {/* Indicators */}
         <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2">
-          {HERO_SLIDES.map((_, idx) => (
+          {heroSlides.map((_, idx) => (
             <button
               key={idx}
               onClick={() => setSlideIndex(idx)}
@@ -781,7 +822,7 @@ export const HomePage: React.FC = () => {
           </div>
 
           <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
-            {ACTIVITIES.map((act) => (
+            {activities.map((act) => (
               <StaggerItem key={act.slug}>
                 <div className="group h-full bg-white rounded-3xl overflow-hidden shadow-lg border border-slate-100 hover:shadow-2xl hover:-translate-y-1 transition-all flex flex-col">
                   <div className="relative aspect-[3/2] overflow-hidden bg-slate-100">
@@ -1013,7 +1054,7 @@ export const HomePage: React.FC = () => {
           </div>
 
           <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            {IMPACT_METRICS.map((m, idx) => (
+            {impactMetrics.map((m, idx) => (
               <StaggerItem key={m.id}>
                 <button
                   onClick={() =>
@@ -1249,7 +1290,7 @@ export const HomePage: React.FC = () => {
 
           {/* Smooth, high-performance gallery preview grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {GALLERY_ITEMS.slice(0, 6).map((item, idx) => (
+            {galleryItems.slice(0, 6).map((item, idx) => (
               <div
                 key={item.id}
                 className="group relative w-full aspect-[3/2] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 bg-slate-100"
@@ -1491,7 +1532,7 @@ export const HomePage: React.FC = () => {
       <DonateModal isOpen={donateOpen} onClose={() => setDonateOpen(false)} />
       <SectionPreviewModal data={previewData} onClose={() => setPreviewData(null)} />
       <LightboxModal
-        items={GALLERY_ITEMS}
+        items={galleryItems}
         currentIndex={lightboxIndex}
         onClose={() => setLightboxIndex(null)}
         onChangeIndex={(i) => setLightboxIndex(i)}

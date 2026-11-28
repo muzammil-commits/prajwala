@@ -284,9 +284,9 @@ export const Header: React.FC<{ onOpenDonate: () => void }> = ({ onOpenDonate })
           <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             <Link
               to="/contact"
-              className="hidden xl:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-[#082F70] hover:bg-[#0753A6] text-white text-xs xl:text-sm font-bold whitespace-nowrap shadow-md hover:shadow-lg transition-all shrink-0 cursor-pointer"
+              className="hidden xl:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-[#082F70] hover:bg-[#0753A6] text-white text-xs xl:text-sm font-bold whitespace-nowrap shadow-md hover:shadow-lg transition-all shrink-0 cursor-pointer"
             >
-              <Users className="w-3.5 h-3.5" />
+              <Users className="w-4 h-4" />
               <span>Register as Volunteer</span>
             </Link>
 

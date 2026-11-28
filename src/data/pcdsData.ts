@@ -43,6 +43,12 @@ export interface AdvisoryMember {
   clinic?: string;
 }
 
+export interface GoverningBodyMember {
+  id?: string;
+  position: string;
+  responsibility: string;
+}
+
 export interface FounderInfo {
   name: string;
   qualification: string;
